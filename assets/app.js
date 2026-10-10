@@ -420,6 +420,26 @@
     $('#cite-date').textContent = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   }
 
+  // The pandemic shock and recovery, computed from the data: layoff peaks, the size of the job
+  // drop, and when payroll jobs regained their February 2020 level.
+  function pandemicFacts() {
+    const bi = idxOf('2020-02'), w0 = idxOf('2020-03'), w1 = idxOf('2020-12');
+    if (bi < 0 || w0 < 0 || w1 < 0) return null;
+    const peak = (k) => { let j = w0; for (let i = w0; i <= w1; i++) if (ser(k)[i] != null && ser(k)[i] > ser(k)[j]) j = i; return { v: ser(k)[j], m: N.months[j] }; };
+    const drop = (k) => {
+      const v = ser(k), base = v[bi]; let j = w0;
+      for (let i = w0; i <= w1; i++) if (v[i] != null && v[i] < v[j]) j = i;
+      let back = null;
+      for (let i = j + 1; i < v.length; i++) if (v[i] != null && v[i] >= base) { back = N.months[i]; break; }
+      return { pct: ((v[j] / base) - 1) * 100, low: N.months[j], back };
+    };
+    return {
+      ldrAll: peak('JTSLDR'), ldrEd: peak('SLED_LDR'),
+      ldrAllAvg: avgBetween('JTSLDR', '2015-01', '2019-12'), ldrEdAvg: avgBetween('SLED_LDR', '2015-01', '2019-12'),
+      jobsEd: drop('CES9093161101'), jobsAll: drop('PAYEMS'),
+    };
+  }
+
   function renderNow() {
     const L = N.months.length - 1;
     const lm = monthLabel(N.latest_month);
@@ -456,8 +476,9 @@
         : 'By that measure, employers across the economy have fewer openings than usual relative to their workforces. That often goes with an easier hiring environment, though openings also reflect how many workers employers want and how long positions stay open.';
     const peakPhr = totPeak.value - tot > 1 ? `well below its ${pct(totPeak.value)} peak in ${monthLabel(totPeak.month)}` : `near its ${pct(totPeak.value)} peak in ${monthLabel(totPeak.month)}`;
     const edCmp = cmpWord(ed, edAvg, 0.2);
+    const pf = pandemicFacts();
     let edTail;
-    if (edCmp === 'above' && mkt !== 'above') edTail = 'So openings in public education are somewhat elevated relative to their own history even though openings in the economy as a whole are not, which suggests something particular to education may be at work. That could reflect greater recruitment needs relative to the existing workforce, slower filling of positions, or both (see staffing levels, below).';
+    if (edCmp === 'above' && mkt !== 'above') edTail = 'So openings in public education are somewhat elevated relative to their own history even though openings in the economy as a whole are not, which suggests something particular to education may be at work. That could reflect greater recruitment needs relative to the existing workforce, slower filling of positions, or both (see staffing levels, below)' + (pf && pf.jobsEd.back && pf.jobsAll.back && pf.jobsEd.back > pf.jobsAll.back ? `, including a long rebuilding of school staffs after 2020` : '') + '.';
     else if (edCmp === 'above') edTail = 'Openings are elevated both in education and in the wider economy, so at least some of what is driving education\'s openings plausibly reflects the labor market as a whole.';
     else if (edCmp === 'below') edTail = 'By its own historical standard, education\'s openings rate is low.';
     else edTail = 'By its own historical standard, education\'s openings rate is unremarkable.';
@@ -558,6 +579,15 @@
     const sgn = (v) => `${v >= 0 ? 'up' : 'down'} ${Math.abs(v).toFixed(1)}%`;
     const loc = ser('CES9093161101')[L];
     $('#staff-lede').append(' ', document.createTextNode(`As of ${monthLabel(N.latest_month)}, local government education had ${num(loc / 1000, 2)} million payroll jobs, ${sgn(ch('CES9093161101'))} from February 2020. All nonfarm employment was ${sgn(ch('PAYEMS'))}.`));
+    const pf = pandemicFacts();
+    if (!pf) return;
+    const mo = (m) => monthLabel(m, true);
+    const pct = (v) => `${Math.abs(v).toFixed(0)}%`;
+    const back = (d) => (d.back ? `regained its February 2020 level in ${mo(d.back)}` : 'had not yet regained its February 2020 level');
+    $('#staff-pandemic').textContent =
+      `Payroll jobs in local government education fell by about ${pct(pf.jobsEd.pct)} between February 2020 and ${mo(pf.jobsEd.low)}, compared with ${pct(pf.jobsAll.pct)} for all nonfarm jobs. ` +
+      `But all nonfarm employment ${back(pf.jobsAll)}, while local government education ${back(pf.jobsEd)}. ` +
+      `A long period of rebuilding school staffs, followed by continued growth, is one plausible contributor to education's openings rate staying above its own pre-pandemic norm, alongside the other possibilities noted above. (How the initial layoff shock differed is described with the charts in the first section.)`;
   }
 
   // NCES staff and enrollment, fall 2000 on (Digest Table 213.10): both Common Core of Data,
@@ -593,6 +623,48 @@
       `More staff per student is not by itself a judgment about whether schools are over- or under-staffed: it can reflect services schools are required or choose to provide, such as special education and smaller classes, and the revenue available to pay for them. But it matters for reading vacancy data. Adding positions increases recruitment needs and spending commitments; whether that creates competition with existing positions depends on the roles, local candidate availability, and funding. These figures show how employment has changed. They do not identify whether today's vacancies arise from expansion, replacement hiring, or difficulty filling positions, and they end in fall ${y1}, well before the latest labor-market data above.`;
     $('#ratio-staff-title').textContent = `Public school staff and students, fall ${y0}–${y1}`;
     $('#ratio-staff-sub').textContent = `Full-time-equivalent staff and fall enrollment, public elementary and secondary schools, fall ${y0} = 100`;
+  }
+
+  // How the pandemic shock and later quits differed between education and the whole economy.
+  // Facts are computed from the data; explanations are offered as competing hypotheses.
+  function renderShock() {
+    const host = $('#shock-note');
+    const bi = idxOf('2020-02'), mi = idxOf('2020-03');
+    if (!host || bi < 0 || mi < 0) return;
+    const v = (k, i) => ser(k)[i];
+    const ppAll = v('JTSLDR', mi) - v('JTSLDR', bi), ppEd = v('SLED_LDR', mi) - v('SLED_LDR', bi);
+    // Yearly average quits as a percent of each series' own 2015-19 average, for complete years from 2020.
+    const years = [];
+    for (let y = 2020; ; y++) { const n = N.months.filter((m) => m.startsWith(`${y}-`)).length; if (n < 12) break; years.push(y); }
+    const yrAvg = (k, y) => mean(N.months.map((m, i) => (m.startsWith(`${y}-`) ? ser(k)[i] : null)).filter((x) => x != null));
+    const rel = (k) => { const b = avgBetween(k, '2015-01', '2019-12'); return years.map((y) => Math.round((yrAvg(k, y) / b) * 100)); };
+    const qa = rel('JTSQUR'), qe = rel('SLED_QUR');
+    const at = (arr, y) => arr[years.indexOf(y)];
+    const earlier = years.includes(2020) && at(qe, 2020) - at(qa, 2020) >= 10;
+    const later = years.filter((y) => y >= 2023);
+    const higherSince = later.length && later.every((y) => at(qe, y) > at(qa, y));
+    const show = (metric, label) => {
+      const a = el('a', { href: '#fig-market', text: label });
+      a.addEventListener('click', () => { $('#metric').value = metric; $('#metric').dispatchEvent(new Event('change')); });
+      return a;
+    };
+    const yrs = `${years[0]}–${years[years.length - 1]}`;
+    const above = (x) => { const d = Math.round(x - 100); return d === 0 ? 'about even with' : `${Math.abs(d)}% ${d > 0 ? 'above' : 'below'}`; };
+    host.replaceChildren(
+      el('p', {}, el('strong', { text: 'The pandemic shock was different in education. ' }),
+        `When the pandemic began, the economy-wide layoffs and discharges rate rose from ${v('JTSLDR', bi).toFixed(1)}% in February 2020 to ${v('JTSLDR', mi).toFixed(1)}% in March, an increase of ${ppAll.toFixed(1)} percentage points. ` +
+        `In state and local education (public schools and colleges, all staff) it rose from ${v('SLED_LDR', bi).toFixed(1)}% to ${v('SLED_LDR', mi).toFixed(1)}%, an increase of ${ppEd.toFixed(1)} points: a large rise from a low base, but a much smaller absolute disruption. ` +
+        `That describes the initial spike, not the whole year. Total separations also include quits and other departures such as retirements, and BLS estimates that annual separations in public education rose more in percentage terms from 2019 to 2020 than in the economy as a whole (32.8% versus 19.9%; `,
+        el('a', { href: 'https://www.bls.gov/opub/mlr/2021/article/as-the-covid-19-pandemic-affects-the-nation-hires-and-turnover-reach-record-highs-in-2020.htm', rel: 'noopener', text: 'BLS, 2021' }), ').'),
+      el('p', {},
+        `Quits followed a different path as well. Averaged over ${yrs}, quits in state and local education ran ${above(mean(qe))} their own 2015–19 average, compared with ${above(mean(qa))} for all sectors. ` +
+        (earlier ? `Education's quits rose earlier` : `Education's quits moved on a different schedule`) +
+        (higherSince ? `, and since 2023 they have stayed higher relative to their own norm than quits economy-wide. ` : '. ') +
+        `So education's lower quit rates do not mean a smaller proportional increase. Sectors entered the recovery from very different disruptions, which matters for interpreting later quits, but these data cannot say why the paths differed. Two hypotheses pull in opposite directions. Sectors that shed many workers later recruited aggressively, drawing workers away from other employers and generating more quits and replacement hiring, a pattern documented for the broader recovery (`,
+        el('a', { href: 'https://www.frbsf.org/research-and-insights/publications/economic-letter/2022/04/great-resignations-are-common-during-fast-recoveries/', rel: 'noopener', text: 'Hobijn, 2022' }),
+        `); with less to rebuild, education may have seen less of that. On the other hand, employers that laid off fewer workers kept more people who could quit later. Aggregate data cannot separate these. To compare for yourself, switch the charts above to `,
+        show('LDR', 'layoffs and discharges'), ', ', show('QUR', 'quits'), ', or ', show('HIR', 'hires'), '.'),
+    );
   }
 
   // --- section 3: industries
@@ -1047,6 +1119,7 @@
     run('now', renderNow);
     run('market', renderMarket);
     run('staffing', renderStaffingLede);
+    run('shock', renderShock);
     run('staff-ratio', renderStaffingNces);
     run('industries', renderIndustries);
     run('states', renderStates);
