@@ -70,6 +70,7 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 a { color: var(--accent); text-underline-offset: 2px; }
+a.arch { color: var(--muted); font-size: 0.85em; }
 .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
 .skip { position: absolute; left: -9999px; }
 .skip:focus { left: 8px; top: 8px; background: var(--surface); padding: 8px; z-index: 10; }

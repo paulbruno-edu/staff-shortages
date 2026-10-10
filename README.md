@@ -24,11 +24,13 @@ It is a static site: plain HTML/CSS/JS, with no build step and no server, hosted
 | `data/state_inventory.json` | Hand-curated 50-state inventory: what each state publishes and why it is or isn't on the dashboard. |
 | `scripts/fetch_national.py` | Pulls all national series from the BLS Public Data API. Python standard library only. A free BLS key (secret `BLS_API_KEY`) is strongly recommended; see PUBLISHING.md step 9. |
 | `scripts/fetch_spp.py` | Pulls the NCES School Pulse Panel staff-vacancy workbook. Needs `openpyxl`. |
+| `data/archive.json` | Wayback Machine copies of every cited source, made by `scripts/archive_sources.py`. The pages show them as "(archived)" links. |
+| `scripts/source_links.py`, `scripts/archive_sources.py`, `scripts/check_links.py`, `scripts/download_sources.py` | Source archiving: collect every cited link; save Wayback copies; check links monthly (`.github/workflows/check-links.yml`); save private copies of source files. Standard library only. |
 | `scripts/fetch_staffing.py` | Pulls the newest edition of NCES Digest Table 213.10 (staff by type and pupils per staff member). Needs `openpyxl`. |
 | `.github/workflows/update-data.yml` | Runs the three fetch scripts on Tuesdays and Fridays and commits only when a value changes. |
 | `PUBLISHING.md` | Step-by-step guide to putting the site online and keeping it updated. |
 
-Working materials that are not published (the original brief and workbook, and state reports downloaded by hand) live outside this repository, in `C:\GoogleDrive\UIUC\Projects\staffshortagesdashboard\` (`baselineattempt\` and `sources\`).
+Working materials that are not published live outside this repository: the original brief and workbook in `C:\GoogleDrive\UIUC\Projects\staffshortagesdashboard\baselineattempt\`, and private copies of the source files behind the figures in `C:\Users\paulb\projects\staff-shortages-sources\` (see "Source archiving" below).
 
 ## Preview locally
 
@@ -84,5 +86,10 @@ Where to look each year:
 - **Arizona** and **Tennessee:** their reports block automated download; save copies to the Drive `sources` folder.
 
 The October JOLTS benchmarks on the state panels come from the automated national pull, so a new school year's benchmark appears once BLS publishes October data (early December).
+
+**Source archiving.** Cited sources disappear or move (Idaho's pipeline report PDF already has). Three safeguards:
+- **Wayback copies.** After adding or changing a source link, run `python scripts/archive_sources.py`. It asks the Internet Archive to save each new link (about a minute per link) and records the copy in `data/archive.json`; the pages then show an "(archived)" link. Links the Archive refuses are listed at the end: save those by hand at web.archive.org, or keep a private copy.
+- **Monthly link check.** `.github/workflows/check-links.yml` runs `scripts/check_links.py` on the 3rd of each month. A dead link (404, 410, or a missing server) fails the run, and GitHub emails you; the log lists each problem link with its archived copy. Sites that block automated checks are listed but do not fail the run.
+- **Private copies.** Run `python scripts/download_sources.py` to save any new cited PDFs and spreadsheets to `..\staff-shortages-sources\`, with a manifest of URLs, dates, and checksums. Files already saved are kept. Sites that block downloads (Arizona's and New Hampshire's) need saving by hand; the script lists them.
 
 **Adding a state:** add an object to `states` in `data/states.json`, with the same shape as the others, including `tier` (`snapshot` or `different`) and a `measure` block. The page draws a panel for it automatically. Move the state from `candidate` to `included` in `data/state_inventory.json`.

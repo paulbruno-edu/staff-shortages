@@ -1,0 +1,511 @@
+{
+ "_readme": "Wayback Machine copies of every source the dashboard cites, made by scripts/archive_sources.py. method: 'saved' = fresh copy made by the script; 'existing copy' = the site refused a new save, so the most recent earlier copy is used; 'not archived' = no copy exists (save these by hand).",
+ "updated": "2026-10-10",
+ "links": {
+  "https://www.isbe.net/Pages/Unfilled-Positions-Archive.aspx": {
+   "archive_url": "https://web.archive.org/web/20261010164735/https://www.isbe.net/Pages/Unfilled-Positions-Archive.aspx",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://dpi.uillinois.edu/wp-content/uploads/2025/05/IWERC-Educator-Shortage-SY25-250313.pdf": {
+   "archive_url": "https://web.archive.org/web/20251104084122/https://dpi.uillinois.edu/wp-content/uploads/2025/05/IWERC-Educator-Shortage-SY25-250313.pdf",
+   "archived": "2025-11-04",
+   "method": "existing copy"
+  },
+  "https://www.isbe.net/Documents_Superintendent_Weekly_Message/Weekly-Message-20260407.pdf": {
+   "archive_url": "https://web.archive.org/web/20261010164931/https://www.isbe.net/Documents_Superintendent_Weekly_Message/Weekly-Message-20260407.pdf",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://www.isbe.net/Documents/EIS-Unfilled-Positions-Webinar-QA.pdf": {
+   "archive_url": "https://web.archive.org/web/20261010180110/https://www.isbe.net/Documents/EIS-Unfilled-Positions-Webinar-QA.pdf",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://www.isbe.net/Documents/SY26-Opening-Webinar-QA.pdf": {
+   "archive_url": "https://web.archive.org/web/20261010165000/https://www.isbe.net/Documents/SY26-Opening-Webinar-QA.pdf",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://www.doe.virginia.gov/Home/Components/News/News/512/227": {
+   "archive_url": "https://web.archive.org/web/20261010165112/https://www.doe.virginia.gov/Home/Components/News/News/512/227",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://www.doe.virginia.gov/home/showpublisheddocument/74899/639009521941570000": {
+   "archive_url": "https://web.archive.org/web/20261010165222/https://www.doe.virginia.gov/home/showpublisheddocument/74899/639009521941570000",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://content.govdelivery.com/attachments/VADOE/2023/03/07/file_attachments/2429275/230303%20MARCH%202023%20BRIEF.pdf": {
+   "archive_url": "https://web.archive.org/web/20250912165012/https://content.govdelivery.com/attachments/VADOE/2023/03/07/file_attachments/2429275/230303%20MARCH%202023%20BRIEF.pdf",
+   "archived": "2025-09-12",
+   "method": "saved"
+  },
+  "https://epicedpolicy.org/wp-content/uploads/2026/01/Teacher-Shortage-Report-Combined-Jan2026.pdf": {
+   "archive_url": "https://web.archive.org/web/20261005133842/https://epicedpolicy.org/wp-content/uploads/2026/01/Teacher-Shortage-Report-Combined-Jan2026.pdf",
+   "archived": "2026-10-05",
+   "method": "saved"
+  },
+  "https://www.pa.gov/agencies/education/data-and-reporting/school-staff/professional-and-support-personnel": {
+   "archive_url": "https://web.archive.org/web/20261010165440/https://www.pa.gov/agencies/education/data-and-reporting/school-staff/professional-and-support-personnel",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://www.pa.gov/content/dam/copapwp-pagov/en/education/documents/data-and-reporting/professional-and-support-personnel/2025-26%20professional%20%20staff%20vacancy%20report%20q1.xlsx": {
+   "archive_url": "https://web.archive.org/web/20260304130149/https://www.pa.gov/content/dam/copapwp-pagov/en/education/documents/data-and-reporting/professional-and-support-personnel/2025-26%20professional%20%20staff%20vacancy%20report%20q1.xlsx",
+   "archived": "2026-03-04",
+   "method": "saved"
+  },
+  "https://www.pa.gov/content/dam/copapwp-pagov/en/education/documents/data-and-reporting/professional-and-support-personnel/prof-staff-summary/2025-26%20professional%20staff%20summary%20report.xlsx": {
+   "archive_url": null,
+   "archived": null,
+   "method": "not archived"
+  },
+  "https://educate.iowa.gov/press-release/2026-01-05/nearly-99-all-iowa-full-time-teaching-positions-filled-2025-26-national-vacancy-rate-3-times-higher": {
+   "archive_url": "https://web.archive.org/web/20261010165642/https://educate.iowa.gov/press-release/2026-01-05/nearly-99-all-iowa-full-time-teaching-positions-filled-2025-26-national-vacancy-rate-3-times-higher",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://educate.iowa.gov/media/12743/download?inline": {
+   "archive_url": "https://web.archive.org/web/20261010165704/https://educate.iowa.gov/media/12743/download?inline",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://educate.iowa.gov/pk-12/educator-quality/practitioner-preparation/teacher-shortage-areas": {
+   "archive_url": "https://web.archive.org/web/20261010165721/https://educate.iowa.gov/pk-12/educator-quality/practitioner-preparation/teacher-shortage-areas",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://educate.iowa.gov/headline-story/2026-09-28/new-dashboard-provides-visualization-iowa-teacher-vacancies": {
+   "archive_url": "https://web.archive.org/web/20261010165835/https://educate.iowa.gov/headline-story/2026-09-28/new-dashboard-provides-visualization-iowa-teacher-vacancies",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/5074/Cerra/a87997b0-e84c-4b5f-9ba5-0f7429b59a95/2025-26-SC-Annual-Educator-Supply-%26-Demand-Data-Tables.pdf": {
+   "archive_url": "https://web.archive.org/web/20261010165901/https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/5074/Cerra/a87997b0-e84c-4b5f-9ba5-0f7429b59a95/2025-26-SC-Annual-Educator-Supply-&-Demand-Data-Tables.pdf",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://ed.cde.state.co.us/educatortalent/researchandimpact/educator-shortage-survey-results": {
+   "archive_url": "https://web.archive.org/web/20261010165938/https://ed.cde.state.co.us/educatortalent/researchandimpact/educator-shortage-survey-results",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://www.education.ne.gov/wp-content/uploads/2026/01/2025-TVS-Summary-Final-.pdf": {
+   "archive_url": "https://web.archive.org/web/20260608120731/https://www.education.ne.gov/wp-content/uploads/2026/01/2025-TVS-Summary-Final-.pdf",
+   "archived": "2026-06-08",
+   "method": "saved"
+  },
+  "https://www.isbe.net/pages/illinois-state-report-card-data.aspx": {
+   "archive_url": "https://web.archive.org/web/20261010170058/https://www.isbe.net/pages/illinois-state-report-card-data.aspx",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://learningpolicyinstitute.org/media/5002/download?inline=&file=State_Vacancy_2026_RESOURCE.pdf": {
+   "archive_url": "https://web.archive.org/web/20261010170150/https://learningpolicyinstitute.org/media/5002/download?inline=&file=State_Vacancy_2026_RESOURCE.pdf",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://osse.dc.gov/page/dc-educator-workforce-data": {
+   "archive_url": "https://web.archive.org/web/20261010170224/https://osse.dc.gov/page/dc-educator-workforce-data",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://osse.dc.gov/sites/default/files/dc/sites/osse/page_content/attachments/SY2025-2026%20DC%20Educator%20Data_Vacancies.xlsx": {
+   "archive_url": "https://web.archive.org/web/20261010180316/https://osse.dc.gov/sites/default/files/dc/sites/osse/page_content/attachments/SY2025-2026%20DC%20Educator%20Data_Vacancies.xlsx",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://osse.dc.gov/sites/default/files/dc/sites/osse/page_content/attachments/Faculty%20and%20Staff%20Data%20Collection%20Policy%20Guidance_1.pdf": {
+   "archive_url": "https://web.archive.org/web/20261010170307/https://osse.dc.gov/sites/default/files/dc/sites/osse/page_content/attachments/Faculty%20and%20Staff%20Data%20Collection%20Policy%20Guidance_1.pdf",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://osse.dc.gov/sites/default/files/dc/sites/osse/page_content/attachments/2022-23%20DC%20Educator%20Workforce%20Data%20File%20%28Counts%20and%20Demographics%29.xlsx": {
+   "archive_url": "https://web.archive.org/web/20250903021848/https://osse.dc.gov/sites/default/files/dc/sites/osse/page_content/attachments/2022-23%20DC%20Educator%20Workforce%20Data%20File%20%28Counts%20and%20Demographics%29.xlsx",
+   "archived": "2025-09-03",
+   "method": "saved"
+  },
+  "https://osse.dc.gov/sites/default/files/dc/sites/osse/page_content/attachments/Educator%20Data%20Flat%20File_Counts%20and%20Demographics.xlsx": {
+   "archive_url": "https://web.archive.org/web/20250903021852/https://osse.dc.gov/sites/default/files/dc/sites/osse/page_content/attachments/Educator%20Data%20Flat%20File_Counts%20and%20Demographics.xlsx",
+   "archived": "2025-09-03",
+   "method": "existing copy"
+  },
+  "https://www.azed.gov/sites/default/files/2025/11/AZ_Teacher_Shortage_Impact_Fall_2025_Report_September_2025_Data.pdf": {
+   "archive_url": "https://web.archive.org/web/20260717060623/https://www.azed.gov/sites/default/files/2025/11/AZ_Teacher_Shortage_Impact_Fall_2025_Report_September_2025_Data.pdf",
+   "archived": "2026-07-17",
+   "method": "existing copy"
+  },
+  "https://www.azed.gov/sites/default/files/2025/11/AZ_Teacher_Shortage_Report_Fall_2024_ERR-Updated_Nov_2025.pdf": {
+   "archive_url": "https://web.archive.org/web/20260314061330/https://www.azed.gov/sites/default/files/2025/11/AZ_Teacher_Shortage_Report_Fall_2024_ERR-Updated_Nov_2025.pdf",
+   "archived": "2026-03-14",
+   "method": "existing copy"
+  },
+  "https://www.azed.gov/teach/err-dashboards-survey-data": {
+   "archive_url": "https://web.archive.org/web/20260314060452/https://www.azed.gov/teach/err-dashboards-survey-data",
+   "archived": "2026-03-14",
+   "method": "existing copy"
+  },
+  "https://news.delaware.gov/files/2025/01/Executive-Summary-Delaware-Excellent-Educator-Hiring-Practices-Survey-2024.pdf": {
+   "archive_url": "https://web.archive.org/web/20260113070731/https://news.delaware.gov/files/2025/01/Executive-Summary-Delaware-Excellent-Educator-Hiring-Practices-Survey-2024.pdf",
+   "archived": "2026-01-13",
+   "method": "saved"
+  },
+  "https://news.delaware.gov/2025/01/08/delaware-makes-improvements-in-educator-staffing/": {
+   "archive_url": "https://web.archive.org/web/20261010170845/https://news.delaware.gov/2025/01/08/delaware-makes-improvements-in-educator-staffing/",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://www.leg.state.nv.us/nrs/nrs-385a.html": {
+   "archive_url": "https://web.archive.org/web/20261010170915/https://www.leg.state.nv.us/nrs/nrs-385a.html",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://nevadareportcard.nv.gov/DI/main/personnel": {
+   "archive_url": "https://web.archive.org/web/20261010170943/https://nevadareportcard.nv.gov/DI/main/personnel",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://public-edsight.ct.gov/educators/fte-staffing/educator-vacancy-dashboard": {
+   "archive_url": "https://web.archive.org/web/20261010171025/https://public-edsight.ct.gov/educators/fte-staffing/educator-vacancy-dashboard",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://edsight.ct.gov/relatedreports/ReportNotes_EducatorVacancy.pdf": {
+   "archive_url": "https://web.archive.org/web/20261010171048/https://edsight.ct.gov/relatedreports/ReportNotes_EducatorVacancy.pdf",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://msde.maryland.gov/stateboard/documents/2026/0224/marylands-teacher-workforce-supply-demand-and-diversity-a.pdf": {
+   "archive_url": "https://web.archive.org/web/20261010171102/https://msde.maryland.gov/media/25039",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://www.fldoe.org/newsroom/latest-news/florida-teacher-vacancies-continue-to-drop-down-13-from-last-year.stml": {
+   "archive_url": "https://web.archive.org/web/20260515203835/https://www.fldoe.org/newsroom/latest-news/florida-teacher-vacancies-continue-to-drop-down-13-from-last-year.stml",
+   "archived": "2026-05-15",
+   "method": "existing copy"
+  },
+  "https://www.fldoe.org/newsroom/latest-news/florida-department-of-education-announces-17-7-reduction-in-teacher-vacancies-for-the-2025-2026-school-year.stml": {
+   "archive_url": "https://web.archive.org/web/20260515183155/https://www.fldoe.org/newsroom/latest-news/florida-department-of-education-announces-17-7-reduction-in-teacher-vacancies-for-the-2025-2026-school-year.stml",
+   "archived": "2026-05-15",
+   "method": "existing copy"
+  },
+  "https://www.fldoe.org/newsroom/latest-news/florida-teacher-vacancies-drop-nearly-10-year-over-year.stml": {
+   "archive_url": "https://web.archive.org/web/20260618105010/https://www.fldoe.org/newsroom/latest-news/florida-teacher-vacancies-drop-nearly-10-year-over-year.stml",
+   "archived": "2026-06-18",
+   "method": "existing copy"
+  },
+  "https://www.wuwf.org/local-news/2023-08-24/teacher-vacancies-down-hiring-continues-across-northwest-florida": {
+   "archive_url": "https://web.archive.org/web/20261010171442/https://www.wuwf.org/local-news/2023-08-24/teacher-vacancies-down-hiring-continues-across-northwest-florida",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://feaweb.org/release/floridas-teacher-and-staff-vacancies-signal-a-retention-crisis-at-a-breaking-point/": {
+   "archive_url": "https://web.archive.org/web/20260817223537/https://feaweb.org/release/floridas-teacher-and-staff-vacancies-signal-a-retention-crisis-at-a-breaking-point/",
+   "archived": "2026-08-17",
+   "method": "existing copy"
+  },
+  "https://www.kentuckyteacher.org/news/2025/10/kentucky-schools-show-progress-toward-addressing-staffing-needs/": {
+   "archive_url": "https://web.archive.org/web/20261010171529/https://www.kentuckyteacher.org/news/2025/10/kentucky-schools-show-progress-toward-addressing-staffing-needs/",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://dese.mo.gov/sites/g/files/zuston521/files/media/pdf/2026/04/Vacancy%20Data%20Narrative%20and%20Graphs%202026%20FINAL%20-%202.9.26_AOD.pdf": {
+   "archive_url": "https://web.archive.org/web/20261010171638/https://dese.mo.gov/sites/g/files/zuston521/files/media/pdf/2026/04/Vacancy%20Data%20Narrative%20and%20Graphs%202026%20FINAL%20-%202.9.26_AOD.pdf",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://ndus.edu/new-data-collection-shines-light-on-broader-school-staff-shortages": {
+   "archive_url": "https://web.archive.org/web/20261010171742/https://ndus.edu/new-data-collection-shines-light-on-broader-school-staff-shortages",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://doe.sd.gov/data/turnover.aspx": {
+   "archive_url": "https://web.archive.org/web/20260828142253/https://doe.sd.gov/data/turnover.aspx",
+   "archived": "2026-08-28",
+   "method": "saved"
+  },
+  "https://doe.sd.gov/data/documents/CombinedStaffingDataset.xlsx": {
+   "archive_url": "https://web.archive.org/web/20261010171850/https://doe.sd.gov/data/documents/CombinedStaffingDataset.xlsx",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://www.ulm.edu/education/2024-2025-state-educator-workforce-report.pdf": {
+   "archive_url": null,
+   "archived": null,
+   "method": "not archived"
+  },
+  "https://mnmsba.org/wp-content/uploads/2025/01/MSBA-2024-Fall-Survey-Summary.pdf": {
+   "archive_url": "https://web.archive.org/web/20260528044024/https://mnmsba.org/wp-content/uploads/2025/01/MSBA-2024-Fall-Survey-Summary.pdf",
+   "archived": "2026-05-28",
+   "method": "existing copy"
+  },
+  "https://www.civilbeat.org/2026/09/more-unlicensed-teachers-are-filling-in-gaps-in-hawaii-classroom/": {
+   "archive_url": "https://web.archive.org/web/20261010172039/https://www.civilbeat.org/2026/09/more-unlicensed-teachers-are-filling-in-gaps-in-hawaii-classroom/",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://ecert.ride.ri.gov/vacancy": {
+   "archive_url": "https://web.archive.org/web/20261010172108/https://ecert.ride.ri.gov/vacancy",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://members.ncasa.net/files/NCSSA%20Vacancy%20Report_2025.pdf": {
+   "archive_url": null,
+   "archived": null,
+   "method": "not archived"
+  },
+  "https://web.archive.org/web/2024/https://www.ksde.org/Portals/0/TLA/LPR/Submitting%20the%20Fall%20Vacancy%20Report.pdf": {
+   "archive_url": "https://web.archive.org/web/2024/https://www.ksde.org/Portals/0/TLA/LPR/Submitting%20the%20Fall%20Vacancy%20Report.pdf",
+   "archived": "2024--",
+   "method": "is an archived copy"
+  },
+  "https://www.ksde.gov/news-center/news-releases/2026/07/16/state-board-gets-update-on-quality-instruction--educator-data-during-july-meeting": {
+   "archive_url": "https://web.archive.org/web/20261010172324/https://www.ksde.gov/news-center/news-releases/2026/07/16/state-board-gets-update-on-quality-instruction--educator-data-during-july-meeting",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://www.hppr.org/hppr-news/2026-07-19/kansas-reports-9-reduction-in-number-of-classroom-teacher-vacancies-statewide": {
+   "archive_url": "https://web.archive.org/web/20261010172450/https://www.hppr.org/hppr-news/2026-07-19/kansas-reports-9-reduction-in-number-of-classroom-teacher-vacancies-statewide",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://alliance.nmsu.edu/soar-center/2025-New-Mexico-Educator-Vacancy-Report.pdf": {
+   "archive_url": "https://web.archive.org/web/20261010172513/https://alliance.nmsu.edu/soar-center/2025-New-Mexico-Educator-Vacancy-Report.pdf",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://www.alabamaachieves.org/reports-data/educator-data/teacher-shortage-data/": {
+   "archive_url": null,
+   "archived": null,
+   "method": "not archived"
+  },
+  "https://www.alabamaachieves.org/wp-content/uploads/2024/12/RD_ED_20241212_2024-2025-Highest-Teacher-Shortage-Areas_v1.0.pdf": {
+   "archive_url": "https://web.archive.org/web/20261010172651/https://www.alabamaachieves.org/wp-content/uploads/2024/12/RD_ED_20241212_2024-2025-Highest-Teacher-Shortage-Areas_v1.0.pdf",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://abc3340.com/news/local/alabama-educator-shortages-jump-23-in-latest-statewide-data": {
+   "archive_url": "https://web.archive.org/web/20261010172747/https://abc3340.com/news/local/alabama-educator-shortages-jump-23-in-latest-statewide-data",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://aldailynews.com/mixed-progress-on-alabama-teacher-shortages-some-gains-many-gaps/": {
+   "archive_url": "https://web.archive.org/web/20261010172810/https://aldailynews.com/mixed-progress-on-alabama-teacher-shortages-some-gains-many-gaps/",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://archive.legmt.gov/content/Committees/Interim/2023-2024/Education/Meetings/september-2023/edic-OPI-RR-sep-2023.pdf": {
+   "archive_url": null,
+   "archived": null,
+   "method": "not archived"
+  },
+  "https://dpi.wi.gov/sites/default/files/imce/education-workforce/pdf/2023-wi-epp-workforce-annual-report.pdf": {
+   "archive_url": "https://web.archive.org/web/20261010172947/https://dpi.wi.gov/sites/default/files/imce/education-workforce/pdf/2023-wi-epp-workforce-annual-report.pdf",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://education.alaska.gov/data-dashboards": {
+   "archive_url": "https://web.archive.org/web/20261010173049/https://education.alaska.gov/data-dashboards",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://education.alaska.gov/forms/05-27-008.docx": {
+   "archive_url": "https://web.archive.org/web/20261010173215/https://education.alaska.gov/forms/05-27-008.docx",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://www.tn.gov/content/dam/tn/stateboardofeducation/documents/2025-sbe-meetings/november-21%2c-2025-sbe-meeting/11-21-25%20II%20D%20Educator%20Vacancy%20Report%202024-25%20Cover.pdf": {
+   "archive_url": null,
+   "archived": null,
+   "method": "not archived"
+  },
+  "https://mdek12.org/wp-content/uploads/sites/20/2025/12/25-26-Educator-Workforce-Shortages-and-Strategies_FINAL.pdf": {
+   "archive_url": null,
+   "archived": null,
+   "method": "not archived"
+  },
+  "https://mdek12.org/wp-content/uploads/sites/20/2024/12/24-25_Educator-Shortage-Survey-Results-and-Strategies.pdf": {
+   "archive_url": "https://web.archive.org/web/20251119051510/https://mdek12.org/wp-content/uploads/sites/20/2024/12/24-25_Educator-Shortage-Survey-Results-and-Strategies.pdf",
+   "archived": "2025-11-19",
+   "method": "existing copy"
+  },
+  "https://magnoliatribune.com/2024/12/05/teacher-turnover-on-the-rise-in-mississippi-southern-region/": {
+   "archive_url": "https://web.archive.org/web/20260513220226/https://magnoliatribune.com/2024/12/05/teacher-turnover-on-the-rise-in-mississippi-southern-region/",
+   "archived": "2026-05-13",
+   "method": "existing copy"
+  },
+  "https://www.proxlearn.com/state/mississippi": {
+   "archive_url": "https://web.archive.org/web/20261010173547/https://www.proxlearn.com/virtual-education-staffing/mississippi/",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://www.ctc.ca.gov/commission/reports/dashboards/california-educator-assignment-monitoring/": {
+   "archive_url": "https://web.archive.org/web/20261010173628/https://www.ctc.ca.gov/commission/reports/dashboards/california-educator-assignment-monitoring/",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://www.ctc.ca.gov/commission/reports/dashboards/california-educator-assignment-monitoring/definitions/": {
+   "archive_url": "https://web.archive.org/web/20261010173733/https://www.ctc.ca.gov/commission/reports/dashboards/california-educator-assignment-monitoring/definitions/",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://www.ctc.ca.gov/commission/reports/dashboards/assignment-workforce/faqs/": {
+   "archive_url": "https://web.archive.org/web/20261010173850/https://www.ctc.ca.gov/commission/reports/dashboards/assignment-workforce/faqs/",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://dq.cde.ca.gov/dataquest/dqcensus/StfTchHires.aspx?cdcode=00&agglevel=State&year=2022-23": {
+   "archive_url": "https://web.archive.org/web/20230331084121/https://dq.cde.ca.gov/dataquest/dqcensus/StfTchHires.aspx?cdcode=00&agglevel=State&year=2022-23",
+   "archived": "2023-03-31",
+   "method": "existing copy"
+  },
+  "https://codes.ohio.gov/ohio-revised-code/section-3301.82": {
+   "archive_url": "https://web.archive.org/web/20261010174033/https://codes.ohio.gov/ohio-revised-code/section-3301.82",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://tea.texas.gov/about-tea/news-and-multimedia/correspondence/taa-letters/new-tsds-core-collection-teacher-vacancy-collection": {
+   "archive_url": "https://web.archive.org/web/20261010174205/https://tea.texas.gov/taa-letters/new-tsds-core-collection-teacher-vacancy-collection",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://www11.maine.gov/doe/data-reporting/Staff": {
+   "archive_url": "https://web.archive.org/web/20260418131425/https://www1.maine.gov/doe/data-reporting/Staff",
+   "archived": "2026-04-18",
+   "method": "saved"
+  },
+  "https://lldc.mainelegislature.org/Open/LDs/132/132-LD-2015.pdf": {
+   "archive_url": "https://web.archive.org/web/20261010174328/https://lldc.mainelegislature.org/Open/LDs/132/132-LD-2015.pdf",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://nj.gov/education/sleds/faq/staffvacancy/": {
+   "archive_url": "https://web.archive.org/web/20261010174343/https://nj.gov/education/sleds/faq/staffvacancy/",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://www.nysed.gov/teacher-leader-development/educator-vacancy-and-hiring-survey": {
+   "archive_url": "https://web.archive.org/web/20261010174603/https://www.nysed.gov/teacher-leader-development/educator-vacancy-and-hiring-survey",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://www.education.nh.gov/sites/g/files/ehbemt326/files/inline-documents/2020/critical_shortage.pdf": {
+   "archive_url": "https://web.archive.org/web/20260117022114/https://www.education.nh.gov/sites/g/files/ehbemt326/files/inline-documents/2020/critical_shortage.pdf",
+   "archived": "2026-01-17",
+   "method": "existing copy"
+  },
+  "https://www.in.gov/ieerb/files/2024-IC-20-29-3-15-Annual-Report-Republish.pdf": {
+   "archive_url": "https://web.archive.org/web/20251118170907/https://www.in.gov/ieerb/files/2024-IC-20-29-3-15-Annual-Report-Republish.pdf",
+   "archived": "2025-11-18",
+   "method": "existing copy"
+  },
+  "https://dese.ade.arkansas.gov/Offices/educator-effectiveness/educator-workforce-data": {
+   "archive_url": "https://web.archive.org/web/20261010174718/https://dese.ade.arkansas.gov/Offices/educator-effectiveness/educator-workforce-data",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://georgiainsights.gadoe.org/dashboards/educator-pipeline-teacher/": {
+   "archive_url": "https://web.archive.org/web/20261010174746/https://georgiainsights.gadoe.org/dashboards/educator-pipeline-teacher/",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://boardofed.idaho.gov/resources/fy25-educator-pipeline-report/": {
+   "archive_url": "https://web.archive.org/web/20261010180552/https://boardofed.idaho.gov/office-of-state-board/k-12-resources/educator-effectiveness/",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://web.archive.org/web/20260423073023/https://boardofed.idaho.gov/wp-content/uploads/2024/12/FY25-Educator-Pipeline-Report.pdf": {
+   "archive_url": "https://web.archive.org/web/20260423073023/https://boardofed.idaho.gov/wp-content/uploads/2024/12/FY25-Educator-Pipeline-Report.pdf",
+   "archived": "2026-04-23",
+   "method": "is an archived copy"
+  },
+  "https://educationtocareer.data.mass.gov/Students-and-Teachers/Educator-Data-Dashboard/nwwi-cbw8": {
+   "archive_url": "https://web.archive.org/web/20261010174928/https://educationtocareer.data.mass.gov/Students-and-Teachers/Educator-Data-Dashboard/nwwi-cbw8",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://oklahoma.gov/content/dam/ok/en/osde/documents/services/accreditation/legislative-resources/2021%20Teacher%20Shortage%20Presentation.pdf": {
+   "archive_url": "https://web.archive.org/web/20261010175025/https://oklahoma.gov/content/dam/ok/en/osde/documents/services/accreditation/legislative-resources/2021%20Teacher%20Shortage%20Presentation.pdf",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://www.oregon.gov/ode/transparency/Shared%20Documents/2026%20Educator%20Equity%20Full%20Report.pdf": {
+   "archive_url": null,
+   "archived": null,
+   "method": "not archived"
+  },
+  "https://schools.utah.gov/licensing/licensingfiles/Utah%20TSA%20Criticality%20Index%202024.pdf": {
+   "archive_url": "https://web.archive.org/web/20260312221925/https://www.schools.utah.gov/licensing/licensingfiles/Utah%20TSA%20Criticality%20Index%202024.pdf",
+   "archived": "2026-03-12",
+   "method": "saved"
+  },
+  "https://education.vermont.gov/data-and-reporting/school-reports/teacher-staff-fte-report": {
+   "archive_url": null,
+   "archived": null,
+   "method": "not archived"
+  },
+  "https://ospi.k12.wa.us/sites/default/files/2025-10/statewide-workforce-recruitment-and-absence-manamgent-system-2025-legislative-report.pdf": {
+   "archive_url": "https://web.archive.org/web/20251230020307/https://ospi.k12.wa.us/sites/default/files/2025-10/statewide-workforce-recruitment-and-absence-manamgent-system-2025-legislative-report.pdf",
+   "archived": "2025-12-30",
+   "method": "saved"
+  },
+  "https://wvde.us/sites/default/files/2021/12/Education-Preparation-Task-Force-Report.pdf": {
+   "archive_url": "https://web.archive.org/web/20261010175318/https://wvde.us/sites/default/files/2021/12/Education-Preparation-Task-Force-Report.pdf",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://wyoleg.gov/InterimCommittee/2023/04-2023052318-01_MonitoringTeacherLaborMarketsStoddardMay2023.pdf": {
+   "archive_url": "https://web.archive.org/web/20261010175415/https://wyoleg.gov/InterimCommittee/2023/04-2023052318-01_MonitoringTeacherLaborMarketsStoddardMay2023.pdf",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://nces.ed.gov/surveys/spp/docs/release/StaffVac.xlsx": {
+   "archive_url": "https://web.archive.org/web/20261010175428/https://nces.ed.gov/surveys/spp/docs/release/StaffVac.xlsx",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://nces.ed.gov/programs/digest/d23/tables/xls/tabn213.10.xlsx": {
+   "archive_url": "https://web.archive.org/web/20261010175450/https://nces.ed.gov/programs/digest/d23/tables/xls/tabn213.10.xlsx",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://nces.ed.gov/programs/digest/d23/tables/dt23_213.10.asp": {
+   "archive_url": "https://web.archive.org/web/20261010175506/https://nces.ed.gov/programs/digest/d23/tables/dt23_213.10.asp",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://doi.org/10.3368/jhr.XLII.4.765": {
+   "archive_url": null,
+   "archived": null,
+   "method": "not archived"
+  },
+  "https://doi.org/10.1016/j.econedurev.2007.05.005": {
+   "archive_url": null,
+   "archived": null,
+   "method": "not archived"
+  },
+  "https://livehandbook.org/k-12-education/workforce-teachers/teacher-licensure/": {
+   "archive_url": "https://web.archive.org/web/20261010175759/https://livehandbook.org/k-12-education/workforce-teachers/teacher-licensure/",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://doi.org/10.1162/edfp_a_00450": {
+   "archive_url": null,
+   "archived": null,
+   "method": "not archived"
+  },
+  "https://nces.ed.gov/surveys/spp/results.asp": {
+   "archive_url": "https://web.archive.org/web/20261010175941/https://nces.ed.gov/surveys/spp/results.asp",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://www2.census.gov/programs-surveys/school-pulse-panel/SPP-October-2024-Survey.pdf": {
+   "archive_url": "https://web.archive.org/web/20260407030338/https://www2.census.gov/programs-surveys/school-pulse-panel/SPP-October-2024-Survey.pdf",
+   "archived": "2026-04-07",
+   "method": "saved"
+  }
+ }
+}

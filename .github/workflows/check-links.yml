@@ -1,0 +1,22 @@
+name: Check source links
+
+# Monthly check that every cited source still resolves. A failed run (dead links) triggers
+# GitHub's usual failure email; the log lists each problem link with its archived copy.
+on:
+  schedule:
+    - cron: "0 14 3 * *"   # the 3rd of each month, 14:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Check links
+        run: python scripts/check_links.py
