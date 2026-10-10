@@ -1,0 +1,59 @@
+{
+  "_readme": "Every state (plus DC) classified by what vacancy data it publishes, and why it is or is not on the dashboard. 'checked' = 'direct' when this project read the primary source; 'lpi' when the classification relies on the Learning Policy Institute's July 2026 scan (Tan, Baez & Patrick, 'State Teacher Shortages 2026 Update'); 'secondary' when only news or third-party coverage was reachable. Re-check annually.",
+  "as_of": "2026-10-09",
+  "base_source": {"label": "Learning Policy Institute, State Teacher Shortages 2026 Update (July 2026)", "url": "https://learningpolicyinstitute.org/media/5002/download?inline=&file=State_Vacancy_2026_RESOURCE.pdf"},
+  "categories": {
+    "included": "On the dashboard",
+    "candidate": "Publishes a rate or a same-source denominator, but not added yet (reason given)",
+    "counts": "Publishes vacancy counts only; no denominator from the same source",
+    "different": "Publishes a figure that measures something different (e.g., includes uncertified teachers or counts job postings)",
+    "none": "No statewide vacancy data published (per LPI 2026)"
+  },
+  "states": [
+    {"state": "Illinois", "category": "included", "checked": "direct", "what": "Oct 1 unfilled FTE by category with filled FTE; published rate", "reason": "Start-of-year snapshot with a same-source denominator, multi-year."},
+    {"state": "Virginia", "category": "included", "checked": "direct", "what": "Fall unfilled FTE / total available FTE (published rate)", "reason": "Start-of-year snapshot, published rate, multi-year."},
+    {"state": "South Carolina", "category": "included", "checked": "direct", "what": "Beginning-of-year vacancies and authorized FTE (CERRA)", "reason": "Start-of-year snapshot with same-source denominator; includes service staff (flagged)."},
+    {"state": "Iowa", "category": "included", "checked": "direct", "what": "12-month count of full-time postings unfilled or filled by substitutes, / employed teachers", "reason": "Published rate, multi-year; shown as a different measure."},
+    {"state": "Colorado", "category": "included", "checked": "direct", "what": "Positions unfilled all year / all teaching positions", "reason": "Published rate, multi-year; shown as a different measure."},
+    {"state": "Nebraska", "category": "included", "checked": "direct", "what": "Vacant and 'unfilled' counts (no denominator)", "reason": "Shown as counts only; illustrates vacant vs. not-fully-qualified."},
+
+    {"state": "Michigan", "category": "candidate", "checked": "direct", "what": "Fall share of teaching FTE 'vacant' from state personnel records (EPIC/MSU statutory report): 2.8% in fall 2024", "reason": "The closest additional candidate. But 'vacancy' includes positions temporarily covered by substitutes or held for staff on leave, and districts were only required to report vacancies from 2023-24, so only one or two years are reliable and the 2023-24 statewide rate is published only in a chart. Revisit when the January 2027 report adds fall 2025."},
+    {"state": "District of Columbia", "category": "candidate", "checked": "direct", "what": "OSSE fall Faculty & Staff collection: vacant teacher FTE (193.5 in 2025-26; 362 in 2023-24) and teacher headcounts (9,145; 8,767)", "reason": "A rate can be computed from the same collection (about 2.1% and 4.0%), but vacancies are FTE and teachers are headcounts, OSSE does not publish a rate, and a city-district is not a state. Could be added with those caveats."},
+    {"state": "Arizona", "category": "candidate", "checked": "secondary", "what": "ADE fall survey: about 4,200 teacher positions vacant or covered by stopgaps; about 1,400 completely unfilled (reported as about 2.4% of positions in 2025-26 vs. 2.8% the prior year)", "reason": "ADE's report blocks automated access and the percentages could only be confirmed in news coverage. Needs the primary report; a person can download it."},
+    {"state": "Tennessee", "category": "candidate", "checked": "secondary", "what": "TDOE Educator Vacancy Report: 1,009 (2022-23), 1,434 (2023-24), about 817-831 (2024-25) teaching positions not filled by a licensed teacher for 20+ days", "reason": "Definition includes positions covered by substitutes; a statewide rate ('just under 2%' for 2023-24) appears only in secondary coverage. The State Board PDF could not be retrieved automatically."},
+    {"state": "Delaware", "category": "candidate", "checked": "direct", "what": "Hiring-practices survey: 259 instructional and non-instructional positions unfilled at end of hiring season, about 2.5% of the workforce", "reason": "Pools non-instructional staff, end-of-hiring-season timing, survey of HR leads, and no consistent multi-year series."},
+
+    {"state": "Maryland", "category": "counts", "checked": "direct", "what": "MSDE Annual Vacancy Data Collection: 1,615 (2021-22) to 886.2 (2025-26) teacher vacancies", "reason": "Counts only; no published rate or same-source denominator."},
+    {"state": "Pennsylvania", "category": "counts", "checked": "direct", "what": "PDE professional vacancies (teachers, administrators, counselors), October and quarterly; flags long-term substitutes", "reason": "Counts only, pools professional roles; collection changed to quarterly in 2024-25."},
+    {"state": "North Carolina", "category": "counts", "checked": "direct", "what": "Superintendents' association survey: teacher and staff vacancies at start of year, 2021-2025", "reason": "Counts from an association survey, not a state agency; no denominator."},
+    {"state": "Kentucky", "category": "counts", "checked": "lpi", "what": "671 teacher vacancies as of Sept 1 (Superintendent webcast)", "reason": "Counts only, presented in a webcast."},
+    {"state": "Missouri", "category": "counts", "checked": "lpi", "what": "656 FTE unfilled teacher positions, October (DESE Educator Vacancy Report)", "reason": "Counts only; report not retrievable automatically."},
+    {"state": "Connecticut", "category": "counts", "checked": "lpi", "what": "795 unfilled teacher positions in August (Educator Vacancy Dashboard)", "reason": "Counts; August timing; interactive dashboard."},
+    {"state": "Alaska", "category": "counts", "checked": "lpi", "what": "324 teacher positions unfilled on the first day of school (dashboard)", "reason": "Counts only."},
+    {"state": "North Dakota", "category": "counts", "checked": "lpi", "what": "219 unfilled FTE teaching positions in fall (university system survey)", "reason": "Counts only; new collection."},
+    {"state": "South Dakota", "category": "counts", "checked": "lpi", "what": "137 unfilled FTE instructional staff positions at start of year (turnover and vacancy dashboard)", "reason": "Counts; instructional staff; dashboard only."},
+    {"state": "Mississippi", "category": "counts", "checked": "lpi", "what": "3,815 unfilled teacher positions reported by districts in fall 2025", "reason": "Counts only."},
+    {"state": "Minnesota", "category": "counts", "checked": "lpi", "what": "205 unfilled teaching positions in November (school boards association survey)", "reason": "Association survey; counts only."},
+    {"state": "Florida", "category": "counts", "checked": "lpi", "what": "2,260 unfilled teacher positions at start of 2025-26 (teachers' union compilation of district data)", "reason": "Not a state-agency figure; counts only."},
+    {"state": "Hawaii", "category": "counts", "checked": "lpi", "what": "294 teacher positions being recruited for as of September 2023", "reason": "Single-year count; dated."},
+    {"state": "Louisiana", "category": "counts", "checked": "lpi", "what": "736 unfilled teacher positions, 2024-25", "reason": "Counts only."},
+    {"state": "Montana", "category": "counts", "checked": "lpi", "what": "1,039 education positions to be filled before 2023-24", "reason": "Pools non-teaching roles; dated."},
+
+    {"state": "Kansas", "category": "different", "checked": "lpi", "what": "1,747 'vacancies' in fall 2025", "reason": "Kansas counts positions filled by educators not fully certified as vacancies."},
+    {"state": "Alabama", "category": "different", "checked": "lpi", "what": "1,684 positions in shortage areas not filled with certified teachers (December)", "reason": "Includes positions filled by long-term substitutes or emergency-certified teachers; shortage areas only."},
+    {"state": "Nevada", "category": "different", "checked": "lpi", "what": "2,881 positions not filled by a contracted full-time teacher, reported at year end", "reason": "End-of-year measure that includes positions covered by substitutes."},
+    {"state": "New Mexico", "category": "different", "checked": "lpi", "what": "604 open teacher job postings in September (university vacancy report)", "reason": "Counts advertised postings, which may overstate vacancies."},
+
+    {"state": "Arkansas", "category": "none", "checked": "lpi"}, {"state": "California", "category": "none", "checked": "lpi"},
+    {"state": "Georgia", "category": "none", "checked": "lpi"}, {"state": "Idaho", "category": "none", "checked": "lpi"},
+    {"state": "Indiana", "category": "none", "checked": "lpi"}, {"state": "Maine", "category": "none", "checked": "lpi"},
+    {"state": "Massachusetts", "category": "none", "checked": "lpi"}, {"state": "New Hampshire", "category": "none", "checked": "lpi"},
+    {"state": "New Jersey", "category": "none", "checked": "lpi"}, {"state": "New York", "category": "none", "checked": "lpi"},
+    {"state": "Ohio", "category": "none", "checked": "lpi"}, {"state": "Oklahoma", "category": "none", "checked": "lpi"},
+    {"state": "Oregon", "category": "none", "checked": "lpi"}, {"state": "Rhode Island", "category": "none", "checked": "lpi"},
+    {"state": "Texas", "category": "none", "checked": "lpi"}, {"state": "Utah", "category": "none", "checked": "lpi"},
+    {"state": "Vermont", "category": "none", "checked": "lpi"}, {"state": "Washington", "category": "none", "checked": "lpi"},
+    {"state": "West Virginia", "category": "none", "checked": "lpi"}, {"state": "Wisconsin", "category": "none", "checked": "lpi"},
+    {"state": "Wyoming", "category": "none", "checked": "lpi"}
+  ]
+}

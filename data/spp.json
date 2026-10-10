@@ -1,0 +1,608 @@
+{
+ "generated_utc": "2026-10-10T02:19Z",
+ "source_url": "https://nces.ed.gov/surveys/spp/docs/release/StaffVac.xlsx",
+ "waves": [
+  "2022-10",
+  "2023-10",
+  "2024-10"
+ ],
+ "roles": [
+  {
+   "var": "PCTVAC1_1_oct",
+   "name": "General Elementary",
+   "group": "teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 2.0,
+     "se": 0.5
+    },
+    "2023-10": {
+     "pct": 1.0,
+     "se": 0.3
+    },
+    "2022-10": {
+     "pct": 3.0,
+     "se": 0.6
+    }
+   }
+  },
+  {
+   "var": "PCTVAC1_2_oct",
+   "name": "Special Education",
+   "group": "teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 5.0,
+     "se": 0.4
+    },
+    "2023-10": {
+     "pct": 6.0,
+     "se": 0.4
+    },
+    "2022-10": {
+     "pct": 6.0,
+     "se": 0.6
+    }
+   }
+  },
+  {
+   "var": "PCTVAC1_3_oct",
+   "name": "English or Language Arts",
+   "group": "teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 3.0,
+     "se": 0.7
+    },
+    "2023-10": {
+     "pct": 2.0,
+     "se": 0.4
+    },
+    "2022-10": {
+     "pct": 2.0,
+     "se": 0.4
+    }
+   }
+  },
+  {
+   "var": "PCTVAC1_4_oct",
+   "name": "Social Studies",
+   "group": "teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 3.0,
+     "se": 0.7
+    },
+    "2023-10": {
+     "pct": 2.0,
+     "se": 0.4
+    },
+    "2022-10": {
+     "pct": 2.0,
+     "se": 0.4
+    }
+   }
+  },
+  {
+   "var": "PCTVAC1_5_oct",
+   "name": "Computer Science",
+   "group": "teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 4.0,
+     "se": 0.9
+    },
+    "2023-10": {
+     "pct": 3.0,
+     "se": 0.7
+    },
+    "2022-10": {
+     "pct": 5.0,
+     "se": 1.2
+    }
+   }
+  },
+  {
+   "var": "PCTVAC1_6_oct",
+   "name": "Mathematics",
+   "group": "teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 4.0,
+     "se": 0.7
+    },
+    "2023-10": {
+     "pct": 4.0,
+     "se": 0.7
+    },
+    "2022-10": {
+     "pct": 3.0,
+     "se": 0.7
+    }
+   }
+  },
+  {
+   "var": "PCTVAC1_7_oct",
+   "name": "Biology or life sciences",
+   "group": "teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 5.0,
+     "se": 1.2
+    },
+    "2023-10": {
+     "pct": 4.0,
+     "se": 0.6
+    },
+    "2022-10": {
+     "pct": 4.0,
+     "se": 0.7
+    }
+   }
+  },
+  {
+   "var": "PCTVAC1_8_oct",
+   "name": "Physical sciences",
+   "group": "teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 4.0,
+     "se": 1.3
+    },
+    "2023-10": {
+     "pct": 3.0,
+     "se": 0.7
+    },
+    "2022-10": {
+     "pct": 4.0,
+     "se": 0.7
+    }
+   }
+  },
+  {
+   "var": "PCTVAC1_9_oct",
+   "name": "ESL or bilingual education",
+   "group": "teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 5.0,
+     "se": 0.6
+    },
+    "2023-10": {
+     "pct": 5.0,
+     "se": 0.6
+    },
+    "2022-10": {
+     "pct": 6.0,
+     "se": 1.1
+    }
+   }
+  },
+  {
+   "var": "PCTVAC1_10_oct",
+   "name": "Foreign languages",
+   "group": "teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 5.0,
+     "se": 1.1
+    },
+    "2023-10": {
+     "pct": 4.0,
+     "se": 0.8
+    },
+    "2022-10": {
+     "pct": 5.0,
+     "se": 0.9
+    }
+   }
+  },
+  {
+   "var": "PCTVAC1_11_oct",
+   "name": "Music or arts",
+   "group": "teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 3.0,
+     "se": 0.5
+    },
+    "2023-10": {
+     "pct": 4.0,
+     "se": 0.4
+    },
+    "2022-10": {
+     "pct": 4.0,
+     "se": 0.7
+    }
+   }
+  },
+  {
+   "var": "PCTVAC1_12_oct",
+   "name": "Career or technical education",
+   "group": "teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 5.0,
+     "se": 1.0
+    },
+    "2023-10": {
+     "pct": 5.0,
+     "se": 1.4
+    },
+    "2022-10": {
+     "pct": 5.0,
+     "se": 1.2
+    }
+   }
+  },
+  {
+   "var": "PCTVAC1_13_oct",
+   "name": "Physical education or health",
+   "group": "teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 5.0,
+     "se": 0.7
+    },
+    "2023-10": {
+     "pct": 4.0,
+     "se": 0.5
+    },
+    "2022-10": {
+     "pct": 4.0,
+     "se": 0.6
+    }
+   }
+  },
+  {
+   "var": "PCTVAC1_14_oct",
+   "name": "Other teachers not listed",
+   "group": "teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 5.0,
+     "se": 0.8
+    },
+    "2023-10": {
+     "pct": 5.0,
+     "se": 0.9
+    },
+    "2022-10": {
+     "pct": 6.0,
+     "se": 1.1
+    }
+   }
+  },
+  {
+   "var": "PCTVAC1TOT_oct",
+   "name": "TOTAL teaching",
+   "group": "teaching",
+   "total": true,
+   "values": {
+    "2024-10": {
+     "pct": 3.0,
+     "se": 0.4
+    },
+    "2023-10": {
+     "pct": 3.0,
+     "se": 0.3
+    },
+    "2022-10": {
+     "pct": 4.0,
+     "se": 0.4
+    }
+   }
+  },
+  {
+   "var": "PCTVAC2_1_oct",
+   "name": "Mental health professional",
+   "group": "non-teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 4.0,
+     "se": 0.5
+    },
+    "2023-10": {
+     "pct": 6.0,
+     "se": 0.6
+    },
+    "2022-10": {
+     "pct": 5.0,
+     "se": 0.7
+    }
+   }
+  },
+  {
+   "var": "PCTVAC2_2_oct",
+   "name": "Medical professional",
+   "group": "non-teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 4.0,
+     "se": 0.7
+    },
+    "2023-10": {
+     "pct": 4.0,
+     "se": 0.6
+    },
+    "2022-10": {
+     "pct": 5.0,
+     "se": 0.7
+    }
+   }
+  },
+  {
+   "var": "PCTVAC2_3_oct",
+   "name": "Administrative staff",
+   "group": "non-teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 3.0,
+     "se": 0.4
+    },
+    "2023-10": {
+     "pct": 3.0,
+     "se": 0.6
+    },
+    "2022-10": {
+     "pct": 3.0,
+     "se": 0.4
+    }
+   }
+  },
+  {
+   "var": "PCTVAC2_4_oct",
+   "name": "Technology specialist",
+   "group": "non-teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 4.0,
+     "se": 0.7
+    },
+    "2023-10": {
+     "pct": 4.0,
+     "se": 0.6
+    },
+    "2022-10": {
+     "pct": 5.0,
+     "se": 1.2
+    }
+   }
+  },
+  {
+   "var": "PCTVAC2_5_oct",
+   "name": "Transportation staff",
+   "group": "non-teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 7.0,
+     "se": 1.2
+    },
+    "2023-10": {
+     "pct": 7.0,
+     "se": 1.3
+    },
+    "2022-10": {
+     "pct": 8.0,
+     "se": 1.2
+    }
+   }
+  },
+  {
+   "var": "PCTVAC2_6_oct",
+   "name": "Custodial staff",
+   "group": "non-teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 6.0,
+     "se": 0.6
+    },
+    "2023-10": {
+     "pct": 6.0,
+     "se": 0.6
+    },
+    "2022-10": {
+     "pct": 8.0,
+     "se": 0.6
+    }
+   }
+  },
+  {
+   "var": "PCTVAC2_7_oct",
+   "name": "Nutrition staff",
+   "group": "non-teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 5.0,
+     "se": 0.6
+    },
+    "2023-10": {
+     "pct": 6.0,
+     "se": 0.5
+    },
+    "2022-10": {
+     "pct": 7.0,
+     "se": 0.9
+    }
+   }
+  },
+  {
+   "var": "PCTVAC2_8_oct",
+   "name": "Academic counselor",
+   "group": "non-teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 4.0,
+     "se": 0.7
+    },
+    "2023-10": {
+     "pct": 3.0,
+     "se": 0.6
+    },
+    "2022-10": {
+     "pct": 4.0,
+     "se": 0.9
+    }
+   }
+  },
+  {
+   "var": "PCTVAC2_9_oct",
+   "name": "Academic interventionist",
+   "group": "non-teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 4.0,
+     "se": 0.6
+    },
+    "2023-10": {
+     "pct": 6.0,
+     "se": 0.8
+    },
+    "2022-10": {
+     "pct": 6.0,
+     "se": 1.1
+    }
+   }
+  },
+  {
+   "var": "PCTVAC2_10_oct",
+   "name": "Tutor",
+   "group": "non-teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 6.0,
+     "se": 2.0
+    },
+    "2023-10": {
+     "pct": 11.0,
+     "se": 2.6
+    },
+    "2022-10": {
+     "pct": 9.0,
+     "se": 2.4
+    }
+   }
+  },
+  {
+   "var": "PCTVAC2_11_oct",
+   "name": "Instructional coach",
+   "group": "non-teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 5.0,
+     "se": 1.0
+    },
+    "2023-10": {
+     "pct": 6.0,
+     "se": 1.3
+    },
+    "2022-10": {
+     "pct": 5.0,
+     "se": 0.9
+    }
+   }
+  },
+  {
+   "var": "PCTVAC2_12_oct",
+   "name": "Classroom aide",
+   "group": "non-teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 7.0,
+     "se": 0.7
+    },
+    "2023-10": {
+     "pct": 8.0,
+     "se": 0.7
+    }
+   }
+  },
+  {
+   "var": "PCTVAC2_13_oct",
+   "name": "Other staff not listed",
+   "group": "non-teaching",
+   "total": false,
+   "values": {
+    "2024-10": {
+     "pct": 7.0,
+     "se": 1.0
+    },
+    "2023-10": {
+     "pct": 7.0,
+     "se": 1.1
+    },
+    "2022-10": {
+     "pct": 8.0,
+     "se": 1.4
+    }
+   }
+  },
+  {
+   "var": "PCTVAC2TOT_oct",
+   "name": "TOTAL non-teaching staff",
+   "group": "non-teaching",
+   "total": true,
+   "values": {
+    "2024-10": {
+     "pct": 6.0,
+     "se": 0.4
+    },
+    "2023-10": {
+     "pct": 6.0,
+     "se": 0.4
+    },
+    "2022-10": {
+     "pct": 6.0,
+     "se": 0.5
+    }
+   }
+  },
+  {
+   "var": "PCTVACTOT_oct",
+   "name": "TOTAL teaching + non-teaching",
+   "group": "all",
+   "total": true,
+   "values": {
+    "2024-10": {
+     "pct": 4.0,
+     "se": 0.3
+    },
+    "2023-10": {
+     "pct": 4.0,
+     "se": 0.2
+    }
+   }
+  }
+ ],
+ "schools_with_teaching_vacancy": {
+  "2022-10": 44.0,
+  "2023-10": 37.0,
+  "2024-10": 35.0
+ }
+}

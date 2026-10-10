@@ -1,0 +1,69 @@
+name: Update national data
+
+# JOLTS is released around the first week of each month; CES on the first Friday.
+# Checking twice a week means new data appear within a few days of release.
+on:
+  schedule:
+    - cron: "0 15 * * 2,5"   # Tuesdays and Fridays, 15:00 UTC
+  workflow_dispatch: {}       # "Run workflow" button in the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch FRED and BLS data
+        env:
+          # Optional. A free key from https://data.bls.gov/registrationEngine/
+          # raises BLS API limits; the script works without one.
+          BLS_API_KEY: ${{ secrets.BLS_API_KEY }}
+        run: python scripts/fetch_national.py
+
+      # NCES School Pulse Panel. Its last vacancy wave was October 2024; this step
+      # picks up any new waves if NCES resumes the survey. A failure here does not
+      # block the BLS update.
+      - name: Fetch NCES School Pulse Panel vacancy data
+        continue-on-error: true
+        run: |
+          pip install --quiet openpyxl
+          python scripts/fetch_spp.py
+
+      - name: Commit if the data changed
+        run: |
+          if git diff --quiet -- data/; then
+            echo "No new data."
+            exit 0
+          fi
+          # generated_utc changes on every run; only commit when a value changed.
+          git show HEAD:data/national.json > /tmp/old_national.json 2>/dev/null || echo '{}' > /tmp/old_national.json
+          git show HEAD:data/spp.json > /tmp/old_spp.json 2>/dev/null || echo '{}' > /tmp/old_spp.json
+          if python - <<'EOF'
+          import json, sys
+          changed = False
+          for old_path, new_path in [("/tmp/old_national.json", "data/national.json"), ("/tmp/old_spp.json", "data/spp.json")]:
+              old = json.load(open(old_path)); new = json.load(open(new_path))
+              old.pop("generated_utc", None); new.pop("generated_utc", None)
+              changed = changed or old != new
+          sys.exit(0 if changed else 1)
+          EOF
+          then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/
+            git commit -m "Update national data ($(date -u +%Y-%m-%d))"
+            git push
+          else
+            echo "Only the timestamp changed; not committing."
+          fi

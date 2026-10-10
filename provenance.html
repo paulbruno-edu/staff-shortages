@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Provenance: School Staff Shortages</title>
+<meta name="description" content="Where every number on the School Staff Shortages dashboard comes from: publishers, files, retrieval, transformations, verification, and known issues.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%232a78d6'/%3E%3Cpath d='M3 11 L6 7 L9 9 L13 4' stroke='white' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <p class="crumb"><a href="https://www.paul-bruno.com/">Paul Bruno</a> <span aria-hidden="true">/</span> <a href="./">School Staff Shortages</a> <span aria-hidden="true">/</span> Data provenance</p>
+    <h1>Data provenance</h1>
+    <p class="dek">Where every number on the dashboard comes from, how it is retrieved, what is done to it, when it was last checked, and what is still uncertain.</p>
+    <p class="stamp" id="stamp">Loading…</p>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sections">
+  <div class="wrap">
+    <a href="#principles">Principles</a>
+    <a href="#pipeline">How data flow</a>
+    <a href="#national">National series</a>
+    <a href="#spp">School Pulse Panel</a>
+    <a href="#states">State data</a>
+    <a href="#inventory">50-state inventory</a>
+    <a href="#derived">Derived figures</a>
+    <a href="#issues">Known issues</a>
+    <a href="#changes">Corrections log</a>
+  </div>
+</nav>
+
+<main class="wrap prov">
+
+<section id="principles">
+  <h2>Principles</h2>
+  <ul class="limits">
+    <li><strong>Nothing is estimated or interpolated.</strong> A value missing at the source is missing on the dashboard, and the reason is recorded.</li>
+    <li><strong>Published and computed values are labeled.</strong> When an agency publishes a rate, that rate is shown. When it publishes only the components, the dashboard divides them and labels the result "computed". Third-party calculations are labeled as such.</li>
+    <li><strong>Every series records its definition.</strong> What counts as a vacancy, which positions are covered, when it is measured, and what the denominator is. These differ across sources, and the dashboard shows them side by side.</li>
+    <li><strong>Verification is recorded point by point.</strong> Each state's entry says which figures were checked against the agency's own publication (not secondary reports), which could only be confirmed indirectly, and which were carried over from the October 2026 baseline workbook without re-checking.</li>
+  </ul>
+</section>
+
+<section id="pipeline">
+  <h2>How data flow</h2>
+  <div class="table-wrap">
+    <table class="data">
+      <thead><tr><th scope="col">Data</th><th scope="col">File</th><th scope="col">How it is updated</th><th scope="col">If the update fails</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">BLS JOLTS and employment series</th><td><code>data/national.json</code>, <code>data/national_monthly.csv</code></td><td>Automatically: <code>scripts/fetch_national.py</code>, run by a GitHub Action every Tuesday and Friday. It re-downloads the full history each time (JOLTS revises past months) and commits only if a value changed.</td><td>The script exits without writing; the site keeps the last good data. GitHub emails the repository owner about the failed run.</td></tr>
+        <tr><th scope="row">NCES School Pulse Panel</th><td><code>data/spp.json</code></td><td>Automatically: <code>scripts/fetch_spp.py</code>, same schedule. The survey's last staffing wave was October 2024; the step picks up new waves if NCES resumes.</td><td>Same: existing file kept. This step cannot block the BLS update.</td></tr>
+        <tr><th scope="row">State vacancy data</th><td><code>data/states.json</code></td><td>By hand, once states publish (most between December and April). States publish PDFs, spreadsheets, and dashboards whose links and layouts change, and figures need checking by a person (see the Iowa correction below).</td><td>Not applicable.</td></tr>
+        <tr><th scope="row">50-state inventory</th><td><code>data/state_inventory.json</code></td><td>By hand, about once a year (the Learning Policy Institute updates its scan each summer).</td><td>Not applicable.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="national">
+  <h2>National series (BLS)</h2>
+  <p class="lede">All from the U.S. Bureau of Labor Statistics. Economy-wide and employment series are retrieved through FRED (Federal Reserve Bank of St. Louis) as public CSV; industry JOLTS series come from the BLS Public Data API v2. Seasonally adjusted unless noted.</p>
+  <div class="table-wrap"><table class="data" id="national-table"><caption>Series retrieved automatically</caption></table></div>
+  <p class="small">FRED request: <code>https://fred.stlouisfed.org/graph/fredgraph.csv?id=…&amp;cosd=2000-12-01</code>. BLS request: <code>POST https://api.bls.gov/publicAPI/v2/timeseries/data/</code> with series IDs of the form <code>JTS</code> + 6-digit industry code + <code>000000000</code> + element (<code>JOL</code> level, <code>JOR</code> openings rate, <code>HIR</code> hires, <code>QUR</code> quits, <code>LDR</code> layoffs &amp; discharges). The industry table uses the latest month for 21 industries; mining &amp; logging and transportation, warehousing &amp; utilities are not returned by the API and are omitted.</p>
+</section>
+
+<section id="spp">
+  <h2>NCES School Pulse Panel</h2>
+  <div class="methods">
+    <p><strong>Publisher.</strong> National Center for Education Statistics (NCES), Institute of Education Sciences; data collected by the U.S. Census Bureau.</p>
+    <p><strong>File.</strong> <a href="https://nces.ed.gov/surveys/spp/docs/release/StaffVac.xlsx">StaffVac.xlsx</a> ("Staff Vacancies" workbook, linked from <a href="https://nces.ed.gov/surveys/spp/results.asp">nces.ed.gov/surveys/spp/results.asp</a>). Rows used: sheet <code>SVaverage</code>, "All public schools", variables <code>PCTVAC1_*_oct</code> (teaching roles), <code>PCTVAC2_*_oct</code> (non-teaching roles), <code>PCTVAC1TOT_oct</code> and <code>PCTVAC2TOT_oct</code> (totals), each with its standard error; sheet <code>All Schools</code>, variable <code>StaffVac1_TOT_CAT1</code> (share of schools with one, or more than one, teaching vacancy).</p>
+    <p><strong>Question.</strong> From the <a href="https://www2.census.gov/programs-surveys/school-pulse-panel/SPP-October-2024-Survey.pdf">October 2024 questionnaire</a>: for each role, principals entered "Total number of positions at my school (filled + vacant)" and "Number of vacancies", counting each part-time position as 1. NCES reports vacancies as a percent of positions.</p>
+    <p><strong>Transformations.</strong> None to the values. October waves are mapped to school years (October 2024 → 2024-25). 95% confidence intervals in tooltips are ±1.96 × the published standard error.</p>
+    <p><strong>Caveats.</strong> NCES calls SPP results "experimental data." Estimates are rounded to whole percents. The sample is about 4,000 public schools. The 2024-25 survey cycle ended in July 2025, after NCES staff cuts, and no further staffing wave has been announced.</p>
+    <p id="spp-status" class="small"></p>
+  </div>
+</section>
+
+<section id="states">
+  <h2>State data</h2>
+  <p class="lede">Each state below: who publishes the data, exactly what it counts, every data point with its basis and source note, and the documents it came from. Rendered directly from <a href="data/states.json"><code>data/states.json</code></a>, the same file the dashboard reads.</p>
+  <div id="state-prov"></div>
+</section>
+
+<section id="inventory">
+  <h2>50-state inventory</h2>
+  <p class="lede" id="inv-lede"></p>
+  <div class="table-wrap"><table class="data" id="inv-table"></table></div>
+</section>
+
+<section id="derived">
+  <h2>Derived figures</h2>
+  <div class="table-wrap">
+    <table class="data">
+      <thead><tr><th scope="col">Figure on the dashboard</th><th scope="col">How it is computed</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Openings per unemployed person</th><td>JOLTS openings level (JTSJOL) ÷ unemployed persons (UNEMPLOY), same month. Months missing at the source are left blank.</td></tr>
+        <tr><th scope="row">Education relative to the whole market</th><td>State &amp; local education rate ÷ all-sector rate × 100, same month and measure.</td></tr>
+        <tr><th scope="row">3-month average (optional)</th><td>Mean of the current and two previous months; blank if any of the three is missing.</td></tr>
+        <tr><th scope="row">Employment index</th><td>Each series ÷ its February 2020 value × 100.</td></tr>
+        <tr><th scope="row">2015–19 averages, peaks</th><td>Simple means of monthly values January 2015 through December 2019; peaks are the maximum since December 2000.</td></tr>
+        <tr><th scope="row">October benchmarks on state panels</th><td>Not-seasonally-adjusted JOLTS openings rates for October (series JTU923000000000000JOR and JTU000000000000000JOR), mapped to the school year starting that fall.</td></tr>
+        <tr><th scope="row">Computed state rates</th><td>Unfilled ÷ (filled + unfilled), or unfilled ÷ total positions, from the components the agency published. Each computed point is labeled.</td></tr>
+        <tr><th scope="row">Illinois rates by position category</th><td>Unfilled ÷ (filled + unfilled) from ISBE/IWERC Table 5 (SY23–SY25) and the archived SY22 data set. "All staff" sums the four categories.</td></tr>
+        <tr><th scope="row">Rough split of education openings</th><td>A model. State &amp; local education openings (JOLTS) × the local-government share of state &amp; local education employment (CES9093161101 ÷ [CES9093161101 + CES9092161101]) gives "K-12"; that × the teacher share of public K-12 staff FTE gives "K-12 teachers". Teacher share = 3,228,895 ÷ 6,795,470 FTE (NCES Common Core of Data, fall 2022). <em>These two NCES constants were carried over from the original October 2026 workbook and have not been re-verified against NCES.</em> Assumes every group has the same vacancy rate.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="issues">
+  <h2>Known issues and open questions</h2>
+  <ul class="limits">
+    <li><strong>Iowa's earlier years.</strong> Iowa documents its 12-month posting window (August 20 to August 20) only for its latest release. The dashboard assumes the earlier releases used the same window when placing them on the school-year axis. Iowa's own dashboard labels the figures the same way.</li>
+    <li><strong>Virginia 2022-23</strong> is a third-party calculation (SwailLandis, March 2023) from VDOE's Build-a-Table data, with a denominator labeled "FTE Teachers". The same brief also cites 2.6%. VDOE's own published series starts in 2023-24 (3.9%). VDOE's site blocks automated access, so the Board presentation's 2024-25 figure (3.4%) and rate definition were confirmed through a summary of that document.</li>
+    <li><strong>Illinois SY22</strong> uses a same-year filled count; ISBE's convention from SY23 on uses the prior year's. The SY22 point is not strictly comparable.</li>
+    <li><strong>Colorado 2024-25</strong> has no rate: CDE's workbook for that year has no total-positions field.</li>
+    <li><strong>Nebraska</strong> response among nonpublic schools was 57.8% in 2025-26; totals combine public and nonpublic schools. A different total (107 vacant, public districts only) appears in the Learning Policy Institute's scan.</li>
+    <li><strong>South Carolina</strong> reporting coverage varies from 71 to 83 entities across years.</li>
+    <li><strong>JOLTS</strong> figures are revised: the latest month is preliminary, and annual benchmark revisions can change the whole history.</li>
+    <li><strong>School Pulse Panel</strong> has no data after October 2024 and may not resume.</li>
+  </ul>
+</section>
+
+<section id="changes">
+  <h2>Corrections log</h2>
+  <div class="table-wrap">
+    <table class="data">
+      <thead><tr><th scope="col">Date</th><th scope="col">Change</th></tr></thead>
+      <tbody>
+        <tr><td>2026-10-09</td><td><strong>Iowa:</strong> latest rate corrected from 1.12% (a figure from news coverage) to 1.15% (Iowa DOE). The apparent "conflict" between two Iowa releases resolved: both describe the same 434 positions; one labels it by collection year (2025-26), the other by the year the postings cover (2024-25). Iowa's measure reclassified as a 12-month flow of postings (not a fall snapshot), with a denominator of employed teachers; points re-plotted at the school year they cover.</td></tr>
+        <tr><td>2026-10-09</td><td><strong>Virginia 2022-23</strong> relabeled as a third-party calculation, not a VDOE publication.</td></tr>
+        <tr><td>2026-10-09</td><td><strong>South Carolina</strong> relabeled to include service staff; coverage range corrected to 71–83 entities. <strong>Nebraska</strong> relabeled from "teaching FTE" to teaching and specialist positions, public and nonpublic. <strong>Illinois</strong> described as a survey with 92% response, not a census.</td></tr>
+        <tr><td>2026-10-09</td><td>State chart changed to one panel per state, grouped by comparability; state table ordered alphabetically rather than by rate. NCES School Pulse Panel added.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap"><p><a href="./">Back to the dashboard</a>. Built by <a href="https://www.paul-bruno.com/">Paul Bruno</a>.</p></div>
+</footer>
+<script src="assets/provenance.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,518 @@
+{
+  "_readme": "Hand-curated state data. Update once a year as states publish. Rate rule: if rate_published is set, it is shown as published; otherwise the page computes unfilled / (unfilled + filled) or unfilled / total from the components given here. 'basis' overrides the basis label. 'sy' is the school year a figure describes (used for plotting); 'agency_label' records the agency's own year label when it differs. 'measure' documents what each state counts; 'tier' is the comparability group shown on the page. Never enter an estimate: leave a value out and explain why in 'note'.",
+  "updated": "2026-10-09",
+  "verified": "2026-10-09",
+  "states": [
+    {
+      "id": "IL",
+      "name": "Illinois",
+      "agency": "Illinois State Board of Education (ISBE)",
+      "series_label": "Illinois, teaching",
+      "coverage": "Teaching positions",
+      "timing": "October 1 snapshot",
+      "definition": "ISBE's Unfilled Positions data collection: budgeted positions unfilled as of October 1, in FTE, by category. Not a full census: 92% of education entities (1,029 of 1,120) responded for SY25. ISBE's vacancy rate pairs each year's unfilled FTE with the prior year's filled FTE (filled counts are only final after the year ends): SY25 = SY25 unfilled / (SY24 filled + SY25 unfilled). SY23-SY25 rates are computed here from ISBE's published components and match ISBE's rounded figures. SY22 pairs SY22 unfilled with SY22's own filled count, a same-year pairing, so it is not strictly comparable to later years. SY26 is a rate published by ISBE. SY18-SY21 have unfilled counts only, with no denominator, so no rate exists. Context the rate does not show: teaching positions filled by substitutes or retirees rose from 276 (2019) to 1,159 (2025), per the same report; those positions count as filled.",
+      "points": [
+        {
+          "sy": "2017-18",
+          "unfilled": 1415.7,
+          "note": "Unfilled FTE only (archived 2017-2021 data set has no filled-FTE field). No rate."
+        },
+        {
+          "sy": "2018-19",
+          "unfilled": 1858.2,
+          "note": "Unfilled FTE only; no denominator in the source file. No rate."
+        },
+        {
+          "sy": "2019-20",
+          "unfilled": 1984.9,
+          "note": "Unfilled FTE only; no denominator in the source file. No rate."
+        },
+        {
+          "sy": "2020-21",
+          "unfilled": 1703.6,
+          "note": "Unfilled FTE only; no denominator in the source file. No rate."
+        },
+        {
+          "sy": "2021-22",
+          "unfilled": 2138.62,
+          "filled": 134183.531,
+          "note": "Computed with a same-year pairing (SY22 filled as carried in the SY23 data set), unlike ISBE's lagged convention for later years."
+        },
+        {
+          "sy": "2022-23",
+          "unfilled": 3558.2,
+          "filled": 134183.5,
+          "note": "Computed from ISBE/IWERC components (filled FTE is the prior year's, per ISBE). ISBE's rounded rate: 2.6%."
+        },
+        {
+          "sy": "2023-24",
+          "unfilled": 4096.5,
+          "filled": 134214.8,
+          "note": "Computed from ISBE/IWERC components (SY25 report, Table 5). ISBE's rounded rate: 3.0%."
+        },
+        {
+          "sy": "2024-25",
+          "unfilled": 3864.1,
+          "filled": 136092.1,
+          "note": "Computed from ISBE/IWERC components (SY25 report, Table 5). ISBE's rounded rate: 2.8%; ISBE later cites 2.76%."
+        },
+        {
+          "sy": "2025-26",
+          "unfilled": 2943,
+          "rate_published": 2.1,
+          "note": "Published by ISBE: 2,943 vacant teacher positions, 2.1% (down from 3,864 and 2.76%). 1,079 are special education."
+        }
+      ],
+      "sources": [
+        {
+          "label": "ISBE Unfilled Positions Archive",
+          "url": "https://www.isbe.net/Pages/Unfilled-Positions-Archive.aspx"
+        },
+        {
+          "label": "IWERC/ISBE Educator Shortage report, SY25 (Table 5)",
+          "url": "https://dpi.uillinois.edu/wp-content/uploads/2025/05/IWERC-Educator-Shortage-SY25-250313.pdf"
+        },
+        {
+          "label": "ISBE Superintendent's Weekly Message, Apr 7, 2026",
+          "url": "https://www.isbe.net/Documents_Superintendent_Weekly_Message/Weekly-Message-20260407.pdf"
+        }
+      ],
+      "tier": "snapshot",
+      "measure": {
+        "counted": "Budgeted teaching positions unfilled on October 1",
+        "includes_substitute_covered": "No: positions covered by substitutes or retirees count as filled",
+        "positions": "Teaching positions (ISBE reports administrators, support staff and paraprofessionals separately)",
+        "timing": "Point in time: October 1",
+        "denominator": "Prior year's filled FTE + this year's unfilled FTE",
+        "unit": "FTE",
+        "coverage": "Survey of districts and other education entities; 92% responded in SY25"
+      },
+      "verification": "Verified directly on 2026-10-09: SY23-SY25 unfilled and filled FTE (IWERC/ISBE SY25 report, Table 5, which also confirms ISBE's lagged-denominator definition and 92% response) and SY26 (ISBE Weekly Message, Apr 7, 2026). Carried over from the October 2026 baseline workbook without re-checking: SY22 components and SY18-SY21 unfilled counts (ISBE archived data sets)."
+    },
+    {
+      "id": "VA",
+      "name": "Virginia",
+      "agency": "Virginia Department of Education (VDOE)",
+      "series_label": "Virginia, teaching",
+      "coverage": "Teaching positions",
+      "timing": "Fall (October) snapshot, Positions & Exits Collection",
+      "definition": "VDOE's Positions and Exits Collection. VDOE defines the rate as fall unfilled FTE teacher positions divided by total available FTE teacher positions. 2023-24 through 2025-26 are VDOE's published rates. 2022-23 is a third-party calculation (SwailLandis, March 2023) from VDOE's Staffing and Vacancy 'Build-a-Table' data; its denominator column is labeled 'FTE Teachers', so whether it includes the unfilled positions is unclear, and the same brief also cites a 2.6% figure. No exact 2021-22 rate exists in any primary source checked; only approximations (JLARC: 'about 2,600' vacant), so 2021-22 is left unplotted.",
+      "points": [
+        {
+          "sy": "2021-22",
+          "note": "No point: only approximations exist (JLARC 'about 2,600' vacant). An approximation is not a data point."
+        },
+        {
+          "sy": "2022-23",
+          "unfilled": 3573.3,
+          "total": 92579,
+          "rate_published": 3.9,
+          "basis": "Third-party calculation",
+          "note": "3,573.3 unfilled FTE of 92,579 'FTE Teachers' = 3.9%, calculated by SwailLandis from VDOE Build-a-Table data, not published by VDOE itself."
+        },
+        {
+          "sy": "2023-24",
+          "unfilled": 3649,
+          "rate_published": 3.9,
+          "note": "Published by VDOE (news release and Board of Education presentation, Dec 10, 2025)."
+        },
+        {
+          "sy": "2024-25",
+          "rate_published": 3.4,
+          "note": "Published by VDOE (Board presentation, Dec 10, 2025). Unfilled reported only as '>3,200 FTE', so no exact count is shown."
+        },
+        {
+          "sy": "2025-26",
+          "rate_published": 2.5,
+          "note": "Published by VDOE (news release, Dec 10, 2025)."
+        }
+      ],
+      "sources": [
+        {
+          "label": "VDOE news release, Dec 10, 2025",
+          "url": "https://www.doe.virginia.gov/Home/Components/News/News/512/227"
+        },
+        {
+          "label": "VDOE Board of Education presentation, Dec 10, 2025",
+          "url": "https://www.doe.virginia.gov/home/showpublisheddocument/74899/639009521941570000"
+        },
+        {
+          "label": "SwailLandis brief, March 2023 (2022-23 figures)",
+          "url": "https://content.govdelivery.com/attachments/VADOE/2023/03/07/file_attachments/2429275/230303%20MARCH%202023%20BRIEF.pdf"
+        }
+      ],
+      "tier": "snapshot",
+      "measure": {
+        "counted": "Teaching positions unfilled in the fall Positions & Exits Collection",
+        "includes_substitute_covered": "Not stated by VDOE",
+        "positions": "Teaching positions",
+        "timing": "Point in time: fall (October 1 collection)",
+        "denominator": "Total available FTE teacher positions",
+        "unit": "FTE",
+        "coverage": "All school divisions (state collection)"
+      },
+      "verification": "Verified directly on 2026-10-09: 2023-24 (3.9%) and 2025-26 (2.5%) in VDOE's Dec 10, 2025 news release; 2022-23 (3,573.3 of 92,579) in the SwailLandis brief. VDOE's Board presentation blocks automated access: the 2024-25 rate (3.4%), the 2023-24 unfilled count (3,649), and the rate definition were confirmed only through a summary of that document."
+    },
+    {
+      "id": "IA",
+      "name": "Iowa",
+      "agency": "Iowa Department of Education",
+      "series_label": "Iowa, full-time teaching (12-month postings)",
+      "coverage": "Full-time teaching positions; includes positions filled by temporary or substitute staff",
+      "timing": "Postings over the prior 12 months, collected each fall",
+      "definition": "Districts are required by law to report full-time teaching positions 'that were advertised but not filled or that were filled with temporary/substitute staff.' The count is a 12-month flow: Iowa's spreadsheet for its latest release says it covers positions posted between August 20, 2024 and August 20, 2025. The rate divides by full-time teachers employed the previous fall, not by filled plus vacant positions. Iowa's press releases label each figure by the year it was collected and released; this page plots each figure at the school year its postings cover, one year earlier than the press-release label, matching the labels on Iowa's own September 2026 dashboard. A 1.12% figure for the latest year that circulated in news coverage does not match the agency's release (1.15%).",
+      "points": [
+        {
+          "sy": "2021-22",
+          "unfilled": 941,
+          "rate_published": 2.63,
+          "note": "Published by Iowa DOE under the label 2022-23: 941 full-time positions, 2.63%. Presumed to cover postings from Aug 2021 to Aug 2022; the window is documented only for the latest year, and Iowa's own dashboard also labels figures by the earlier school year.",
+          "agency_label": "2022-23"
+        },
+        {
+          "sy": "2022-23",
+          "unfilled": 763,
+          "rate_published": 2.03,
+          "note": "Published by Iowa DOE under the label 2023-24: 763 full-time positions, 2.03%. Presumed to cover postings from Aug 2022 to Aug 2023; the window is documented only for the latest year, and Iowa's own dashboard also labels figures by the earlier school year.",
+          "agency_label": "2023-24"
+        },
+        {
+          "sy": "2023-24",
+          "unfilled": 661,
+          "rate_published": 1.75,
+          "note": "Published by Iowa DOE under the label 2024-25: 661 full-time positions, 1.75%. Presumed to cover postings from Aug 2023 to Aug 2024; the window is documented only for the latest year, and Iowa's own dashboard also labels figures by the earlier school year.",
+          "agency_label": "2024-25"
+        },
+        {
+          "sy": "2024-25",
+          "unfilled": 434,
+          "rate_published": 1.15,
+          "note": "Published by Iowa DOE: 434 full-time positions, 1.15% of the 37,637 full-time teachers employed in fall 2024. Covers postings from Aug 20, 2024 to Aug 20, 2025 (per Iowa's district spreadsheet). Iowa's January 2026 press release labels this figure 2025-26; its September 2026 dashboard labels it 2024-25. 184 are special education.",
+          "agency_label": "2025-26"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Iowa DOE press release, Jan 5, 2026",
+          "url": "https://educate.iowa.gov/press-release/2026-01-05/nearly-99-all-iowa-full-time-teaching-positions-filled-2025-26-national-vacancy-rate-3-times-higher"
+        },
+        {
+          "label": "Iowa DOE district vacancy-rate spreadsheet (latest release)",
+          "url": "https://educate.iowa.gov/media/12743/download?inline"
+        },
+        {
+          "label": "Iowa DOE Teacher Shortage Areas page",
+          "url": "https://educate.iowa.gov/pk-12/educator-quality/practitioner-preparation/teacher-shortage-areas"
+        },
+        {
+          "label": "Iowa DOE Teacher Pipeline Dashboard announcement, Sept 28, 2026",
+          "url": "https://educate.iowa.gov/headline-story/2026-09-28/new-dashboard-provides-visualization-iowa-teacher-vacancies"
+        }
+      ],
+      "tier": "different",
+      "measure": {
+        "counted": "Full-time teaching positions posted during the previous 12 months (e.g., Aug 20, 2024 to Aug 20, 2025) that were not filled, or were filled by temporary or substitute staff",
+        "includes_substitute_covered": "Yes",
+        "positions": "Full-time teaching positions only",
+        "timing": "Flow over 12 months, reported in the fall collection and released the following January",
+        "denominator": "Full-time teachers employed the previous fall (not filled plus vacant)",
+        "unit": "Positions",
+        "coverage": "All 325 public districts (required by law)"
+      },
+      "verification": "Verified directly on 2026-10-09: all four figures in Iowa DOE's Jan 5, 2026 press release; the latest year's count, denominator (37,637), and 12-month window in Iowa's district spreadsheet."
+    },
+    {
+      "id": "SC",
+      "name": "South Carolina",
+      "agency": "CERRA (Winthrop University)",
+      "series_label": "South Carolina, teachers and service staff",
+      "coverage": "Certified teachers plus service staff (librarians, counselors, school psychologists, speech-language pathologists)",
+      "timing": "Beginning of school year (district survey)",
+      "definition": "CERRA's annual Educator Supply and Demand Survey of district personnel directors. Table 5 publishes vacancies and 'positions (authorized FTEs, excluding vacancies)' for each year, so the rate is computed here as vacancies / (positions + vacancies). Both counts include service positions as well as teachers (about 5,200 of the 56,500 positions in 2025-26 are service roles). Coverage varies by year: 71 to 83 reporting entities, and 2021-22 also includes career and technical centers and two state agencies.",
+      "points": [
+        {
+          "sy": "2021-22",
+          "unfilled": 1062.8,
+          "filled": 56166,
+          "note": "Computed from CERRA Table 5. 83 reporting entities, including CTE centers and state agencies."
+        },
+        {
+          "sy": "2022-23",
+          "unfilled": 1473.6,
+          "filled": 55605,
+          "note": "Computed from CERRA Table 5. 74 reporting entities."
+        },
+        {
+          "sy": "2023-24",
+          "unfilled": 1612.6,
+          "filled": 56273,
+          "note": "Computed from CERRA Table 5. 76 reporting entities."
+        },
+        {
+          "sy": "2024-25",
+          "unfilled": 1042.9,
+          "filled": 55358,
+          "note": "Computed from CERRA Table 5. 71 of 75 districts reporting."
+        },
+        {
+          "sy": "2025-26",
+          "unfilled": 706.2,
+          "filled": 56521,
+          "note": "Computed from CERRA Table 5. 74 of 75 districts reporting."
+        }
+      ],
+      "sources": [
+        {
+          "label": "CERRA 2025-26 Supply & Demand data tables (Table 5)",
+          "url": "https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/5074/Cerra/a87997b0-e84c-4b5f-9ba5-0f7429b59a95/2025-26-SC-Annual-Educator-Supply-%26-Demand-Data-Tables.pdf"
+        }
+      ],
+      "tier": "snapshot",
+      "measure": {
+        "counted": "Vacant positions reported by districts at the start of the school year",
+        "includes_substitute_covered": "Not stated by CERRA",
+        "positions": "Certified teachers plus service staff (librarians, counselors, school psychologists, speech-language pathologists); about 9% of positions are service roles",
+        "timing": "Point in time: beginning of school year (district survey, September to October)",
+        "denominator": "Authorized FTE excluding vacancies, plus vacancies",
+        "unit": "FTE",
+        "coverage": "71 to 83 reporting entities, varying by year"
+      },
+      "verification": "Verified directly on 2026-10-09: all five years in CERRA's 2025-26 data tables, Table 5. Table 5 prints whole numbers for vacancies (e.g., 1,063); the one-decimal values here were carried over from the baseline workbook and agree to rounding."
+    },
+    {
+      "id": "CO",
+      "name": "Colorado",
+      "agency": "Colorado Department of Education (CDE)",
+      "series_label": "Colorado, teaching",
+      "coverage": "Teaching positions",
+      "timing": "Whole school year: 'unfilled' means unfilled for the entire year",
+      "definition": "CDE's Educator Shortage Survey of districts and BOCES. CDE counts positions that 'remained unfilled throughout the school year', as a share of all teaching positions (from CDE's Human Resources snapshot). That is a much stricter test than an October 1 stock, which is why Colorado's rates are low. Positions filled through a 'shortage mechanism' (long-term substitutes, retirees, alternative or emergency licenses) count as filled: in 2025-26 that was 27.8% of open teaching positions. No 2024-25 rate exists: CDE's 2024-25 workbook has unfilled teaching FTE (254.64, summed from teaching endorsement areas) but no total-positions field.",
+      "points": [
+        {
+          "sy": "2019-20",
+          "unfilled": 147,
+          "total": 54662,
+          "rate_published": 0.27,
+          "note": "Published: 147 unfilled of 54,662 teaching positions."
+        },
+        {
+          "sy": "2020-21",
+          "unfilled": 235,
+          "total": 55541,
+          "rate_published": 0.42,
+          "note": "Published: 235 of 55,541."
+        },
+        {
+          "sy": "2021-22",
+          "unfilled": 440,
+          "total": 55482,
+          "rate_published": 0.79,
+          "note": "Published: 440 of 55,482."
+        },
+        {
+          "sy": "2022-23",
+          "unfilled": 722,
+          "total": 55399,
+          "rate_published": 1.3,
+          "note": "Published: 722 of 55,399."
+        },
+        {
+          "sy": "2023-24",
+          "unfilled": 635,
+          "total": 55686,
+          "note": "Computed from CDE's published counts: 635 unfilled for the entire year, of 55,686 teaching positions."
+        },
+        {
+          "sy": "2024-25",
+          "unfilled": 254.64,
+          "note": "No rate: CDE's 2024-25 workbook has no total-positions field. Unfilled teaching FTE summed from the file."
+        },
+        {
+          "sy": "2025-26",
+          "unfilled": 271.5,
+          "rate_published": 0.5,
+          "note": "Published: 271.5 unfilled = 0.5% of all teaching positions. 27.8% of open teaching positions were filled through a shortage mechanism."
+        }
+      ],
+      "sources": [
+        {
+          "label": "CDE Educator Shortage Survey results (with annual workbooks)",
+          "url": "https://ed.cde.state.co.us/educatortalent/researchandimpact/educator-shortage-survey-results"
+        }
+      ],
+      "tier": "different",
+      "measure": {
+        "counted": "Teaching positions that remained unfilled for the entire school year",
+        "includes_substitute_covered": "No: positions filled by long-term substitutes or other 'shortage mechanisms' count as filled (27.8% of open teaching positions in 2025-26)",
+        "positions": "Teaching positions",
+        "timing": "Whole school year (a position must stay unfilled all year to count)",
+        "denominator": "All teaching positions (CDE Human Resources snapshot)",
+        "unit": "FTE",
+        "coverage": "Survey of districts and BOCES"
+      },
+      "verification": "Verified directly on 2026-10-09: 2023-24 (635 of 55,686, in CDE's 2023-24 report), 2024-25 (254.64, summed from CDE's workbook), and 2025-26 (271.5 and 0.5%, CDE results page and workbook). Carried over from the baseline workbook without re-checking: 2019-20 to 2022-23 (CDE annual reports)."
+    }
+  ],
+  "nebraska": {
+    "agency": "Nebraska Department of Education (NDE)",
+    "timing": "Fall snapshot (beginning of school year)",
+    "coverage": "Teaching and specialist positions (including school counselors, psychologists, speech-language pathologists), public and nonpublic schools combined",
+    "definition": "NDE separates 'Vacant' (not filled at all) from the broader 'Unfilled' (left vacant, or filled by someone other than a fully qualified teacher). The summary totals combine public districts and ESUs with nonpublic systems, and include specialist roles such as school counselors, psychologists, and speech-language pathologists. Response was 97.7% for public districts but 57.8% for nonpublic systems (81.8% overall) in 2025-26. No total-positions denominator is published, so Nebraska contributes counts, never a rate.",
+    "years": [
+      {
+        "sy": "2024-25",
+        "vacant": 200.65,
+        "unfilled": 669.35
+      },
+      {
+        "sy": "2025-26",
+        "vacant": 111.4,
+        "unfilled": 489.7,
+        "note": "Response rate 81.8% overall (public districts 97.7%, nonpublic 57.8%)."
+      }
+    ],
+    "sources": [
+      {
+        "label": "NDE Teacher Vacancy Survey summary, 2025-26",
+        "url": "https://www.education.ne.gov/wp-content/uploads/2026/01/2025-TVS-Summary-Final-.pdf"
+      }
+    ],
+    "measure": {
+      "counted": "Two counts: 'vacant' (not filled at all) and the broader 'unfilled' (vacant, or filled by someone not fully qualified)",
+      "includes_substitute_covered": "'Unfilled' includes positions filled by staff who are not fully qualified; 'vacant' does not",
+      "positions": "Teaching and specialist positions (including counselors, school psychologists, speech-language pathologists), public and nonpublic schools combined",
+      "timing": "Point in time: beginning of school year",
+      "denominator": "None published",
+      "unit": "Positions",
+      "coverage": "81.8% response (public districts 97.7%, nonpublic 57.8%) in 2025-26"
+    },
+    "verification": "Verified directly on 2026-10-09: 2025-26 (489.70 unfilled, 111.40 vacant, response rates) in NDE's summary. 2024-25 'unfilled' (669.35) matches NDE's January 2026 press release as reported; 2024-25 'vacant' (200.65) was carried over from the baseline workbook."
+  },
+  "illinois_categories": {
+    "note": "ISBE filled and unfilled FTE by position category, October 1 snapshots. Rates computed here; SY23-SY25 use ISBE's lagged filled count, SY22 a same-year pairing. 'All staff' is the sum of the four categories, computed, not a published row.",
+    "years": [
+      "2021-22",
+      "2022-23",
+      "2023-24",
+      "2024-25"
+    ],
+    "categories": [
+      {
+        "name": "Paraprofessionals",
+        "unfilled": [
+          2434.83,
+          2684.2,
+          2754.7,
+          2415.4
+        ],
+        "filled": [
+          34875.032,
+          34875,
+          35672.2,
+          39709.6
+        ]
+      },
+      {
+        "name": "School support personnel",
+        "unfilled": [
+          638.32,
+          821.1,
+          1095.2,
+          996.4
+        ],
+        "filled": [
+          18320.722,
+          18320.7,
+          18972.9,
+          20184.5
+        ]
+      },
+      {
+        "name": "Teaching",
+        "unfilled": [
+          2138.62,
+          3558.2,
+          4096.5,
+          3864.1
+        ],
+        "filled": [
+          134183.531,
+          134183.5,
+          134214.8,
+          136092.1
+        ]
+      },
+      {
+        "name": "Administrators",
+        "unfilled": [
+          90,
+          125,
+          162.1,
+          189.2
+        ],
+        "filled": [
+          12421.519,
+          12421.5,
+          12906.4,
+          13253.7
+        ]
+      },
+      {
+        "name": "All staff (sum)",
+        "unfilled": [
+          5301.77,
+          7188.5,
+          8108.5,
+          7465.1
+        ],
+        "filled": [
+          199800.804,
+          199800.7,
+          201766.3,
+          209239.9
+        ]
+      }
+    ],
+    "verification": "SY23-SY25 verified against IWERC/ISBE SY25 report, Table 5. SY22 carried over from the baseline workbook."
+  },
+  "composition": {
+    "_note": "Constants for the modeled split of state & local education openings. K-12 vs higher-ed shares come live from CES (local vs state government education employment). Teacher share of K-12 staff is NCES CCD fall 2022.",
+    "nces_year": "fall 2022",
+    "nces_total_k12_staff_fte": 6795470,
+    "nces_teacher_fte": 3228895
+  },
+  "national_measures": [
+    {
+      "id": "spp",
+      "name": "NCES School Pulse Panel (national)",
+      "counted": "Teaching positions a school reports as currently vacant",
+      "includes_substitute_covered": "Not specified in the question",
+      "positions": "Teaching positions in public K-12 schools (also asked for 13 non-teaching roles)",
+      "timing": "Point in time: October survey waves (2022, 2023, 2024)",
+      "denominator": "Total positions at the school, 'filled + vacant'",
+      "unit": "Positions (each part-time position counts as 1)",
+      "coverage": "Survey sample of about 4,000 public schools; experimental NCES estimates, rounded to whole percents"
+    },
+    {
+      "id": "jolts",
+      "name": "BLS JOLTS job openings (national, by industry)",
+      "counted": "Job openings: a position exists, work could start within 30 days, and the employer is actively recruiting from outside the establishment",
+      "includes_substitute_covered": "Not applicable (counts positions being recruited for)",
+      "positions": "All jobs in the industry; for state & local education, all staff in public schools and public colleges",
+      "timing": "Point in time: last business day of the month",
+      "denominator": "Employment + openings",
+      "unit": "Jobs",
+      "coverage": "Establishment survey, national estimates"
+    }
+  ],
+  "tiers": {
+    "snapshot": {
+      "label": "Start-of-year snapshots of vacant positions",
+      "text": "These count positions vacant at a point early in the school year, as a share of all positions. They are the closest to each other and to the national School Pulse Panel, though they still differ: Illinois's denominator uses the prior year's filled count, and South Carolina includes service staff."
+    },
+    "different": {
+      "label": "Different measures: compare trends, not levels",
+      "text": "Iowa counts a year's worth of postings that went unfilled or were covered by substitutes, divided by employed teachers. Colorado counts only positions that stayed empty all year. Each state's trend is informative, but their levels should not be set beside the others."
+    }
+  }
+}

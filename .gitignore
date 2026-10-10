@@ -1,0 +1,4 @@
+.playwright-mcp/
+.claude/
+__pycache__/
+*.tmp
