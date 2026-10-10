@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-10T02:19Z",
+ "generated_utc": "2026-10-10T14:48Z",
  "source_url": "https://nces.ed.gov/surveys/spp/docs/release/StaffVac.xlsx",
  "waves": [
   "2022-10",
@@ -12,6 +12,7 @@
    "name": "General Elementary",
    "group": "teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 2.0,
@@ -32,6 +33,7 @@
    "name": "Special Education",
    "group": "teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 5.0,
@@ -52,6 +54,7 @@
    "name": "English or Language Arts",
    "group": "teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 3.0,
@@ -72,6 +75,7 @@
    "name": "Social Studies",
    "group": "teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 3.0,
@@ -92,6 +96,7 @@
    "name": "Computer Science",
    "group": "teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 4.0,
@@ -112,6 +117,7 @@
    "name": "Mathematics",
    "group": "teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 4.0,
@@ -132,6 +138,7 @@
    "name": "Biology or life sciences",
    "group": "teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 5.0,
@@ -152,6 +159,7 @@
    "name": "Physical sciences",
    "group": "teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 4.0,
@@ -172,6 +180,7 @@
    "name": "ESL or bilingual education",
    "group": "teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 5.0,
@@ -192,6 +201,7 @@
    "name": "Foreign languages",
    "group": "teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 5.0,
@@ -212,6 +222,7 @@
    "name": "Music or arts",
    "group": "teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 3.0,
@@ -232,6 +243,7 @@
    "name": "Career or technical education",
    "group": "teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 5.0,
@@ -252,6 +264,7 @@
    "name": "Physical education or health",
    "group": "teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 5.0,
@@ -272,6 +285,7 @@
    "name": "Other teachers not listed",
    "group": "teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 5.0,
@@ -292,6 +306,7 @@
    "name": "TOTAL teaching",
    "group": "teaching",
    "total": true,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 3.0,
@@ -312,6 +327,7 @@
    "name": "Mental health professional",
    "group": "non-teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 4.0,
@@ -332,6 +348,7 @@
    "name": "Medical professional",
    "group": "non-teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 4.0,
@@ -352,6 +369,7 @@
    "name": "Administrative staff",
    "group": "non-teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 3.0,
@@ -372,6 +390,7 @@
    "name": "Technology specialist",
    "group": "non-teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 4.0,
@@ -392,6 +411,7 @@
    "name": "Transportation staff",
    "group": "non-teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 7.0,
@@ -412,6 +432,7 @@
    "name": "Custodial staff",
    "group": "non-teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 6.0,
@@ -432,6 +453,7 @@
    "name": "Nutrition staff",
    "group": "non-teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 5.0,
@@ -452,6 +474,7 @@
    "name": "Academic counselor",
    "group": "non-teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 4.0,
@@ -472,6 +495,7 @@
    "name": "Academic interventionist",
    "group": "non-teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 4.0,
@@ -492,10 +516,12 @@
    "name": "Tutor",
    "group": "non-teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 6.0,
-     "se": 2.0
+     "se": 2.0,
+     "flag": "caution"
     },
     "2023-10": {
      "pct": 11.0,
@@ -512,6 +538,7 @@
    "name": "Instructional coach",
    "group": "non-teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 5.0,
@@ -532,6 +559,7 @@
    "name": "Classroom aide",
    "group": "non-teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 7.0,
@@ -548,6 +576,7 @@
    "name": "Other staff not listed",
    "group": "non-teaching",
    "total": false,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 7.0,
@@ -568,6 +597,7 @@
    "name": "TOTAL non-teaching staff",
    "group": "non-teaching",
    "total": true,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 6.0,
@@ -588,6 +618,7 @@
    "name": "TOTAL teaching + non-teaching",
    "group": "all",
    "total": true,
+   "questionnaire_change": true,
    "values": {
     "2024-10": {
      "pct": 4.0,

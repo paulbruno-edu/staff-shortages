@@ -13,7 +13,7 @@
   const METRICS = {
     JOR: { name: 'Job openings rate', total: 'JTSJOR', def: 'openings rate is job openings on the last business day of the month ÷ (employment + openings).' },
     HIR: { name: 'Hires rate', total: 'JTSHIR', def: 'hires rate is all hires during the month ÷ employment.' },
-    QUR: { name: 'Quits rate', total: 'JTSQUR', def: 'quits rate is voluntary separations during the month ÷ employment.' },
+    QUR: { name: 'Quits rate', total: 'JTSQUR', def: 'quits rate is voluntary separations during the month ÷ employment. Retirements and transfers to other locations are not quits; BLS counts them as "other separations."' },
     LDR: { name: 'Layoffs & discharges rate', total: 'JTSLDR', def: 'layoffs & discharges rate is involuntary separations during the month ÷ employment.' },
   };
 
@@ -530,7 +530,7 @@
     const ch = (k) => ((ser(k)[L] / ser(k)[bi]) - 1) * 100;
     const sgn = (v) => `${v >= 0 ? 'up' : 'down'} ${Math.abs(v).toFixed(1)}%`;
     const loc = ser('CES9093161101')[L];
-    $('#staff-lede').append(' ', document.createTextNode(`As of ${monthLabel(N.latest_month)}, local government education employed ${num(loc / 1000, 2)} million people, ${sgn(ch('CES9093161101'))} from February 2020. All nonfarm employment was ${sgn(ch('PAYEMS'))}.`));
+    $('#staff-lede').append(' ', document.createTextNode(`As of ${monthLabel(N.latest_month)}, local government education had ${num(loc / 1000, 2)} million payroll jobs, ${sgn(ch('CES9093161101'))} from February 2020. All nonfarm employment was ${sgn(ch('PAYEMS'))}.`));
   }
 
   // --- section 3: industries
@@ -554,11 +554,22 @@
     });
     const ed = N.industries.find((r) => r.code === '923000');
     const xed = N.industries.find((r) => r.code === '929000');
-    const rank = [...rows0].sort((a, b) => a.JOR - b.JOR).findIndex((r) => r.code === '923000') + 1;
+    const byJOR = [...N.industries].filter((r) => r.JOR != null).sort((a, b) => a.JOR - b.JOR);
+    const rank = byJOR.findIndex((r) => r.code === '923000') + 1;
+    const rankTxt = rank <= 3 ? ` That rate is among the lowest of the ${byJOR.length} industry series shown.`
+      : rank > byJOR.length - 3 ? ` That rate is among the highest of the ${byJOR.length} industry series shown.` : '';
+    // Relative wording follows the data, so the sentence stays accurate as new months arrive.
+    const rel = (a, b) => (a < b * 0.85 ? 'lower than' : a > b * 1.15 ? 'higher than' : 'similar to');
+    const jorRel = rel(ed.JOR, all.JOR), qurRel = rel(ed.QUR, all.QUR);
+    const summary = jorRel === 'lower than' && qurRel === 'lower than'
+      ? 'By these economy-wide measures, openings and quits in public education are both relatively low compared with other employers.'
+      : jorRel === 'higher than' || qurRel === 'higher than'
+        ? 'By at least one of these economy-wide measures, public education is running higher than other employers.'
+        : 'By these economy-wide measures, public education looks broadly similar to other employers.';
     $('#ind-lede').replaceChildren(document.createTextNode(
-      `In ${monthLabel(N.industry_month, true)}, state & local education had about ${num(ed.JOL)},000 job openings, an openings rate of ${pct(ed.JOR)}, compared with ${pct(all.JOR)} for all sectors and ${pct(xed.JOR)} for the rest of state and local government. ` +
-      `${rank <= 3 ? `That rate is among the lowest of the ${rows0.length} industry series shown.` : ''}` +
-      `Education's quits rate was also comparatively low (${pct(ed.QUR)}, compared with ${pct(all.QUR)} for all sectors). By the standards of the broader labor market, then, public education employers do not appear to be losing workers unusually quickly or struggling unusually to fill positions, though the picture can look very different for particular positions and places.`));
+      `In ${monthLabel(N.industry_month, true)}, state & local education had about ${num(ed.JOL)},000 job openings, an openings rate of ${pct(ed.JOR)}, compared with ${pct(all.JOR)} for all sectors and ${pct(xed.JOR)} for the rest of state and local government.${rankTxt} ` +
+      `Its quits rate was ${qurRel} the all-sector rate (${pct(ed.QUR)} vs. ${pct(all.QUR)}). ${summary} ` +
+      `That is useful context, but these rates do not directly measure how hard positions are to fill or how many workers schools lose. Openings also depend on how many positions employers are trying to fill and how long they stay open, and quits exclude retirements, which BLS counts separately. The picture can also look very different for particular positions and places.`));
   }
 
   // --- section 5: states
@@ -713,13 +724,18 @@
     if (!host || !P) { const fig = $('#fig-spp'); if (fig) fig.hidden = true; return; }
     const latest = P.waves.filter((w) => w.endsWith('-10')).pop();
     const yr = latest.slice(0, 4);
-    const ci = (v) => (v.se != null ? ` (95% CI ±${(1.96 * v.se).toFixed(1)})` : '');
-    const toRow = (r) => ({
-      label: r.total ? (r.group === 'teaching' ? 'All teaching positions' : 'All non-teaching positions') : r.name,
-      value: r.values[latest] ? r.values[latest].pct : null,
-      highlight: r.var === 'PCTVAC1TOT_oct', ref: r.var === 'PCTVAC2TOT_oct', raw: r,
-      note: 'NCES School Pulse Panel. Percent of positions (filled + vacant) reported vacant; rounded to whole percents by NCES.',
-    });
+    const FLAG_TXT = { caution: 'NCES: interpret with caution', unreliable: 'NCES: reporting standards not met' };
+    const ci = (v) => (v.se != null ? ` (95% CI ±${(1.96 * v.se).toFixed(1)})` : '') + (v.flag ? `; ${FLAG_TXT[v.flag]}` : '');
+    const toRow = (r) => {
+      const v = r.values[latest];
+      return {
+        label: (r.total ? (r.group === 'teaching' ? 'All teaching positions' : 'All non-teaching positions') : r.name) + (v && v.flag ? ' (!)' : ''),
+        value: v ? v.pct : null,
+        highlight: r.var === 'PCTVAC1TOT_oct', ref: r.var === 'PCTVAC2TOT_oct', raw: r,
+        note: 'NCES School Pulse Panel. Percent of positions (filled + vacant) reported vacant; rounded to whole percents by NCES.' +
+          (v && v.flag ? ` ${FLAG_TXT[v.flag]}: the standard error is large relative to the estimate.` : ''),
+      };
+    };
     const group = (g) => P.roles.filter((r) => r.group === g && r.values[latest]).map(toRow).sort((a, b) => (b.highlight || b.ref) - (a.highlight || a.ref) || b.value - a.value || a.label.localeCompare(b.label));
     const teachTotal = sppTeach().values[latest].pct;
     const opts = {
@@ -737,8 +753,9 @@
     $('#spp-sub').textContent = `Percent of positions vacant, October ${yr}. Vertical line marks all teaching positions (${teachTotal}%)`;
     $('#spp-lede').textContent = `Nationally, the most direct recent evidence on teacher vacancies comes from NCES's School Pulse Panel, which asked a national sample of public school leaders how many positions they had in each role ("filled + vacant") and how many were vacant. ` +
       `By that measure, ${Object.entries(sppTeach().values).sort().map(([k, v], i) => `${v.pct}%${i === 0 ? ' of teaching positions were vacant' : ''} in October ${k.slice(0, 4)}`).join(', ').replace(/, ([^,]*)$/, ', and $1')}. ` +
+      (sppTeach().questionnaire_change ? `NCES cautions against reading these as a trend, though: the questionnaire changed between waves and no study measured how much that affected the estimates. ` : '') +
       `The share of schools with at least one vacant teaching position was ${Object.entries(sch).map(([k, v]) => `${v}% in ${k.slice(0, 4)}`).join(', ').replace(/, ([^,]*)$/, ', and $1')}. ` +
-      `As in Illinois, vacancy rates were generally higher for non-teaching staff than for teachers: in October ${yr}, ${higher.length} of ${nonTeach.length} non-teaching roles had higher vacancy rates than teaching positions overall, led by ${higher.filter((r) => !/^other/i.test(r.name)).slice(0, 3).map((r) => `${r.name.toLowerCase()} (${r.values[latest].pct}%)`).join(', ')}. ` +
+      `${higher.length > nonTeach.length / 2 ? 'As in Illinois, vacancy rates were generally higher for non-teaching staff than for teachers' : 'Vacancy rates for non-teaching staff were mixed relative to teachers'}: in October ${yr}, ${higher.length} of ${nonTeach.length} non-teaching roles had higher point estimates than teaching positions overall (not every difference is statistically distinguishable), led by ${higher.filter((r) => !/^other/i.test(r.name)).slice(0, 3).map((r) => `${r.name.toLowerCase()} (${r.values[latest].pct}%${r.values[latest].flag ? ', an estimate NCES flags as imprecise' : ''})`).join(', ')}. ` +
       `The survey's last staffing wave was October ${yr}, and NCES has not announced another.`;
   }
 
@@ -749,7 +766,8 @@
     const by = (c) => I.states.filter((s) => s.category === c);
     const names = (arr) => arr.map((s) => s.state).join(', ');
     host.replaceChildren(
-      el('p', {}, `Every state and DC was checked against its own agency's publications (as of ${I.as_of}). ${by('none').length} publish no statewide vacancy data (${names(by('none'))}). ${by('collects').length} collect vacancy data, or have just begun to, but publish no statewide figures yet (${names(by('collects'))}). ${by('counts').length} publish counts without a denominator from the same source (${names(by('counts'))}), and ${by('different').length} publish figures that measure something else, such as job postings or positions not filled by fully licensed teachers (${names(by('different'))}). `,
+      el('p', {}, `Every state and DC was reviewed (as of ${I.as_of}), starting from each state agency's own publications. ${(() => { const sec = I.states.filter((s) => s.checked !== 'direct'); return sec.length ? `For ${sec.length} (${names(sec)}), some or all of the classification rests on secondary sources, such as news coverage or summaries, because the agency's own documents could not be read or do not define their terms. ` : ''; })()}` +
+        `For ${by('none').length}, no statewide vacancy data were found in this review (${names(by('none'))}). ${by('collects').length} collect vacancy data, or have just begun to, but no published statewide figures were found (${names(by('collects'))}). ${by('counts').length} publish counts without a denominator from the same source (${names(by('counts'))}), and ${by('different').length} publish figures that measure something else, such as job postings, projected hires, or positions not filled by fully licensed teachers (${names(by('different'))}). `,
         `The closest candidates not yet on this page are ${names(by('candidate'))}:`),
       el('ul', {}, by('candidate').map((s) => el('li', {}, el('strong', { text: `${s.state}. ` }), s.reason))),
       el('p', {}, 'The full state-by-state inventory, with sources, is on the ', el('a', { href: 'provenance.html#inventory', text: 'data provenance page' }), '.'),
@@ -862,13 +880,14 @@
       { label: 'Other K-12 staff (aides, support, administrators…)', value: k12 * (1 - tShare), color: 'var(--s3)' },
       { label: 'Higher education, all roles', value: jol * (1 - kShare), color: 'var(--s2)' },
     ];
-    parts.forEach((p) => { p.text = `≈${num(Math.round(p.value))}k · ${Math.round((p.value / jol) * 100)}%`; p.note = 'Modeled pro-rata, not counted.'; });
-    $('#comp-sub').textContent = `Modeled, pro-rata split of ${monthLabel(N.latest_month, true)}'s ≈${num(jol)},000 state & local education openings`;
+    // Shares only: an absolute "teacher openings" figure would invite being quoted as a count.
+    parts.forEach((p) => { p.text = `${Math.round((p.value / jol) * 100)}%`; p.note = 'Illustration under equal vacancy rates, not a count.'; });
+    $('#comp-sub').textContent = `Illustration: how ${monthLabel(N.latest_month, true)}'s state & local education openings would divide if every group had the same vacancy rate. Shares, not counts`;
     const host = $('#chart-comp');
     host.replaceChildren();
     stackBlock(host, parts, jol);
     host.append(stackLegend(parts));
-    $('#comp-note').textContent = `A model, not a count. Local government is ${Math.round(kShare * 100)}% of state & local education employment (CES, ${monthLabel(N.latest_month)}); teachers are ${(tShare * 100).toFixed(1)}% of public K-12 staff FTE (NCES CCD, ${c.nces_year}). Assumes all groups have the same vacancy rate, which is not true: aides and support staff turn over faster.`;
+    $('#comp-note').textContent = `An illustration, not a count of teacher vacancies. Local government, used here as a stand-in for K-12, is ${Math.round(kShare * 100)}% of state & local education payroll jobs (CES, ${monthLabel(N.latest_month)}); teachers are ${(tShare * 100).toFixed(1)}% of public K-12 staff FTE (NCES CCD, ${c.nces_year}), so the calculation also mixes jobs with FTE. Its main point is that teachers are a minority of what the JOLTS education line covers. It assumes every group has the same vacancy rate, which is unlikely: rates differ by role (see the School Pulse Panel figures above), in directions that depend on both turnover and how long positions stay open.`;
   }
 
   function renderNebraska() {

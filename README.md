@@ -1,4 +1,4 @@
-# School Staff Shortages in Labor-Market Context
+# School Staff Shortages and the Wider Labor Market
 
 A live dashboard that puts school staff vacancies in the context of the whole U.S. labor market, over time.
 

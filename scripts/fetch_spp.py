@@ -4,6 +4,8 @@ Downloads the public "Staff Vacancies" workbook from NCES and writes
 data/spp.json with, for every October survey wave in the file:
   - percent of positions vacant, by role (teaching and non-teaching), with SEs
   - percent of schools with at least one teaching vacancy
+  - NCES's flags: "caution" / "unreliable" on individual estimates, and
+    questionnaire_change on series whose questions changed without a bridge study
 
 The SPP asked principals, for each role, the "total number of positions at my
 school (filled + vacant)" and the "number of vacancies"; NCES reports vacancies
@@ -29,6 +31,12 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "data", "spp.json")
 URL = "https://nces.ed.gov/surveys/spp/docs/release/StaffVac.xlsx"
 UA = {"User-Agent": "Mozilla/5.0 (compatible; staff-shortages-dashboard/1.0)"}
+# NCES footnote symbols, from the workbook's 'About' sheet.
+FLAGS = {
+    "!": "caution",          # coefficient of variation 30-50: interpret with caution
+    "‡": "unreliable",  # reporting standards not met
+}
+QUESTIONNAIRE_CHANGE = "¹"  # questionnaire changed; no bridge study; compare time points with caution
 MONTHS = {m: i for i, m in enumerate(["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                                       "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], 1)}
 
@@ -71,9 +79,16 @@ def main():
             k = wave_key(w)
             pct, se = num(d.get(f"{w} Pct")), num(d.get(f"{w} SE"))
             if k and pct is not None:
-                values[k] = {"pct": pct, "se": se}
+                v = {"pct": pct, "se": se}
+                flag = FLAGS.get(str(d.get(f"{w} Flag") or "").strip())
+                if flag:
+                    v["flag"] = flag
+                values[k] = v
         if values:
-            roles.append({"var": var, "name": name, "group": group, "total": is_total, "values": values})
+            roles.append({"var": var, "name": name, "group": group, "total": is_total,
+                          # NCES marks series whose questionnaire changed with no bridge study.
+                          "questionnaire_change": QUESTIONNAIRE_CHANGE in str(r[3] or ""),
+                          "values": values})
 
     # Share of schools with >= 1 teaching vacancy: sheet 'All Schools', StaffVac1_TOT_CAT1.
     rows = list(wb["All Schools"].iter_rows(values_only=True))
