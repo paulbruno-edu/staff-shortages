@@ -10,7 +10,7 @@
       "series_label": "Illinois, teaching",
       "coverage": "Teaching positions",
       "timing": "October 1 snapshot",
-      "definition": "ISBE's Unfilled Positions data collection: positions districts report they are actively trying to fill as of October 1, in FTE, by category. A position can count as unfilled even if someone is covering it on a temporary basis while the district searches for a permanent hire, and a filled position is not necessarily filled by someone with any particular qualification. Not a full census: 92% of education entities (1,029 of 1,120) responded for SY25. ISBE's vacancy rate pairs each year's unfilled FTE with the prior year's filled FTE (filled counts are only final after the year ends): SY25 = SY25 unfilled / (SY24 filled + SY25 unfilled). SY23-SY25 rates are computed here from ISBE's published components and match ISBE's rounded figures. SY22 pairs SY22 unfilled with SY22's own filled count, a same-year pairing, so it is not strictly comparable to later years. SY26 is a rate published by ISBE. SY18-SY21 have unfilled counts only, with no denominator, so no rate exists. In the same report's superintendent survey, the number of teaching positions filled by substitutes or retirees rose from 276 (2019) to 1,159 (2025).",
+      "definition": "ISBE's Unfilled Positions collection, in FTE, by category. ISBE defines an unfilled position as one 'not filled by an appropriately-licensed, permanent educator as of Oct. 1.' That includes empty positions and positions covered temporarily by substitutes or contracted staff, even when the district is not actively recruiting (for example, a substitute expected to be hired once licensed). What makes a substitute-covered position unfilled is that it has no contracted, permanent holder, not the substitute's qualifications: a position covered by a fully licensed substitute is still unfilled, while a substitute covering for a contracted teacher on leave leaves the position filled. Interim administrators and licensed retirees hired back count as filled. ISBE's wording may also cover permanent staff without the appropriate license, but ISBE does not report how often that occurs; any such cases are bounded by the low overall rate. So these are ISBE-defined unfilled rates, not necessarily shares of empty positions. Not a full census: 92% of education entities (1,029 of 1,120) responded for SY25. ISBE's vacancy rate pairs each year's unfilled FTE with the prior year's filled FTE (filled counts are only final after the year ends): SY25 = SY25 unfilled / (SY24 filled + SY25 unfilled). SY23-SY25 rates are computed here from ISBE's published components and match ISBE's rounded figures. SY22 pairs SY22 unfilled with SY22's own filled count, a same-year pairing, so it is not strictly comparable to later years. SY26 is a rate published by ISBE. SY18-SY21 have unfilled counts only, with no denominator, so no rate exists. In the same report's superintendent survey, the number of teaching positions filled by substitutes or retirees rose from 276 (2019) to 1,159 (2025).",
       "points": [
         {
           "sy": "2017-18",
@@ -75,19 +75,27 @@
         {
           "label": "ISBE Superintendent's Weekly Message, Apr 7, 2026",
           "url": "https://www.isbe.net/Documents_Superintendent_Weekly_Message/Weekly-Message-20260407.pdf"
+        },
+        {
+          "label": "ISBE Unfilled Positions webinar Q&A, Sept 2021 (definition and examples)",
+          "url": "https://www.isbe.net/Documents/EIS-Unfilled-Positions-Webinar-QA.pdf"
+        },
+        {
+          "label": "ISBE SY26 opening webinar Q&A (definition)",
+          "url": "https://www.isbe.net/Documents/SY26-Opening-Webinar-QA.pdf"
         }
       ],
       "tier": "snapshot",
       "measure": {
-        "counted": "Positions districts are actively trying to fill on October 1",
-        "includes_substitute_covered": "Possibly: a position can count as unfilled while someone covers it temporarily during the search for a permanent hire",
+        "counted": "Positions without a permanent, appropriately licensed educator on October 1 (ISBE's definition)",
+        "includes_substitute_covered": "Yes, when the position has no contracted permanent holder; not when a substitute covers for a contracted teacher on leave. Active recruitment is not required.",
         "positions": "Teaching positions (ISBE reports administrators, support staff and paraprofessionals separately)",
         "timing": "Point in time: October 1",
         "denominator": "Prior year's filled FTE + this year's unfilled FTE",
         "unit": "FTE",
-        "coverage": "Survey of districts and other education entities; 92% responded in SY25"
+        "coverage": "Unfilled positions: reported by districts and other education entities (92% responded in SY25). Filled positions: ISBE staff records (EIS)."
       },
-      "verification": "Verified directly on 2026-10-09: SY23-SY25 unfilled and filled FTE (IWERC/ISBE SY25 report, Table 5, which also confirms ISBE's lagged-denominator definition and 92% response) and SY26 (ISBE Weekly Message, Apr 7, 2026). Carried over from the October 2026 baseline workbook without re-checking: SY22 components and SY18-SY21 unfilled counts (ISBE archived data sets)."
+      "verification": "Verified directly on 2026-10-09: SY23-SY25 unfilled and filled FTE (IWERC/ISBE SY25 report, Table 5, which also confirms ISBE's lagged-denominator definition and 92% response) and SY26 (ISBE Weekly Message, Apr 7, 2026). Carried over from the October 2026 baseline workbook without re-checking: SY22 components and SY18-SY21 unfilled counts (ISBE archived data sets). Definition re-checked on 2026-10-10 against ISBE's 2021 Unfilled Positions Q&A and SY26 opening Q&A; it had been described here, following older guidance, as positions districts are 'actively trying to fill.'"
     },
     {
       "id": "VA",
@@ -561,13 +569,13 @@
       }
     ],
     "verification": "SY23-SY25 verified against IWERC/ISBE SY25 report, Table 5. SY22 carried over from the baseline workbook.",
-    "filled_as_of_fall": [
-      2021,
-      2021,
-      2022,
-      2023
+    "filled_school_year": [
+      "2021-22",
+      "2021-22",
+      "2022-23",
+      "2023-24"
     ],
-    "filled_as_of_fall_note": "The fall each 'filled' value describes. ISBE pairs each year's unfilled FTE with the prior year's filled FTE (filled counts are final only after the year ends), so the SY23 row's filled count is fall 2021's (the same as SY22's), SY24's is fall 2022's, and SY25's is fall 2023's."
+    "filled_school_year_note": "The school year each 'filled' value describes. Filled counts come from ISBE's staff records (EIS), which ISBE finalizes after the year ends, so ISBE pairs each year's unfilled FTE with the prior year's filled FTE: the SY23 row's filled count is 2021-22's (the same as SY22's), SY24's is 2022-23's, and SY25's is 2023-24's."
   },
   "composition": {
     "_note": "Constants for the modeled split of state & local education openings. K-12 vs higher-ed shares come live from CES (local vs state government education employment). Teacher share of K-12 staff is NCES CCD fall 2022 (Digest Table 213.20, United States row; verified 2026-10-10).",
@@ -610,19 +618,19 @@
     }
   },
   "illinois_enrollment": {
-    "note": "Statewide public school enrollment (fall membership), Illinois Report Card public data sets, statewide row, '# Student Enrollment'. The report-card year is the spring of the school year, so the 2022 report card gives fall 2021 enrollment.",
-    "fall": {
-      "2019": 1957018,
-      "2020": 1887316,
-      "2021": 1869325,
-      "2022": 1857790,
-      "2023": 1851290,
-      "2024": 1848560
-    },
+    "note": "Statewide public school enrollment, Illinois Report Card public data sets, statewide row, '# Student Enrollment', by school year (the 2025 report card covers 2024-25). Report Card enrollment is a fall count.",
     "source": {
       "label": "ISBE Report Card Data Library (annual public data sets, 2020-2025)",
       "url": "https://www.isbe.net/pages/illinois-state-report-card-data.aspx"
     },
-    "verification": "Verified directly on 2026-10-10 against the statewide rows of the 2020-2025 Report Card public data sets and the Report Card Trend Data workbook (rc-trend-data.xlsx)."
+    "verification": "Verified directly on 2026-10-10 against the statewide rows of the 2020-2025 Report Card public data sets and the Report Card Trend Data workbook (rc-trend-data.xlsx).",
+    "by_school_year": {
+      "2019-20": 1957018,
+      "2020-21": 1887316,
+      "2021-22": 1869325,
+      "2022-23": 1857790,
+      "2023-24": 1851290,
+      "2024-25": 1848560
+    }
   }
 }

@@ -69,7 +69,7 @@ Where to look each year:
 
 | State | Typical release | Source |
 |---|---|---|
-| Illinois | Winter/spring | ISBE Unfilled Positions data; IWERC Educator Shortage report (filled and unfilled FTE by category). Each fall, also add statewide enrollment from the new Illinois Report Card public data set (statewide row, "# Student Enrollment") to `illinois_enrollment` in `data/states.json`, and extend `filled_as_of_fall`. |
+| Illinois | Winter/spring | ISBE Unfilled Positions data; IWERC Educator Shortage report (filled and unfilled FTE by category). Each fall, also add statewide enrollment from the new Illinois Report Card public data set (statewide row, "# Student Enrollment") to `illinois_enrollment.by_school_year` in `data/states.json`, and extend `filled_school_year`. |
 | Virginia | December (Board meeting) | VDOE Positions & Exits Collection; Board of Education presentation and news release |
 | Pennsylvania | Late fall/winter | PDE Professional Staff Vacancy workbook (Q1, October 1) for vacancies and the Professional Staff Summary (State_FT+PT, CT column) for classroom teachers, both on the professional and support personnel page. Rate is computed. |
 | Michigan | January | Michigan Teacher Shortage Study (EPIC/MSU), vacancy section: the statewide FTE-weighted rate for the prior fall |

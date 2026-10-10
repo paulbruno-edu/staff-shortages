@@ -457,7 +457,7 @@
     const peakPhr = totPeak.value - tot > 1 ? `well below its ${pct(totPeak.value)} peak in ${monthLabel(totPeak.month)}` : `near its ${pct(totPeak.value)} peak in ${monthLabel(totPeak.month)}`;
     const edCmp = cmpWord(ed, edAvg, 0.2);
     let edTail;
-    if (edCmp === 'above' && mkt !== 'above') edTail = 'So openings in public education are somewhat elevated relative to their own history even though openings in the economy as a whole are not, which suggests something particular to education may be at work. That could reflect real difficulty hiring, but it could also reflect schools trying to employ more people than before (see staffing levels, below) or positions staying open longer.';
+    if (edCmp === 'above' && mkt !== 'above') edTail = 'So openings in public education are somewhat elevated relative to their own history even though openings in the economy as a whole are not, which suggests something particular to education may be at work. That could reflect greater recruitment needs relative to the existing workforce, slower filling of positions, or both (see staffing levels, below).';
     else if (edCmp === 'above') edTail = 'Openings are elevated both in education and in the wider economy, so at least some of what is driving education\'s openings plausibly reflects the labor market as a whole.';
     else if (edCmp === 'below') edTail = 'By its own historical standard, education\'s openings rate is low.';
     else edTail = 'By its own historical standard, education\'s openings rate is unremarkable.';
@@ -561,7 +561,7 @@
   }
 
   // NCES staff and enrollment, fall 2000 on (Digest Table 213.10): both Common Core of Data,
-  // FTE staff and fall membership, so the units are consistent.
+  // FTE staff and fall membership, consistently defined.
   function renderStaffingNces() {
     const fig = $('#fig-ratio-staff');
     if (!T || !fig) { if (fig) fig.hidden = true; return; }
@@ -911,8 +911,8 @@
     const allStaff = series.find((s) => s.label.startsWith('All')).values[li];
     const teachRank = latest.findIndex((s) => s.name === 'Teaching') + 1;
     $('#il-lede').replaceChildren(document.createTextNode(
-      `Pooled figures can hide differences in vacancy rates across staff categories. Illinois publishes filled and unfilled positions separately for different kinds of school staff. In ${ic.years[li]}, vacancy rates were ${latest.map((s) => `${s.v.toFixed(2)}% for ${s.name.toLowerCase()}`).join(', ')}, and ${allStaff.toFixed(2)}% across all four categories. ` +
-      `${teachRank === 1 ? 'Teaching had the highest vacancy rate of the four.' : `Teaching did not have the highest vacancy rate: by this measure, shortages were most severe among ${latest[0].name.toLowerCase()}, a pattern that data on teachers alone would miss.`}`));
+      `Pooled figures can hide differences in vacancy rates across staff categories. Illinois publishes filled and unfilled positions separately for different kinds of school staff. In ${ic.years[li]}, unfilled rates by ISBE's definition were ${latest.map((s) => `${s.v.toFixed(2)}% for ${s.name.toLowerCase()}`).join(', ')}, and ${allStaff.toFixed(2)}% across all four categories. ` +
+      `${teachRank === 1 ? 'Teaching had the highest unfilled rate of the four.' : `Teaching did not have the highest unfilled rate: by this measure, shortages were most severe among ${latest[0].name.toLowerCase()}, a pattern that data on teachers alone would miss.`}`));
   }
 
   // Illinois: growth in filled FTE by category beside each category's vacancy rate. Both come from
@@ -920,47 +920,48 @@
   function renderIlGrowth() {
     const fig = $('#fig-il-growth');
     const ic = S.illinois_categories, en = S.illinois_enrollment;
-    if (!fig || !ic.filled_as_of_fall || !en) { if (fig) fig.hidden = true; return; }
-    const ff = ic.filled_as_of_fall, last = ff.length - 1;
-    const f1 = ff[last], i0 = ff.indexOf(Math.min(...ff)), f0 = ff[i0];
+    if (!fig || !ic.filled_school_year || !en || !en.by_school_year) { if (fig) fig.hidden = true; return; }
+    // Filled counts are ISBE staff-record counts for the school year shown in filled_school_year.
+    const fy = ic.filled_school_year, last = fy.length - 1, i0 = 0;
+    const y0 = fy[i0], y1 = fy[last];
     const li = ic.years.length - 1;
+    const rateAt = (c, i) => (c.unfilled[i] / (c.unfilled[i] + c.filled[i])) * 100;
     const rows = ic.categories.map((c) => {
       const all = c.name.startsWith('All');
-      return {
-        label: all ? 'All four categories' : c.name, ref: all,
-        growth: ((c.filled[last] / c.filled[i0]) - 1) * 100,
-        rate: (c.unfilled[li] / (c.unfilled[li] + c.filled[li])) * 100,
-        c,
-      };
+      return { label: all ? 'All four categories' : c.name, ref: all, growth: ((c.filled[last] / c.filled[i0]) - 1) * 100, rate: rateAt(c, li), c };
     });
     const order = [...rows.filter((r) => !r.ref).sort((a, b) => b.growth - a.growth), ...rows.filter((r) => r.ref)];
-    const enChg = ((en.fall[f1] / en.fall[f0]) - 1) * 100;
+    const enChg = ((en.by_school_year[y1] / en.by_school_year[y0]) - 1) * 100;
     const pc = (v) => `${v >= 0 ? '+' : '−'}${Math.abs(v).toFixed(1)}%`;
     const g = el('div'), v = el('div');
     $('#chart-il-growth').replaceChildren(el('div', { class: 'grid2' },
-      el('div', {}, el('h4', { class: 'tier-h', text: `Change in filled FTE, fall ${f0} to fall ${f1}` }), g),
-      el('div', {}, el('h4', { class: 'tier-h', text: `Vacancy rate, ${ic.years[li]}` }), v)));
+      el('div', {}, el('h4', { class: 'tier-h', text: `Change in filled FTE, ${y0} to ${y1}` }), g),
+      el('div', {}, el('h4', { class: 'tier-h', text: `Unfilled rate, ${ic.years[li]}` }), v)));
     hbarChart(g, order.map((r) => ({ label: r.label, value: r.growth, ref: r.ref, raw: r,
-      note: `Filled FTE in ISBE's vacancy collection: ${num(r.c.filled[i0], 0)} in fall ${f0}, ${num(r.c.filled[last], 0)} in fall ${f1}.` })), {
-      fmt: pc, tipRows: (row) => [{ value: pc(row.raw.growth), name: `filled FTE, fall ${f0}–${f1}` }, { value: `${row.raw.rate.toFixed(2)}%`, name: `vacancy rate, ${ic.years[li]}` }],
+      note: `Filled FTE in ISBE staff records: ${num(r.c.filled[i0], 0)} in ${y0}, ${num(r.c.filled[last], 0)} in ${y1}.` })), {
+      fmt: pc, tipRows: (row) => [{ value: pc(row.raw.growth), name: `filled FTE, ${y0} to ${y1}` }, { value: `${row.raw.rate.toFixed(2)}%`, name: `unfilled rate, ${ic.years[li]}` }],
     });
     hbarChart(v, order.map((r) => ({ label: r.label, value: r.rate, ref: r.ref, raw: r,
       note: `${num(r.c.unfilled[li], 0)} unfilled FTE in ${ic.years[li]}, against ${num(r.c.filled[li], 0)} filled (ISBE's prior-year count).` })), {
-      fmt: (x) => `${x.toFixed(2)}%`, tipRows: (row) => [{ value: `${row.raw.rate.toFixed(2)}%`, name: `vacancy rate, ${ic.years[li]}` }, { value: pc(row.raw.growth), name: `filled FTE, fall ${f0}–${f1}` }],
+      fmt: (x) => `${x.toFixed(2)}%`, tipRows: (row) => [{ value: `${row.raw.rate.toFixed(2)}%`, name: `unfilled rate, ${ic.years[li]}` }, { value: pc(row.raw.growth), name: `filled FTE, ${y0} to ${y1}` }],
     });
-    $('#il-growth-sub').textContent = `Same four categories in both panels, ordered by growth. Over the same period, statewide enrollment changed ${pc(enChg)}`;
+    $('#il-growth-sub').textContent = `Same four categories in both panels, ordered by growth. Over the same years, statewide enrollment changed ${pc(enChg)}`;
     const top = order[0], teach = rows.find((r) => r.label === 'Teaching');
     const byRate = [...rows.filter((r) => !r.ref)].sort((a, b) => b.rate - a.rate);
     const sameTop = byRate[0] === top;
     const noun = { Paraprofessionals: 'paraprofessional', 'School support personnel': 'school support personnel', Administrators: 'administrator', Teaching: 'teaching' };
     const moved = (x) => `${x >= 0 ? 'grew' : 'fell'} ${Math.abs(x).toFixed(1)}%`;
-    const words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
-    const span = words[f1 - f0] || String(f1 - f0);
+    // How the fastest-growing category's unfilled rate moved over the years shown.
+    const topRates = ic.years.map((_, i) => rateAt(top.c, i));
+    const peakI = topRates.reduce((b, x, i) => (x > topRates[b] ? i : b), 0);
+    const trend = peakI < li && topRates[peakI] - topRates[li] >= 0.5
+      ? ` Meanwhile, the ${noun[top.label] || top.label.toLowerCase()} unfilled rate fell from ${topRates[peakI].toFixed(1)}% in ${ic.years[peakI]} to ${topRates[li].toFixed(2)}% in ${ic.years[li]}, even as filled positions grew: staffing growth, relatively high unfilled rates, and improving vacancy measures can all occur together.`
+      : '';
     $('#il-growth-lede').textContent =
-      `Illinois's data also show where schools were adding staff. Between fall ${f0} and fall ${f1}, filled ${noun[top.label] || top.label.toLowerCase()} positions ${moved(top.growth)}, compared with ${Math.abs(teach.growth).toFixed(1)}% for teaching positions, while statewide enrollment ${moved(enChg)}. ` +
-      (sameTop ? `The category growing fastest also had the highest vacancy rate. That is consistent with greater recruitment needs in the categories schools were expanding, but it does not establish that expansion caused the vacancies:`
-        : `The fastest-growing category was not the one with the highest vacancy rate, so staffing growth alone does not account for where vacancy rates were highest. In any case, these figures cannot establish causes:`) +
-      ` growth in filled positions also enlarges a vacancy rate's denominator, and vacancies can also arise from replacement hiring or from positions that are slow to fill. Two caveats: ${span} years in one state is a short window, and the vacancy collection is a survey. Still, it illustrates what more detailed data can reveal: national figures cannot pair vacancy rates and staffing growth for the same kinds of staff.`;
+      `Illinois's data also show where schools were adding staff. Between ${y0} and ${y1}, filled ${noun[top.label] || top.label.toLowerCase()} positions ${moved(top.growth)}, compared with ${Math.abs(teach.growth).toFixed(1)}% for teaching positions, while statewide enrollment ${moved(enChg)}. ` +
+      (sameTop ? `The category growing fastest also had the highest unfilled rate. That is consistent with greater recruitment needs in the categories schools were expanding, but it does not establish that expansion caused the vacancies:`
+        : `The fastest-growing category was not the one with the highest unfilled rate, so staffing growth alone does not account for where unfilled rates were highest. In any case, these figures cannot establish causes:`) +
+      ` growth in filled positions also enlarges the rate's denominator, and vacancies can also arise from replacement hiring or from positions that are slow to fill.${trend} The window is short and covers one state. Still, Illinois provides a more closely aligned comparison of staffing growth and reported unfilled rates by role than the national figures above, which come from different sources with different categories.`;
   }
 
   function stackBlock(host, parts, total) {
