@@ -440,14 +440,16 @@
 
     // Verdict: every clause is chosen by comparing numbers, so it stays true after a refresh.
     const mkt = cmpWord(tot, totAvg, 0.3);
-    const mktChar = mkt === 'close to' ? 'By that measure, the labor market is roughly where it was before the pandemic, and much less tight than in 2021–22, when many of the most alarming stories about "teacher shortages" were written.'
-      : mkt === 'above' ? 'By that measure, employers in general are having an unusually hard time filling jobs, and schools are unlikely to be an exception.'
-        : 'By that measure, employers in general should be finding it easier than usual to fill jobs.';
+    // Openings alone do not measure hiring difficulty, so the verdict describes openings
+    // relative to their history and names the other things that move them.
+    const mktChar = mkt === 'close to' ? 'By that measure, openings across the economy are roughly where they were before the pandemic, not at the levels of 2021–22, when many of the most alarming stories about "teacher shortages" were written.'
+      : mkt === 'above' ? 'By that measure, employers across the economy have unusually many openings relative to their workforces. That can reflect difficulty hiring, but also rising demand for workers or positions staying open longer, and schools hire in the same labor market.'
+        : 'By that measure, employers across the economy have fewer openings than usual relative to their workforces. That often goes with an easier hiring environment, though openings also reflect how many workers employers want and how long positions stay open.';
     const peakPhr = totPeak.value - tot > 1 ? `well below its ${pct(totPeak.value)} peak in ${monthLabel(totPeak.month)}` : `near its ${pct(totPeak.value)} peak in ${monthLabel(totPeak.month)}`;
     const edCmp = cmpWord(ed, edAvg, 0.2);
     let edTail;
-    if (edCmp === 'above' && mkt !== 'above') edTail = 'So openings in public education are somewhat elevated relative to their own history even though openings in the economy as a whole are not, which suggests something particular to education may be at work. That could reflect real difficulty hiring, but it could also reflect schools trying to employ more people than before (see staffing levels, below).';
-    else if (edCmp === 'above') edTail = 'Openings are elevated both in education and in the wider economy, so at least some of education\'s hiring difficulty plausibly reflects the labor market as a whole.';
+    if (edCmp === 'above' && mkt !== 'above') edTail = 'So openings in public education are somewhat elevated relative to their own history even though openings in the economy as a whole are not, which suggests something particular to education may be at work. That could reflect real difficulty hiring, but it could also reflect schools trying to employ more people than before (see staffing levels, below) or positions staying open longer.';
+    else if (edCmp === 'above') edTail = 'Openings are elevated both in education and in the wider economy, so at least some of what is driving education\'s openings plausibly reflects the labor market as a whole.';
     else if (edCmp === 'below') edTail = 'By its own historical standard, education\'s openings rate is low.';
     else edTail = 'By its own historical standard, education\'s openings rate is unremarkable.';
 
@@ -801,7 +803,7 @@
     const oct = N.october_nsa.filter((o) => o.year >= 2019);
     const spp = Object.entries(sppBySchoolYear()).sort();
     const refs = [
-      ...(spp.length ? [{ name: 'NCES School Pulse Panel, teaching (national)', what: 'Share of public school teaching positions vacant in October (survey estimate)', basis: 'Published (NCES), rounded', pts: spp.map(([sy, v]) => [sy, v.pct]), d: 0 }] : []),
+      ...(spp.length ? [{ name: 'NCES School Pulse Panel, teaching (national)', what: 'Share of public school teaching positions vacant in October (survey estimate)', basis: 'Published (NCES), rounded', pts: spp.map(([sy, v]) => [sy, v.pct]), d: 0, noTrend: (sppTeach() || {}).questionnaire_change }] : []),
       { name: 'JOLTS state & local education (national)', what: 'Job openings rate, public schools and colleges, all staff; October, not seasonally adjusted', basis: 'Published (BLS)', pts: oct.map((o) => [o.school_year, o.sled_nsa]), d: 1 },
       { name: 'JOLTS all sectors (national)', what: 'Job openings rate, all employers; October, not seasonally adjusted', basis: 'Published (BLS)', pts: oct.map((o) => [o.school_year, o.total_nsa]), d: 1 },
     ];
@@ -812,7 +814,10 @@
         el('th', { scope: 'row', class: 'dim', text: `${r.name}, benchmark` }),
         el('td', { class: 'dim', text: r.what }),
         el('td', { class: 'num', text: `${lo[1].toFixed(r.d)}%` }), el('td', { text: lo[0] }), el('td', { class: 'dim', text: r.basis }),
-        el('td', { class: 'num', text: `${hi[1].toFixed(r.d)}% (${hi[0]})` }), el('td', { class: 'num', text: change(lo[1] - hi[1]) })));
+        ...(r.noTrend
+          // NCES warns its questionnaire changed between waves, so no peak or change is computed.
+          ? [el('td', { colspan: 2, class: 'dim small', text: 'Not compared across years: NCES warns that questionnaire changes limit comparability' })]
+          : [el('td', { class: 'num', text: `${hi[1].toFixed(r.d)}% (${hi[0]})` }), el('td', { class: 'num', text: change(lo[1] - hi[1]) })])));
     }
     t.append(tb);
   }
