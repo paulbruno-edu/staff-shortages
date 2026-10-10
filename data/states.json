@@ -1,7 +1,7 @@
 {
   "_readme": "Hand-curated state data. Update once a year as states publish. Rate rule: if rate_published is set, it is shown as published; otherwise the page computes unfilled / (unfilled + filled) or unfilled / total from the components given here. 'basis' overrides the basis label. 'sy' is the school year a figure describes (used for plotting); 'agency_label' records the agency's own year label when it differs. 'measure' documents what each state counts; 'tier' is the comparability group shown on the page. Never enter an estimate: leave a value out and explain why in 'note'.",
-  "updated": "2026-10-09",
-  "verified": "2026-10-09",
+  "updated": "2026-10-10",
+  "verified": "2026-10-10",
   "states": [
     {
       "id": "IL",
@@ -152,6 +152,93 @@
         "coverage": "All school divisions (state collection)"
       },
       "verification": "Verified directly on 2026-10-09: 2023-24 (3.9%) and 2025-26 (2.5%) in VDOE's Dec 10, 2025 news release; 2022-23 (3,573.3 of 92,579) in the SwailLandis brief. VDOE's Board presentation blocks automated access: the 2024-25 rate (3.4%), the 2023-24 unfilled count (3,649), and the rate definition were confirmed only through a summary of that document."
+    },
+    {
+      "id": "MI",
+      "name": "Michigan",
+      "agency": "Michigan Department of Education and CEPI, analyzed by EPIC at Michigan State University (statutory Michigan Teacher Shortage Study)",
+      "series_label": "Michigan, teaching",
+      "coverage": "Teaching positions (FTE-weighted)",
+      "timing": "Fall snapshot of district personnel records (Registry of Educational Personnel)",
+      "definition": "The Michigan Teacher Shortage Study, required by state law and prepared by EPIC at Michigan State University from state personnel records, counts a teaching position as vacant if it is 'either unfilled or temporarily assigned to a substitute, temporary employee, or outside contractor,' including positions posted but not yet filled and positions held for an employee on leave or on loan. Positions held permanently by under-credentialed teachers count as filled. The rate is FTE-weighted: vacant teaching FTE as a share of all teaching FTE. Districts were not required to report all vacancies until 2023-24, so earlier years are not shown, and the study's authors caution that the change between 2023-24 and 2024-25 may partly reflect better reporting. The 2023-24 rate appears only in a chart, so it is not plotted.",
+      "points": [
+        {
+          "sy": "2024-25",
+          "rate_published": 2.8,
+          "note": "Published in the Michigan Teacher Shortage Study (January 2026): 'the overall vacancy rate of 2.8%' for fall 2024 (rounded to 3% in the report's headline). About 6% in urban districts, under 2% elsewhere."
+        }
+      ],
+      "sources": [
+        {
+          "label": "Michigan Teacher Shortage Study, January 2026 (EPIC)",
+          "url": "https://epicedpolicy.org/wp-content/uploads/2026/01/Teacher-Shortage-Report-Combined-Jan2026.pdf"
+        }
+      ],
+      "tier": "snapshot",
+      "measure": {
+        "counted": "Funded teaching positions unfilled or temporarily staffed in the fall",
+        "includes_substitute_covered": "Yes, and also positions held for staff on leave or on loan",
+        "positions": "Teaching positions",
+        "timing": "Point in time: fall",
+        "denominator": "All teaching FTE (filled + vacant)",
+        "unit": "FTE",
+        "coverage": "All districts (state personnel records); reporting required from 2023-24"
+      },
+      "verification": "Verified directly on 2026-10-10 against the January 2026 Michigan Teacher Shortage Study (definition of 'vacant' in the methods section; 2.8% in the vacancy section)."
+    },
+    {
+      "id": "PA",
+      "name": "Pennsylvania",
+      "agency": "Pennsylvania Department of Education (PDE)",
+      "series_label": "Pennsylvania, teaching",
+      "coverage": "Classroom teacher positions",
+      "timing": "October 1 snapshot (October 2 in 2023), Professional Staff Vacancy collection",
+      "definition": "PDE's Professional Staff Vacancy collection (PIMS) defines a vacancy as 'an unoccupied position that has been board approved and posted to allow the LEA to proceed through the hiring process.' Positions staffed by long-term or day-to-day substitutes until permanently filled count as vacant (PDE flags them separately), as do positions with no designated staff. Positions held by someone on a Type 01 Emergency Permit count as filled. Rates are computed here, not published by PDE: classroom teacher vacancies (full- and part-time positions) divided by classroom teachers in PDE's Professional Staff Summary on the same snapshot date (full- and part-time headcount) plus the vacancies. Vacancies are positions and teachers are people, so the two units differ slightly. A few LEAs did not report (6 of 778 in 2025-26). From 2024-25 PDE collects vacancies quarterly; the October quarter is used here to match 2023-24.",
+      "points": [
+        {
+          "sy": "2023-24",
+          "unfilled": 2156,
+          "filled": 126069,
+          "note": "2,112 full-time and 44 part-time classroom teacher vacancies as of Oct. 2, 2023; 126,069 classroom teachers (Professional Staff Summary, Oct. 2, 2023). Rate computed here."
+        },
+        {
+          "sy": "2024-25",
+          "unfilled": 1869,
+          "filled": 126816,
+          "note": "1,801 full-time and 68 part-time classroom teacher vacancies as of Oct. 1, 2024 (Q1); 126,816 classroom teachers (Oct. 1, 2024). Rate computed here."
+        },
+        {
+          "sy": "2025-26",
+          "unfilled": 1659,
+          "filled": 128699,
+          "note": "1,632 full-time and 27 part-time classroom teacher vacancies as of Oct. 1, 2025 (Q1); 128,699 classroom teachers (Oct. 1, 2025). Rate computed here."
+        }
+      ],
+      "sources": [
+        {
+          "label": "PDE professional and support personnel data (vacancy files and staff summaries)",
+          "url": "https://www.pa.gov/agencies/education/data-and-reporting/school-staff/professional-and-support-personnel"
+        },
+        {
+          "label": "PDE 2025-26 professional staff vacancy report, Q1",
+          "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/education/documents/data-and-reporting/professional-and-support-personnel/2025-26%20professional%20%20staff%20vacancy%20report%20q1.xlsx"
+        },
+        {
+          "label": "PDE 2025-26 professional staff summary report",
+          "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/education/documents/data-and-reporting/professional-and-support-personnel/prof-staff-summary/2025-26%20professional%20staff%20summary%20report.xlsx"
+        }
+      ],
+      "tier": "snapshot",
+      "measure": {
+        "counted": "Board-approved, posted positions unoccupied on October 1",
+        "includes_substitute_covered": "Yes: positions staffed by long-term or day-to-day substitutes until permanently filled (flagged separately); emergency-permit holders count as filled",
+        "positions": "Classroom teacher positions (PDE also reports administrators, coordinate services and other professional staff)",
+        "timing": "Point in time: October 1",
+        "denominator": "Classroom teachers on the same date (Professional Staff Summary) + vacancies (computed here)",
+        "unit": "Positions (vacancies) and headcount (teachers)",
+        "coverage": "All LEAs required to report; a few did not"
+      },
+      "verification": "Verified directly on 2026-10-10 against PDE's vacancy workbooks for 2023-24, 2024-25 (Q1) and 2025-26 (Q1) (Summary sheets, Classroom Teachers rows) and PDE's Professional Staff Summary workbooks for the same years (State_FT+PT sheet, CT column)."
     },
     {
       "id": "IA",
@@ -508,7 +595,7 @@
   "tiers": {
     "snapshot": {
       "label": "Start-of-year snapshots of vacant positions",
-      "text": "These count positions vacant at a point early in the school year, as a share of all positions. They are the closest to each other and to the national School Pulse Panel, though they still differ: Illinois's denominator uses the prior year's filled count, and South Carolina includes service staff."
+      "text": "These count positions vacant at a point early in the school year, as a share of all positions. They are the closest to each other and to the national School Pulse Panel, though they still differ: Illinois's denominator uses the prior year's filled count, South Carolina includes service staff, Michigan also counts positions held for staff on leave, and Pennsylvania's rate is computed here from positions and headcounts."
     },
     "different": {
       "label": "Different measures: compare trends, not levels",

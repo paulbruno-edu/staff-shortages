@@ -773,8 +773,8 @@
         el('td', { class: 'num', text: latest.r.text }),
         el('td', { text: latest.p.sy + (latest.p.agency_label && latest.p.agency_label !== latest.p.sy ? ` (state's label: ${latest.p.agency_label})` : '') }),
         el('td', { class: 'dim', text: latest.r.basis }),
-        el('td', { class: 'num', text: `${hi.r.text} (${hi.p.sy})` }),
-        el('td', { class: 'num', text: change(latest.r.v - hi.r.v) }),
+        el('td', { class: 'num', text: rated.length > 1 ? `${hi.r.text} (${hi.p.sy})` : 'one year only' }),
+        el('td', { class: 'num', text: rated.length > 1 ? change(latest.r.v - hi.r.v) : '' }),
       ));
     }
     const ne = S.nebraska.years[S.nebraska.years.length - 1];

@@ -4,7 +4,7 @@ A live dashboard that puts school staff vacancies in the context of the whole U.
 
 - **National labor-market data** (BLS JOLTS, CES and CPS, via the BLS Public Data API) refresh automatically twice a week through a GitHub Action.
 - **National school vacancy estimates** (NCES School Pulse Panel, October 2022–2024) are re-checked by the same Action in case NCES publishes new waves.
-- **State data** (Illinois, Virginia, South Carolina, Iowa, Colorado, Nebraska) are curated by hand in `data/states.json` and updated about once a year.
+- **State data** (Illinois, Virginia, Michigan, Pennsylvania, South Carolina, Iowa, Colorado, Nebraska) are curated by hand in `data/states.json` and updated about once a year.
 
 It is a static site: plain HTML/CSS/JS, with no build step and no server, hosted free on GitHub Pages.
 
@@ -65,6 +65,8 @@ Where to look each year:
 |---|---|---|
 | Illinois | Winter/spring | ISBE Unfilled Positions data; IWERC Educator Shortage report |
 | Virginia | December (Board meeting) | VDOE Positions & Exits Collection; Board of Education presentation and news release |
+| Pennsylvania | Late fall/winter | PDE Professional Staff Vacancy workbook (Q1, October 1) for vacancies and the Professional Staff Summary (State_FT+PT, CT column) for classroom teachers, both on the professional and support personnel page. Rate is computed. |
+| Michigan | January | Michigan Teacher Shortage Study (EPIC/MSU), vacancy section: the statewide FTE-weighted rate for the prior fall |
 | Iowa | January | Iowa DOE press release and district spreadsheet on the Teacher Shortage Areas page. **Check the posting window** in the spreadsheet note: the figure covers the *previous* 12 months, so plot it one school year earlier than the press-release label. |
 | South Carolina | Winter/spring | CERRA Educator Supply & Demand data tables (Table 5) |
 | Colorado | Spring/summer | CDE Educator Shortage Survey results page and workbook |
@@ -73,7 +75,6 @@ Where to look each year:
 **50-state inventory (once a year, ideally late summer):** re-check every state in `data/state_inventory.json` using the protocol recorded in that file. In short, search each state agency's own site for vacancy data, read anything found, classify it, and record the evidence links. Then compare with the Learning Policy Institute's annual scan (published each July) as a cross-check, never as the source. States to watch:
 - **Ohio** and **Texas:** new laws require vacancy collections starting in 2026-27; Ohio must publish its results.
 - **Alaska:** checked by hand in October 2026 and left off the dashboard, because it counts positions held by someone without a valid Alaska certificate as vacant. Re-check if the department starts reporting truly empty positions separately.
-- **Michigan:** the EPIC/MSU report each January.
 - **Arizona** and **Tennessee:** their reports block automated download; save copies to the Drive `sources` folder.
 
 The October JOLTS benchmarks on the state panels come from the automated national pull, so a new school year's benchmark appears once BLS publishes October data (early December).
