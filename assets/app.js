@@ -586,11 +586,12 @@
     const ppt = (y) => at(T.pupils_per_teacher, y).toFixed(1), pps = (y) => at(T.pupils_per_staff, y).toFixed(1);
     const fasterStaff = chg(T.staff_total, y0, y1) > chg(T.enrollment, y0, y1);
     $('#ratio-staff-lede').textContent =
-      `NCES's counts, which measure staff and students in consistent units, show ${fasterStaff ? 'public schools adding staff faster than students over the longer run' : 'staffing and enrollment moving roughly together over the longer run'}. ` +
+      `For a longer-run comparison of public K-12 staffing and enrollment, NCES provides consistently defined figures through fall ${y1}. They show ${fasterStaff ? 'public schools adding staff faster than students' : 'staffing and enrollment moving roughly together'}. ` +
       `Between fall ${y0} and fall ${y1}, enrollment was ${pc(chg(T.enrollment, y0, y1))}, while full-time-equivalent teachers were ${pc(chg(T.teachers, y0, y1))}, all staff ${pc(chg(T.staff_total, y0, y1))}, and instructional aides ${pc(chg(T.aides, y0, y1))}. ` +
       (pre ? `Since fall ${pre}, just before the pandemic, enrollment was ${pc(chg(T.enrollment, pre, y1))} and all staff ${pc(chg(T.staff_total, pre, y1))} through fall ${y1}. ` : '') +
       `There were ${ppt(y1)} students per teacher in fall ${y1}, compared with ${ppt(y0)} in fall ${y0}, and ${pps(y1)} students per staff member, compared with ${pps(y0)}. ` +
-      `More staff per student is not by itself a judgment about whether schools are over- or under-staffed: it can reflect services schools are required or choose to provide, such as special education and smaller classes, and the revenue available to pay for them. But it matters for reading vacancy data. Schools trying to fill more positions can report more unfilled positions even if hiring has not become harder, and every added position draws on the same pool of candidates and the same budget that pays existing staff.`;
+      `More staff per student is not by itself a judgment about whether schools are over- or under-staffed: it can reflect services schools are required or choose to provide, such as special education and smaller classes, and the revenue available to pay for them. But it matters for reading vacancy data. Adding positions increases recruitment needs and spending commitments; whether that creates competition with existing positions depends on the roles, local candidate availability, and funding. These figures show how employment has changed. They do not identify whether today's vacancies arise from expansion, replacement hiring, or difficulty filling positions, and they end in fall ${y1}, well before the latest labor-market data above.`;
+    $('#ratio-staff-title').textContent = `Public school staff and students, fall ${y0}–${y1}`;
     $('#ratio-staff-sub').textContent = `Full-time-equivalent staff and fall enrollment, public elementary and secondary schools, fall ${y0} = 100`;
   }
 
@@ -914,6 +915,54 @@
       `${teachRank === 1 ? 'Teaching had the highest vacancy rate of the four.' : `Teaching did not have the highest vacancy rate: by this measure, shortages were most severe among ${latest[0].name.toLowerCase()}, a pattern that data on teachers alone would miss.`}`));
   }
 
+  // Illinois: growth in filled FTE by category beside each category's vacancy rate. Both come from
+  // ISBE's vacancy collection, so the categories match exactly; enrollment is from the Report Card.
+  function renderIlGrowth() {
+    const fig = $('#fig-il-growth');
+    const ic = S.illinois_categories, en = S.illinois_enrollment;
+    if (!fig || !ic.filled_as_of_fall || !en) { if (fig) fig.hidden = true; return; }
+    const ff = ic.filled_as_of_fall, last = ff.length - 1;
+    const f1 = ff[last], i0 = ff.indexOf(Math.min(...ff)), f0 = ff[i0];
+    const li = ic.years.length - 1;
+    const rows = ic.categories.map((c) => {
+      const all = c.name.startsWith('All');
+      return {
+        label: all ? 'All four categories' : c.name, ref: all,
+        growth: ((c.filled[last] / c.filled[i0]) - 1) * 100,
+        rate: (c.unfilled[li] / (c.unfilled[li] + c.filled[li])) * 100,
+        c,
+      };
+    });
+    const order = [...rows.filter((r) => !r.ref).sort((a, b) => b.growth - a.growth), ...rows.filter((r) => r.ref)];
+    const enChg = ((en.fall[f1] / en.fall[f0]) - 1) * 100;
+    const pc = (v) => `${v >= 0 ? '+' : '−'}${Math.abs(v).toFixed(1)}%`;
+    const g = el('div'), v = el('div');
+    $('#chart-il-growth').replaceChildren(el('div', { class: 'grid2' },
+      el('div', {}, el('h4', { class: 'tier-h', text: `Change in filled FTE, fall ${f0} to fall ${f1}` }), g),
+      el('div', {}, el('h4', { class: 'tier-h', text: `Vacancy rate, ${ic.years[li]}` }), v)));
+    hbarChart(g, order.map((r) => ({ label: r.label, value: r.growth, ref: r.ref, raw: r,
+      note: `Filled FTE in ISBE's vacancy collection: ${num(r.c.filled[i0], 0)} in fall ${f0}, ${num(r.c.filled[last], 0)} in fall ${f1}.` })), {
+      fmt: pc, tipRows: (row) => [{ value: pc(row.raw.growth), name: `filled FTE, fall ${f0}–${f1}` }, { value: `${row.raw.rate.toFixed(2)}%`, name: `vacancy rate, ${ic.years[li]}` }],
+    });
+    hbarChart(v, order.map((r) => ({ label: r.label, value: r.rate, ref: r.ref, raw: r,
+      note: `${num(r.c.unfilled[li], 0)} unfilled FTE in ${ic.years[li]}, against ${num(r.c.filled[li], 0)} filled (ISBE's prior-year count).` })), {
+      fmt: (x) => `${x.toFixed(2)}%`, tipRows: (row) => [{ value: `${row.raw.rate.toFixed(2)}%`, name: `vacancy rate, ${ic.years[li]}` }, { value: pc(row.raw.growth), name: `filled FTE, fall ${f0}–${f1}` }],
+    });
+    $('#il-growth-sub').textContent = `Same four categories in both panels, ordered by growth. Over the same period, statewide enrollment changed ${pc(enChg)}`;
+    const top = order[0], teach = rows.find((r) => r.label === 'Teaching');
+    const byRate = [...rows.filter((r) => !r.ref)].sort((a, b) => b.rate - a.rate);
+    const sameTop = byRate[0] === top;
+    const noun = { Paraprofessionals: 'paraprofessional', 'School support personnel': 'school support personnel', Administrators: 'administrator', Teaching: 'teaching' };
+    const moved = (x) => `${x >= 0 ? 'grew' : 'fell'} ${Math.abs(x).toFixed(1)}%`;
+    const words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+    const span = words[f1 - f0] || String(f1 - f0);
+    $('#il-growth-lede').textContent =
+      `Illinois's data also show where schools were adding staff. Between fall ${f0} and fall ${f1}, filled ${noun[top.label] || top.label.toLowerCase()} positions ${moved(top.growth)}, compared with ${Math.abs(teach.growth).toFixed(1)}% for teaching positions, while statewide enrollment ${moved(enChg)}. ` +
+      (sameTop ? `The category growing fastest also had the highest vacancy rate. That is consistent with greater recruitment needs in the categories schools were expanding, but it does not establish that expansion caused the vacancies:`
+        : `The fastest-growing category was not the one with the highest vacancy rate, so staffing growth alone does not account for where vacancy rates were highest. In any case, these figures cannot establish causes:`) +
+      ` growth in filled positions also enlarges a vacancy rate's denominator, and vacancies can also arise from replacement hiring or from positions that are slow to fill. Two caveats: ${span} years in one state is a short window, and the vacancy collection is a survey. Still, it illustrates what more detailed data can reveal: national figures cannot pair vacancy rates and staffing growth for the same kinds of staff.`;
+  }
+
   function stackBlock(host, parts, total) {
     const bar = el('div', { class: 'stack', role: 'img', 'aria-label': parts.map((p) => `${p.label}: ${p.text}`).join('; ') });
     for (const p of parts) {
@@ -1006,6 +1055,7 @@
     run('inventory', renderInventory);
     run('spp', renderSppRoles);
     run('illinois', renderIllinois);
+    run('il-growth', renderIlGrowth);
     run('composition', renderComposition);
     run('nebraska', renderNebraska);
     for (const id of ['#metric', '#range', '#smooth']) $(id).addEventListener('change', () => run('market', renderMarket));

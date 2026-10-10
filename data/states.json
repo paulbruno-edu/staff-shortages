@@ -560,7 +560,14 @@
         ]
       }
     ],
-    "verification": "SY23-SY25 verified against IWERC/ISBE SY25 report, Table 5. SY22 carried over from the baseline workbook."
+    "verification": "SY23-SY25 verified against IWERC/ISBE SY25 report, Table 5. SY22 carried over from the baseline workbook.",
+    "filled_as_of_fall": [
+      2021,
+      2021,
+      2022,
+      2023
+    ],
+    "filled_as_of_fall_note": "The fall each 'filled' value describes. ISBE pairs each year's unfilled FTE with the prior year's filled FTE (filled counts are final only after the year ends), so the SY23 row's filled count is fall 2021's (the same as SY22's), SY24's is fall 2022's, and SY25's is fall 2023's."
   },
   "composition": {
     "_note": "Constants for the modeled split of state & local education openings. K-12 vs higher-ed shares come live from CES (local vs state government education employment). Teacher share of K-12 staff is NCES CCD fall 2022 (Digest Table 213.20, United States row; verified 2026-10-10).",
@@ -601,5 +608,21 @@
       "label": "Different measures: compare trends, not levels",
       "text": "Iowa counts a year's worth of postings that went unfilled or were covered by substitutes, divided by employed teachers. Colorado counts only positions that stayed empty all year. Each state's trend is informative, but their levels should not be set beside the others."
     }
+  },
+  "illinois_enrollment": {
+    "note": "Statewide public school enrollment (fall membership), Illinois Report Card public data sets, statewide row, '# Student Enrollment'. The report-card year is the spring of the school year, so the 2022 report card gives fall 2021 enrollment.",
+    "fall": {
+      "2019": 1957018,
+      "2020": 1887316,
+      "2021": 1869325,
+      "2022": 1857790,
+      "2023": 1851290,
+      "2024": 1848560
+    },
+    "source": {
+      "label": "ISBE Report Card Data Library (annual public data sets, 2020-2025)",
+      "url": "https://www.isbe.net/pages/illinois-state-report-card-data.aspx"
+    },
+    "verification": "Verified directly on 2026-10-10 against the statewide rows of the 2020-2025 Report Card public data sets and the Report Card Trend Data workbook (rc-trend-data.xlsx)."
   }
 }
