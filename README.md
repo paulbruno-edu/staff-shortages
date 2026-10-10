@@ -70,7 +70,11 @@ Where to look each year:
 | Colorado | Spring/summer | CDE Educator Shortage Survey results page and workbook |
 | Nebraska | January | NDE Teacher Vacancy Survey summary |
 
-Each summer, check the Learning Policy Institute's annual state scan for states that have started publishing vacancy data, and update `data/state_inventory.json`. The candidates to watch are Michigan (EPIC/MSU report, each January), DC, Arizona, and Tennessee.
+**50-state inventory (once a year, ideally late summer):** re-check every state in `data/state_inventory.json` using the protocol recorded in that file. In short, search each state agency's own site for vacancy data, read anything found, classify it, and record the evidence links. Then compare with the Learning Policy Institute's annual scan (published each July) as a cross-check, never as the source. States to watch:
+- **Ohio** and **Texas:** new laws require vacancy collections starting in 2026-27; Ohio must publish its results.
+- **Alaska:** its first-day vacancy dashboard may already show rates; check it by hand.
+- **Michigan:** the EPIC/MSU report each January.
+- **Arizona** and **Tennessee:** their reports block automated download; save copies to the Drive `sources` folder.
 
 The October JOLTS benchmarks on the state panels come from the automated national pull, so a new school year's benchmark appears once BLS publishes October data (early December).
 

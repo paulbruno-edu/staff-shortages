@@ -109,13 +109,18 @@
     // Inventory.
     if (I) {
       const order = Object.keys(I.categories);
-      const SHORT = { included: 'on the dashboard', candidate: 'candidates not yet added', counts: 'counts only', different: 'a different measure', none: 'no statewide data' };
+      const SHORT = { included: 'on the dashboard', candidate: 'candidates not yet added', counts: 'counts only', different: 'a different measure', collects: 'collect but do not publish', none: 'no statewide data' };
       const counts = order.map((c) => `${I.states.filter((s) => s.category === c).length} ${SHORT[c] || c}`);
-      $('#inv-lede').replaceChildren(document.createTextNode(`Every state and DC, classified by what vacancy data it publishes (as of ${I.as_of}): ${counts.join('; ')}. "Checked" says whether this project read the primary source ("direct"), relied on the `), el('a', { href: I.base_source.url, text: I.base_source.label }), document.createTextNode(' ("lpi"), or could only reach news or third-party coverage ("secondary").'));
+      const disagree = I.states.filter((s) => (s.lpi === 'no vacancy data') !== ['none', 'collects'].includes(s.category)).map((s) => s.state);
+      $('#inv-lede').replaceChildren(
+        document.createTextNode(`Every state and DC, checked directly against its own agency's publications (as of ${I.as_of}): ${counts.join('; ')}. "Checked" is "direct" when the primary source was read, and "secondary" when it could not be read automatically and the classification rests on news coverage or a legislative summary of it. The `),
+        el('a', { href: I.cross_check.url, text: I.cross_check.label }), document.createTextNode(` is used only as a cross-check; this inventory disagrees with its "publishes vacancy data" call for ${disagree.join(', ')}, and splits its other categories more finely.`));
+      $('#inv-protocol').replaceChildren(...I.protocol.map((p) => el('li', { text: p.replace(/^\d+\.\s*/, '') })));
       const rows = [...I.states].sort((a, b) => order.indexOf(a.category) - order.indexOf(b.category) || a.state.localeCompare(b.state));
+      const links = (s) => (s.evidence || []).flatMap((e, i) => [i ? ' · ' : '', el('a', { href: e.url, rel: 'noopener', text: e.label })]);
       $('#inv-table').append(
-        el('thead', {}, el('tr', {}, ['State', 'Status', 'What is published', 'Why it is or is not on the dashboard', 'Checked'].map((h) => el('th', { scope: 'col', text: h })))),
-        el('tbody', {}, rows.map((s) => el('tr', {}, el('th', { scope: 'row', text: s.state }), el('td', { text: I.categories[s.category] }), el('td', { text: s.what || 'No statewide vacancy data' }), el('td', { text: s.reason || '' }), el('td', { text: s.checked })))));
+        el('thead', {}, el('tr', {}, ['State', 'Status', 'What is published', 'Why it is or is not on the dashboard', 'Evidence', 'Checked', 'LPI 2026'].map((h) => el('th', { scope: 'col', text: h })))),
+        el('tbody', {}, rows.map((s) => el('tr', {}, el('th', { scope: 'row', text: s.state }), el('td', { text: I.categories[s.category] }), el('td', { text: s.what || 'No statewide vacancy data' }), el('td', { text: s.reason || '' }), el('td', { class: 'small' }, ...links(s)), el('td', { text: s.checked }), el('td', { class: 'small', text: s.lpi || '' })))));
     }
   }
   boot();

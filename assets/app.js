@@ -749,7 +749,7 @@
     const by = (c) => I.states.filter((s) => s.category === c);
     const names = (arr) => arr.map((s) => s.state).join(', ');
     host.replaceChildren(
-      el('p', {}, `Of the 50 states and DC, ${by('none').length} publish no statewide vacancy data. ${by('counts').length} publish counts without a denominator from the same source (${names(by('counts'))}), and ${by('different').length} publish figures that measure something else (${names(by('different'))}). `,
+      el('p', {}, `Every state and DC was checked against its own agency's publications (as of ${I.as_of}). ${by('none').length} publish no statewide vacancy data (${names(by('none'))}). ${by('collects').length} collect vacancy data, or have just begun to, but publish no statewide figures yet (${names(by('collects'))}). ${by('counts').length} publish counts without a denominator from the same source (${names(by('counts'))}), and ${by('different').length} publish figures that measure something else, such as job postings or positions not filled by fully licensed teachers (${names(by('different'))}). `,
         `The closest candidates not yet on this page are ${names(by('candidate'))}:`),
       el('ul', {}, by('candidate').map((s) => el('li', {}, el('strong', { text: `${s.state}. ` }), s.reason))),
       el('p', {}, 'The full state-by-state inventory, with sources, is on the ', el('a', { href: 'provenance.html#inventory', text: 'data provenance page' }), '.'),

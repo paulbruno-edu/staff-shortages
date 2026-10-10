@@ -53,7 +53,7 @@
         <tr><th scope="row">BLS JOLTS and employment series</th><td><code>data/national.json</code>, <code>data/national_monthly.csv</code></td><td>Automatically: <code>scripts/fetch_national.py</code>, run by a GitHub Action every Tuesday and Friday. It re-downloads the full history each time (JOLTS revises past months) and commits only if a value changed.</td><td>The script exits without writing; the site keeps the last good data. GitHub emails the repository owner about the failed run.</td></tr>
         <tr><th scope="row">NCES School Pulse Panel</th><td><code>data/spp.json</code></td><td>Automatically: <code>scripts/fetch_spp.py</code>, same schedule. The survey's last staffing wave was October 2024; the step picks up new waves if NCES resumes.</td><td>Same: existing file kept. This step cannot block the BLS update.</td></tr>
         <tr><th scope="row">State vacancy data</th><td><code>data/states.json</code></td><td>By hand, once states publish (most between December and April). States publish PDFs, spreadsheets, and dashboards whose links and layouts change, and figures need checking by a person (see the Iowa correction below).</td><td>Not applicable.</td></tr>
-        <tr><th scope="row">50-state inventory</th><td><code>data/state_inventory.json</code></td><td>By hand, about once a year (the Learning Policy Institute updates its scan each summer).</td><td>Not applicable.</td></tr>
+        <tr><th scope="row">50-state inventory</th><td><code>data/state_inventory.json</code></td><td>By hand, about once a year, following the checking protocol below. The Learning Policy Institute's annual summer scan is a useful cross-check. Watch especially for Ohio and Texas, whose new laws require vacancy collections starting in 2026-27.</td><td>Not applicable.</td></tr>
       </tbody>
     </table>
   </div>
@@ -87,6 +87,8 @@
 <section id="inventory">
   <h2>50-state inventory</h2>
   <p class="lede" id="inv-lede"></p>
+  <h3 class="h3">How each state is checked</h3>
+  <ol class="limits" id="inv-protocol"></ol>
   <div class="table-wrap"><table class="data" id="inv-table"></table></div>
 </section>
 
@@ -130,6 +132,7 @@
     <table class="data">
       <thead><tr><th scope="col">Date</th><th scope="col">Change</th></tr></thead>
       <tbody>
+        <tr><td>2026-10-10</td><td><strong>50-state inventory re-verified directly.</strong> It previously relied on the Learning Policy Institute's scan for 37 states. Each state was re-checked against its own agency's publications and every classification now carries evidence links. Changes: Rhode Island (publishes counts), Wisconsin and California (publish different measures), and Ohio, Texas, Maine, New Jersey, New York, New Hampshire and Indiana (collect vacancy data but publish no statewide figures) were previously listed as publishing nothing; Florida and Montana reclassified as job-posting counts; Alaska added as a candidate (first-day vacancy dashboard with rates); Mississippi's five-year series noted.</td></tr>
         <tr><td>2026-10-10</td><td><strong>Data retrieval:</strong> economy-wide and employment series now come directly from the BLS Public Data API instead of FRED, which does not answer requests from GitHub's servers. Values were compared month by month before the switch: identical in all 309 months of all 21 series.</td></tr>
         <tr><td>2026-10-09</td><td><strong>Iowa:</strong> latest rate corrected from 1.12% (a figure from news coverage) to 1.15% (Iowa DOE). The apparent "conflict" between two Iowa releases resolved: both describe the same 434 positions; one labels it by collection year (2025-26), the other by the year the postings cover (2024-25). Iowa's measure reclassified as a 12-month flow of postings (not a fall snapshot), with a denominator of employed teachers; points re-plotted at the school year they cover.</td></tr>
         <tr><td>2026-10-09</td><td><strong>Virginia 2022-23</strong> relabeled as a third-party calculation, not a VDOE publication.</td></tr>
