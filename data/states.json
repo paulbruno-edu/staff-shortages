@@ -609,8 +609,8 @@
   ],
   "tiers": {
     "snapshot": {
-      "label": "Start-of-year snapshots of vacant positions",
-      "text": "These count positions vacant at a point early in the school year, as a share of all positions. They are the closest to each other and to the national School Pulse Panel, though they still differ: Illinois's denominator uses the prior year's filled count, South Carolina includes service staff, Michigan also counts positions held for staff on leave, and Pennsylvania's rate is computed here from positions and headcounts."
+      "label": "Start-of-year snapshots of vacant or unfilled positions",
+      "text": "These describe positions reported vacant or unfilled early in the school year, under each source's definition, as a share of all positions. Some count a position that someone is covering temporarily: Illinois, for example, counts positions with no appropriately licensed permanent educator, even if a substitute is covering them, though not when a substitute covers for a permanent teacher on leave. Michigan and Pennsylvania count substitute-covered positions as well. These are the closest to each other and to the national School Pulse Panel, though they still differ: Illinois's denominator uses the prior year's filled count, South Carolina includes service staff, Michigan also counts positions held for staff on leave, and Pennsylvania's rate is computed here from positions and headcounts."
     },
     "different": {
       "label": "Different measures: compare trends, not levels",
