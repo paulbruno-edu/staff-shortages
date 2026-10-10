@@ -86,7 +86,7 @@ def main():
     for kind, label in (("dead", "DEAD ARCHIVED COPY"), ("error", "ARCHIVE SERVER ERROR"), ("blocked", "could not check archived copy")):
         for copy, url, detail in arch_res[kind]:
             print(f"  {label} ({detail}): {copy}\n      for: {url}")
-    sys.exit(1 if results["dead"] or results["error"] or arch_res["dead"] else 0)
+    sys.exit(1 if results["dead"] or results["error"] or arch_res["dead"] or arch_res["error"] else 0)
 
 
 if __name__ == "__main__":

@@ -111,9 +111,7 @@ def main():
 
 def write(archive, links):
     out = {
-        "_readme": "Wayback Machine copies of every source the dashboard cites, made by scripts/archive_sources.py. "
-                   "method: 'saved' = fresh copy made by the script; 'existing copy' = the site refused a new save, "
-                   "so the most recent earlier copy is used; 'not archived' = no copy exists (save these by hand).",
+        "_readme": "Wayback Machine copies of the sources the dashboard cites, made by scripts/archive_sources.py. method: 'saved' = a fresh copy was made; 'existing copy' = a new save did not succeed (the site or the Archive's save service declined or timed out), so the most recent earlier copy is used; 'is an archived copy' = the citation itself is a Wayback copy; 'not archived' = no public copy was found (these sources are preserved privately); 'DOI (not archived)' = DOI citations keep their persistent links.",
         "updated": dt.date.today().isoformat(),
         "links": {u: archive[u] for u in links if u in archive},
     }
