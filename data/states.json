@@ -476,7 +476,7 @@
     "verification": "SY23-SY25 verified against IWERC/ISBE SY25 report, Table 5. SY22 carried over from the baseline workbook."
   },
   "composition": {
-    "_note": "Constants for the modeled split of state & local education openings. K-12 vs higher-ed shares come live from CES (local vs state government education employment). Teacher share of K-12 staff is NCES CCD fall 2022.",
+    "_note": "Constants for the modeled split of state & local education openings. K-12 vs higher-ed shares come live from CES (local vs state government education employment). Teacher share of K-12 staff is NCES CCD fall 2022 (Digest Table 213.20, United States row; verified 2026-10-10).",
     "nces_year": "fall 2022",
     "nces_total_k12_staff_fte": 6795470,
     "nces_teacher_fte": 3228895
