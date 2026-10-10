@@ -476,9 +476,8 @@
         : 'By that measure, employers across the economy have fewer openings than usual relative to their workforces. That often goes with an easier hiring environment, though openings also reflect how many workers employers want and how long positions stay open.';
     const peakPhr = totPeak.value - tot > 1 ? `well below its ${pct(totPeak.value)} peak in ${monthLabel(totPeak.month)}` : `near its ${pct(totPeak.value)} peak in ${monthLabel(totPeak.month)}`;
     const edCmp = cmpWord(ed, edAvg, 0.2);
-    const pf = pandemicFacts();
     let edTail;
-    if (edCmp === 'above' && mkt !== 'above') edTail = 'So openings in public education are somewhat elevated relative to their own history even though openings in the economy as a whole are not, which suggests something particular to education may be at work. That could reflect greater recruitment needs relative to the existing workforce, slower filling of positions, or both (see staffing levels, below)' + (pf && pf.jobsEd.back && pf.jobsAll.back && pf.jobsEd.back > pf.jobsAll.back ? `, including a long rebuilding of school staffs after 2020` : '') + '.';
+    if (edCmp === 'above' && mkt !== 'above') edTail = 'So openings in public education are somewhat elevated relative to their own history even though openings in the economy as a whole are not, which suggests something particular to education may be at work. That could reflect greater recruitment needs relative to the existing workforce, slower filling of positions, or both (see staffing levels, below)' + '.';
     else if (edCmp === 'above') edTail = 'Openings are elevated both in education and in the wider economy, so at least some of what is driving education\'s openings plausibly reflects the labor market as a whole.';
     else if (edCmp === 'below') edTail = 'By its own historical standard, education\'s openings rate is low.';
     else edTail = 'By its own historical standard, education\'s openings rate is unremarkable.';
@@ -585,9 +584,9 @@
     const pct = (v) => `${Math.abs(v).toFixed(0)}%`;
     const back = (d) => (d.back ? `regained its February 2020 level in ${mo(d.back)}` : 'had not yet regained its February 2020 level');
     $('#staff-pandemic').textContent =
-      `Payroll jobs in local government education fell by about ${pct(pf.jobsEd.pct)} between February 2020 and ${mo(pf.jobsEd.low)}, compared with ${pct(pf.jobsAll.pct)} for all nonfarm jobs. ` +
-      `But all nonfarm employment ${back(pf.jobsAll)}, while local government education ${back(pf.jobsEd)}. ` +
-      `A long period of rebuilding school staffs, followed by continued growth, is one plausible contributor to education's openings rate staying above its own pre-pandemic norm, alongside the other possibilities noted above. (How the initial layoff shock differed is described with the charts in the first section.)`;
+      `Payroll jobs in local government education fell by about ${pct(pf.jobsEd.pct)} from February 2020 to their low in ${mo(pf.jobsEd.low)}, compared with ${pct(pf.jobsAll.pct)} for all nonfarm jobs from February to their low in ${mo(pf.jobsAll.low)}. ` +
+      `Yet the smaller decline took longer to reverse: all nonfarm employment ${back(pf.jobsAll)}, while local government education ${back(pf.jobsEd)}. ` +
+      `That long rebuilding, followed by continued growth, may be one contributor to education's openings rate staying above its own pre-pandemic norm, but these data cannot establish that. (How the initial layoff shock differed is described with the charts in the first section.)`;
   }
 
   // NCES staff and enrollment, fall 2000 on (Digest Table 213.10): both Common Core of Data,
@@ -637,12 +636,13 @@
     const years = [];
     for (let y = 2020; ; y++) { const n = N.months.filter((m) => m.startsWith(`${y}-`)).length; if (n < 12) break; years.push(y); }
     const yrAvg = (k, y) => mean(N.months.map((m, i) => (m.startsWith(`${y}-`) ? ser(k)[i] : null)).filter((x) => x != null));
-    const rel = (k) => { const b = avgBetween(k, '2015-01', '2019-12'); return years.map((y) => Math.round((yrAvg(k, y) / b) * 100)); };
+    const rel = (k) => { const b = avgBetween(k, '2015-01', '2019-12'); return years.map((y) => (yrAvg(k, y) / b) * 100); };
     const qa = rel('JTSQUR'), qe = rel('SLED_QUR');
     const at = (arr, y) => arr[years.indexOf(y)];
     const earlier = years.includes(2020) && at(qe, 2020) - at(qa, 2020) >= 10;
     const later = years.filter((y) => y >= 2023);
     const higherSince = later.length && later.every((y) => at(qe, y) > at(qa, y));
+    const laterSpan = later.length ? (later.length > 1 ? `In each year from ${later[0]} through ${later[later.length - 1]}` : `In ${later[0]}`) : '';
     const show = (metric, label) => {
       const a = el('a', { href: '#fig-market', text: label });
       a.addEventListener('click', () => { $('#metric').value = metric; $('#metric').dispatchEvent(new Event('change')); });
@@ -654,15 +654,19 @@
       el('p', {}, el('strong', { text: 'The pandemic shock was different in education. ' }),
         `When the pandemic began, the economy-wide layoffs and discharges rate rose from ${v('JTSLDR', bi).toFixed(1)}% in February 2020 to ${v('JTSLDR', mi).toFixed(1)}% in March, an increase of ${ppAll.toFixed(1)} percentage points. ` +
         `In state and local education (public schools and colleges, all staff) it rose from ${v('SLED_LDR', bi).toFixed(1)}% to ${v('SLED_LDR', mi).toFixed(1)}%, an increase of ${ppEd.toFixed(1)} points: a large rise from a low base, but a much smaller absolute disruption. ` +
-        `That describes the initial spike, not the whole year. Total separations also include quits and other departures such as retirements, and BLS estimates that annual separations in public education rose more in percentage terms from 2019 to 2020 than in the economy as a whole (32.8% versus 19.9%; `,
-        el('a', { href: 'https://www.bls.gov/opub/mlr/2021/article/as-the-covid-19-pandemic-affects-the-nation-hires-and-turnover-reach-record-highs-in-2020.htm', rel: 'noopener', text: 'BLS, 2021' }), ').'),
+        `That describes the initial spike, not the whole year. Total separations also include quits and other departures such as retirements, and BLS's 2021 analysis of annual separation counts found that separations in public education rose more in percentage terms from 2019 to 2020 than in the economy as a whole: 32.8% versus 19.9% (`,
+        el('a', { href: 'https://www.bls.gov/opub/mlr/2021/article/as-the-covid-19-pandemic-affects-the-nation-hires-and-turnover-reach-record-highs-in-2020.htm', rel: 'noopener', text: 'BLS, 2021' }),
+        `). Those are annual counts from that analysis, not the revised monthly rates shown in the charts.`),
       el('p', {},
         `Quits followed a different path as well. Averaged over ${yrs}, quits in state and local education ran ${above(mean(qe))} their own 2015–19 average, compared with ${above(mean(qa))} for all sectors. ` +
-        (earlier ? `Education's quits rose earlier` : `Education's quits moved on a different schedule`) +
-        (higherSince ? `, and since 2023 they have stayed higher relative to their own norm than quits economy-wide. ` : '. ') +
-        `So education's lower quit rates do not mean a smaller proportional increase. Sectors entered the recovery from very different disruptions, which matters for interpreting later quits, but these data cannot say why the paths differed. Two hypotheses pull in opposite directions. Sectors that shed many workers later recruited aggressively, drawing workers away from other employers and generating more quits and replacement hiring, a pattern documented for the broader recovery (`,
+        (earlier ? `Education's quits rose earlier.` : `Education's quits moved on a different schedule.`) +
+        (higherSince ? ` ${laterSpan}, education's annual average quit rate remained higher relative to its pre-pandemic norm than the economy-wide rate did.` : '') +
+        ` So education's lower quit rates do not mean a smaller proportional increase.`),
+      el('p', {},
+        `These data cannot say why the paths differed, but the difference in the initial disruption is relevant. Sectors that shed many workers later recruited aggressively as demand recovered, drawing workers away from other employers and generating more quits and replacement hiring, a pattern documented for the broader recovery (`,
         el('a', { href: 'https://www.frbsf.org/research-and-insights/publications/economic-letter/2022/04/great-resignations-are-common-during-fast-recoveries/', rel: 'noopener', text: 'Hobijn, 2022' }),
-        `); with less to rebuild, education may have seen less of that. On the other hand, employers that laid off fewer workers kept more people who could quit later. Aggregate data cannot separate these. To compare for yourself, switch the charts above to `,
+        `). Education lost a smaller share of its jobs and rebuilt them more gradually (see public education employment, below), so it may have seen less of that churn. ` +
+        `Another possibility is that some staff deferred departures during the uncertain early years of the pandemic and left later. These data cannot test either explanation or establish how much either contributed in education. To compare the series yourself, switch the charts above to `,
         show('LDR', 'layoffs and discharges'), ', ', show('QUR', 'quits'), ', or ', show('HIR', 'hires'), '.'),
     );
   }
