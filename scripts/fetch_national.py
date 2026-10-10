@@ -139,6 +139,22 @@ def fetch_bls(series_ids, start_year, end_year, key):
     return out
 
 
+def common_industry_month(ind, latest, max_lag=2):
+    """Latest month, no later than the headline month, in which every industry series shown has
+    every measure (openings level and the four rates). Refuses to publish an industry table more
+    than max_lag months older than the headline month, so the site keeps the last good data."""
+    ids = [f"JTS{code}000000000{el}" for _, code, _, _ in INDUSTRIES for el in ELEMENTS]
+    months = sorted({m for sid in ids for m in ind[sid] if m <= latest}, reverse=True)
+    for m in months:
+        if all(ind[sid].get(m, (None, False))[0] is not None for sid in ids):
+            y, mo = map(int, latest.split("-"))
+            y2, mo2 = map(int, m.split("-"))
+            if (y - y2) * 12 + (mo - mo2) > max_lag:
+                break
+            return m
+    raise RuntimeError(f"No month within {max_lag} months of {latest} has every industry measure")
+
+
 def main():
     key = os.environ.get("BLS_API_KEY", "").strip()
     this_year = dt.date.today().year
@@ -185,7 +201,7 @@ def main():
             october.append(row)
 
     # ---- industry table, latest month common to all rows ---------------------
-    ind_month = latest
+    ind_month = common_industry_month(ind, latest)
     industries = []
     for name, code, indent, note in INDUSTRIES:
         row = {"name": name, "code": code, "indent": indent, "note": note}
@@ -195,9 +211,6 @@ def main():
             if el == "JOR":
                 row["preliminary"] = bool(v and v[1])
         industries.append(row)
-    missing = [r["name"] for r in industries if r["JOR"] is None]
-    if len(missing) > 3:
-        raise RuntimeError(f"Industry rows missing for {ind_month}: {missing}")
 
     out = {
         "generated_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%MZ"),

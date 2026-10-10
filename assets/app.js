@@ -132,7 +132,13 @@
       if (on) buildTable();
     });
     const btnCsv = el('button', { type: 'button', text: 'CSV' });
-    btnCsv.addEventListener('click', () => { const t = tableData(); csvDownload(cfg.csv || 'data.csv', t.head, t.rows); });
+    // Read the current config (not the one the chart was created with), so the file name and
+    // headings follow the measure and options selected when the button is pressed.
+    btnCsv.addEventListener('click', () => {
+      const c = state.cfg, t = tableData();
+      const head = c.valueLabel ? t.head.map((h, j) => (j === 0 || h === 'Notes' ? h : `${h}: ${c.valueLabel}`)) : t.head;
+      csvDownload(c.csv || 'data.csv', head, t.rows);
+    });
     tools.append(btnTable, btnCsv);
 
     function tableData() {
@@ -220,8 +226,11 @@
       // x ticks
       if (c.cat) {
         const every = Math.ceil((58 * n) / pw);
+        // Always label the last category; drop the regular label just before it if the two would crowd.
+        const lastGap = (n - 1) % every;
         c.x.forEach((lab, i) => {
           if (i % every && i !== n - 1) return;
+          if (lastGap && lastGap < every / 2 && i === n - 1 - lastGap) return;
           svg('text', { class: 'tick', x: X(i), y: H - 8, 'text-anchor': 'middle' }, root).textContent = c.xTick ? c.xTick(i) : lab;
         });
       } else {
@@ -382,13 +391,13 @@
   }
 
   // ---------------------------------------------------------------- page
-  let N, S, P, I; // national, state, School Pulse Panel, state inventory
+  let N, S, P, I, T; // national, state, School Pulse Panel, state inventory, NCES staffing
 
   async function load() {
     const get = (u) => fetch(u, { cache: 'no-cache' }).then((r) => { if (!r.ok) throw new Error(`${u}: ${r.status}`); return r.json(); });
     // The SPP and inventory files are optional: the page renders without them.
     const opt = (u) => get(u).catch((e) => { console.warn(e); return null; });
-    [N, S, P, I] = await Promise.all([get('data/national.json'), get('data/states.json'), opt('data/spp.json'), opt('data/state_inventory.json')]);
+    [N, S, P, I, T] = await Promise.all([get('data/national.json'), get('data/states.json'), opt('data/spp.json'), opt('data/state_inventory.json'), opt('data/staffing.json')]);
   }
 
   const ser = (k) => N.series[k];
@@ -478,12 +487,14 @@
     const fmt = (v) => (smooth ? `${v.toFixed(2)}%` : pct(v));
     const nm = METRICS[metric].name;
     $('#market-title').textContent = `${nm}${smooth ? ', 3-month average' : ''}`;
+    $('#idx-title').textContent = `${nm}, each series relative to its own 2015–19 average`;
     $('#market-sub').textContent = `Percent, ${monthLabel(months[0])} – ${monthLabel(months[months.length - 1])}`;
     $('#metric-def').textContent = METRICS[metric].def;
     const base = { x: months, xTitle, bands, yFmt: fmt, yTick: (v) => `${v}%`, height: 360, endLabels: true };
+    const avg = smooth ? ', 3-month average' : '', sfx = smooth ? '_3mo' : '';
     return {
       market: {
-        ...base, aria: `${nm} over time`, csv: `jolts_${metric.toLowerCase()}_education_vs_all.csv`, xHead: 'Month',
+        ...base, aria: `${nm} over time`, csv: `jolts_${metric.toLowerCase()}_education_vs_all${sfx}.csv`, xHead: 'Month', valueLabel: `${nm}, percent, seasonally adjusted${avg}`,
         series: [
           { id: 'tot', label: 'All sectors', short: 'All sectors', color: 'var(--s2)', values: tot },
           { id: 'xed', label: 'State & local government, excluding education', short: 'State & local excl. education', color: 'var(--s3)', values: xed },
@@ -491,12 +502,25 @@
         ],
       },
       ratio: {
-        ...base, height: 260, aria: 'Education rate as percent of all-sector rate', csv: `education_relative_${metric.toLowerCase()}.csv`, xHead: 'Month',
+        ...base, height: 260, aria: 'Education rate as percent of all-sector rate', csv: `education_relative_${metric.toLowerCase()}${sfx}.csv`, xHead: 'Month', valueLabel: `${nm}, education rate as percent of all-sector rate${avg}`,
         series: [{ id: 'ratio', label: 'Education ÷ all sectors', short: '', color: 'var(--s1)', values: ed.map((v, i) => (v == null || !tot[i] ? null : (v / tot[i]) * 100)), fmt: (v) => `${Math.round(v)}%` }],
         yFmt: (v) => `${Math.round(v)}%`, yTick: (v) => `${v}%`, refs: [{ value: 100, label: 'Same as all sectors' }], csvDigits: 1,
       },
+      idx: (() => {
+        // Each series against its own 2015-19 average (unsmoothed), the same baseline the summary uses.
+        const rel = (k) => { const b = avgBetween(k, '2015-01', '2019-12'); return cut(ser(k).map((v) => (v == null || !b ? null : (v / b) * 100))); };
+        return {
+          ...base, height: 320, aria: `${nm}, each series relative to its own 2015-19 average`, csv: `jolts_${metric.toLowerCase()}_vs_own_2015_19_average${sfx}.csv`, xHead: 'Month', valueLabel: `${nm}, percent of the series' own 2015-19 average${avg}`,
+          yMin: 'auto', yFmt: (v) => `${Math.round(v)}`, yTick: (v) => `${v}`, refs: [{ value: 100, label: 'Own 2015–19 average' }], csvDigits: 1,
+          series: [
+            { id: 'tot', label: 'All sectors', short: 'All sectors', color: 'var(--s2)', values: rel(METRICS[metric].total) },
+            { id: 'xed', label: 'State & local government, excluding education', short: 'State & local excl. education', color: 'var(--s3)', values: rel(`SLXED_${metric}`) },
+            { id: 'ed', label: 'State & local education', short: 'State & local education', color: 'var(--s1)', width: 2.5, values: rel(`SLED_${metric}`) },
+          ],
+        };
+      })(),
       vu: {
-        ...base, height: 260, aria: 'Openings per unemployed person', csv: 'openings_per_unemployed.csv', xHead: 'Month', xTitle: (i) => monthLabel(months[i]),
+        ...base, height: 260, aria: 'Openings per unemployed person', csv: 'openings_per_unemployed.csv', xHead: 'Month', valueLabel: 'job openings per unemployed person', xTitle: (i) => monthLabel(months[i]),
         series: [{ id: 'vu', label: 'Openings per unemployed', short: '', color: 'var(--s1)', values: ser('VU').slice(start), fmt: (v) => v.toFixed(2) }],
         yFmt: (v) => v.toFixed(2), yTick: (v) => `${+v.toFixed(2)}`, refs: [{ value: 1, label: '1 opening per unemployed person' }],
       },
@@ -504,7 +528,7 @@
         const bi = idxOf('2020-02');
         const idx = (k) => ser(k).map((v) => (v == null ? null : (v / ser(k)[bi]) * 100)).slice(start);
         return {
-          ...base, height: 320, aria: 'Employment indexed to February 2020', csv: 'education_employment_index.csv', xHead: 'Month', xTitle: (i) => monthLabel(months[i]),
+          ...base, height: 320, aria: 'Employment indexed to February 2020', csv: 'education_employment_index.csv', xHead: 'Month', valueLabel: 'payroll jobs, index February 2020 = 100, seasonally adjusted', xTitle: (i) => monthLabel(months[i]),
           yMin: 'auto', yFmt: (v) => v.toFixed(1), yTick: (v) => `${+v.toFixed(1)}`, refs: [{ value: 100, label: 'February 2020' }], csvDigits: 2,
           series: [
             { id: 'tot', label: 'All nonfarm jobs', short: 'All nonfarm', color: 'var(--s2)', values: idx('PAYEMS') },
@@ -520,6 +544,7 @@
     if (!marketCharts) {
       marketCharts = {
         market: lineChart($('#chart-market'), cfg.market),
+        idx: lineChart($('#chart-idx'), cfg.idx),
         ratio: lineChart($('#chart-ratio'), cfg.ratio),
         vu: lineChart($('#chart-vu'), cfg.vu),
         staff: lineChart($('#chart-staff'), cfg.staff),
@@ -533,6 +558,40 @@
     const sgn = (v) => `${v >= 0 ? 'up' : 'down'} ${Math.abs(v).toFixed(1)}%`;
     const loc = ser('CES9093161101')[L];
     $('#staff-lede').append(' ', document.createTextNode(`As of ${monthLabel(N.latest_month)}, local government education had ${num(loc / 1000, 2)} million payroll jobs, ${sgn(ch('CES9093161101'))} from February 2020. All nonfarm employment was ${sgn(ch('PAYEMS'))}.`));
+  }
+
+  // NCES staff and enrollment, fall 2000 on (Digest Table 213.10): both Common Core of Data,
+  // FTE staff and fall membership, so the units are consistent.
+  function renderStaffingNces() {
+    const fig = $('#fig-ratio-staff');
+    if (!T || !fig) { if (fig) fig.hidden = true; return; }
+    const y0 = T.years[0], y1 = T.years[T.years.length - 1];
+    const years = []; for (let y = y0; y <= y1; y++) years.push(y);
+    const at = (arr, y) => { const i = T.years.indexOf(y); return i < 0 ? null : arr[i]; };
+    const idx = (arr) => years.map((y) => (at(arr, y) == null ? null : (at(arr, y) / at(arr, y0)) * 100));
+    lineChart($('#chart-ratio-staff'), {
+      x: years.map(String), cat: true, xTitle: (i) => `Fall ${years[i]}`, height: 340, endLabels: true, xHead: 'Fall', aria: `Public school enrollment and staff, indexed to fall ${y0}`,
+      csv: 'public_school_staff_and_enrollment_index.csv', csvDigits: 1, valueLabel: `index, fall ${y0} = 100`,
+      yMin: 'auto', yFmt: (v) => v.toFixed(1), yTick: (v) => `${+v.toFixed(1)}`, refs: [{ value: 100, label: '' }],
+      series: [
+        { id: 'aides', label: 'Instructional aides (FTE)', short: 'Instructional aides', color: 'var(--s3)', marker: 'circle', values: idx(T.aides) },
+        { id: 'staff', label: 'All staff (FTE)', short: 'All staff', color: 'var(--s2)', marker: 'circle', values: idx(T.staff_total) },
+        { id: 'teach', label: 'Teachers (FTE)', short: 'Teachers', color: 'var(--s1)', width: 2.5, marker: 'circle', values: idx(T.teachers) },
+        { id: 'enr', label: 'Students (fall enrollment)', short: 'Students', color: 'var(--ink-2)', dash: '5 3', marker: 'circle', values: idx(T.enrollment) },
+      ],
+    });
+    const chg = (arr, a, b) => ((at(arr, b) / at(arr, a)) - 1) * 100;
+    const pc = (v) => `${v >= 0 ? 'up' : 'down'} ${Math.abs(v).toFixed(1)}%`;
+    const pre = T.years.includes(2019) ? 2019 : null;
+    const ppt = (y) => at(T.pupils_per_teacher, y).toFixed(1), pps = (y) => at(T.pupils_per_staff, y).toFixed(1);
+    const fasterStaff = chg(T.staff_total, y0, y1) > chg(T.enrollment, y0, y1);
+    $('#ratio-staff-lede').textContent =
+      `NCES's counts, which measure staff and students in consistent units, show ${fasterStaff ? 'public schools adding staff faster than students over the longer run' : 'staffing and enrollment moving roughly together over the longer run'}. ` +
+      `Between fall ${y0} and fall ${y1}, enrollment was ${pc(chg(T.enrollment, y0, y1))}, while full-time-equivalent teachers were ${pc(chg(T.teachers, y0, y1))}, all staff ${pc(chg(T.staff_total, y0, y1))}, and instructional aides ${pc(chg(T.aides, y0, y1))}. ` +
+      (pre ? `Since fall ${pre}, just before the pandemic, enrollment was ${pc(chg(T.enrollment, pre, y1))} and all staff ${pc(chg(T.staff_total, pre, y1))} through fall ${y1}. ` : '') +
+      `There were ${ppt(y1)} students per teacher in fall ${y1}, compared with ${ppt(y0)} in fall ${y0}, and ${pps(y1)} students per staff member, compared with ${pps(y0)}. ` +
+      `More staff per student is not by itself a judgment about whether schools are over- or under-staffed: it can reflect services schools are required or choose to provide, such as special education and smaller classes, and the revenue available to pay for them. But it matters for reading vacancy data. Schools trying to fill more positions can report more unfilled positions even if hiring has not become harder, and every added position draws on the same pool of candidates and the same budget that pays existing staff.`;
+    $('#ratio-staff-sub').textContent = `Full-time-equivalent staff and fall enrollment, public elementary and secondary schools, fall ${y0} = 100`;
   }
 
   // --- section 3: industries
@@ -851,8 +910,8 @@
     const allStaff = series.find((s) => s.label.startsWith('All')).values[li];
     const teachRank = latest.findIndex((s) => s.name === 'Teaching') + 1;
     $('#il-lede').replaceChildren(document.createTextNode(
-      `Pooled figures can hide which positions are hardest to fill. Illinois publishes filled and unfilled positions separately for different kinds of school staff. In ${ic.years[li]}, vacancy rates were ${latest.map((s) => `${s.v.toFixed(2)}% for ${s.name.toLowerCase()}`).join(', ')}, and ${allStaff.toFixed(2)}% across all four categories. ` +
-      `${teachRank === 1 ? 'Teaching had the highest vacancy rate of the four.' : `Teaching was not the hardest category to staff: vacancy rates were highest for ${latest[0].name.toLowerCase()}, a pattern that data on teachers alone would miss.`}`));
+      `Pooled figures can hide differences in vacancy rates across staff categories. Illinois publishes filled and unfilled positions separately for different kinds of school staff. In ${ic.years[li]}, vacancy rates were ${latest.map((s) => `${s.v.toFixed(2)}% for ${s.name.toLowerCase()}`).join(', ')}, and ${allStaff.toFixed(2)}% across all four categories. ` +
+      `${teachRank === 1 ? 'Teaching had the highest vacancy rate of the four.' : `Teaching did not have the highest vacancy rate: by this measure, shortages were most severe among ${latest[0].name.toLowerCase()}, a pattern that data on teachers alone would miss.`}`));
   }
 
   function stackBlock(host, parts, total) {
@@ -938,6 +997,7 @@
     run('now', renderNow);
     run('market', renderMarket);
     run('staffing', renderStaffingLede);
+    run('staff-ratio', renderStaffingNces);
     run('industries', renderIndustries);
     run('states', renderStates);
     run('states-table', renderStatesTable);

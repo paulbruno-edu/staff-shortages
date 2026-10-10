@@ -79,6 +79,15 @@
       <p class="note">Seasonally adjusted. The <span id="metric-def"></span> Shaded bands are recessions (NBER). Source: BLS JOLTS, via the BLS Public Data API.</p>
     </figure>
 
+    <figure class="card" id="fig-idx">
+      <figcaption>
+        <h3 id="idx-title">Each series relative to its own 2015–19 average</h3>
+        <p class="sub">Same measure and period as above. 100 = the series' own average for 2015–19, the five years before the pandemic</p>
+      </figcaption>
+      <div class="chart" id="chart-idx"></div>
+      <p class="note">Computed here: each month's rate ÷ that series' average monthly rate in 2015–19, × 100. This separates two questions the chart above runs together. Education's rates are usually far lower than the economy's, so a level comparison mostly shows that difference. Indexing each series to its own history shows instead whether conditions in education have moved more or less than conditions elsewhere. A series above 100 is high by its own standard, not necessarily high in absolute terms. For openings, a high reading can reflect difficulty filling positions, but also employers trying to fill more positions than before (see staffing levels, below) or positions staying open longer.</p>
+    </figure>
+
     <div class="grid2">
       <figure class="card" id="fig-ratio">
         <figcaption>
@@ -144,6 +153,16 @@
       <div class="chart" id="chart-staff"></div>
       <p class="note">Seasonally adjusted. BLS Current Employment Statistics: CES9093161101, CES9092161101, and total nonfarm (CES0000000001), via the BLS Public Data API. Counts payroll jobs, not people or FTE: someone on two employers' payrolls counts twice. Uses the period selected <a href="#market">above</a>.</p>
     </figure>
+
+    <p class="lede" id="ratio-staff-lede"></p>
+    <figure class="card" id="fig-ratio-staff">
+      <figcaption>
+        <h3>Public school staff and students since 2000</h3>
+        <p class="sub" id="ratio-staff-sub"></p>
+      </figcaption>
+      <div class="chart" id="chart-ratio-staff"></div>
+      <p class="note">NCES Digest of Education Statistics, Table 213.10 (Common Core of Data), 50 states and DC. Staff are full-time equivalents, and enrollment is fall membership computed from NCES's published teachers and pupils-per-teacher ratio, so staff and students come from the same collection and units, unlike the payroll-jobs chart above. "All staff" includes teachers, aides, administrators, counselors, librarians, and support staff such as bus drivers and food service workers. Fall 2001 is not published in the table and is left as a gap. NCES imputes some states' counts in recent years. Updated when NCES publishes a new edition, usually with a lag of two years or more.</p>
+    </figure>
   </section>
 
   <!-- 5. States ---------------------------------------------------------- -->
@@ -199,7 +218,7 @@
       <p class="note">NCES School Pulse Panel, a survey of about 4,000 public schools; NCES calls these estimates experimental. Principals reported, for each role, total positions ("filled + vacant") and vacancies. Rates are rounded to whole percents by NCES, so small differences between roles should not be assumed to be statistically meaningful; comparisons are between point estimates. "(!)" marks an estimate NCES says to interpret with caution. NCES also flags every series here because the questionnaire changed between waves without a bridge study, so differences between years should be read cautiously. Hover over a bar for every October wave and its 95% confidence interval.</p>
     </figure>
 
-    <p class="lede" id="il-lede">Pooled figures can hide which positions are hardest to fill. Illinois publishes filled and unfilled positions separately for different kinds of school staff.</p>
+    <p class="lede" id="il-lede">Pooled figures can hide differences in vacancy rates across staff categories. Illinois publishes filled and unfilled positions separately for different kinds of school staff.</p>
 
     <figure class="card" id="fig-il">
       <figcaption>
@@ -257,6 +276,7 @@
       <p><strong>Rates.</strong> Rates on this page adjust for the size of an employer or workforce, so they can be followed over time and set beside industries of very different sizes. But their numerators, denominators, and reporting periods differ, and expressing something as a percentage does not by itself make two measures comparable. JOLTS job openings rates are openings ÷ (employment + openings) on the last business day of the month; hires, quits, and layoff rates are events during the month ÷ employment. State rates follow each state's own convention, described in each state's definition above: most are unfilled ÷ (filled + unfilled) at a point in the fall, but Illinois pairs this year's unfilled positions with last year's filled positions, Iowa divides a year of unfilled postings by employed teachers, and Pennsylvania's rate is computed here from positions and headcounts.</p>
       <p><strong>National data</strong> come from the BLS Job Openings and Labor Turnover Survey and Current Employment Statistics, retrieved from the BLS Public Data API (economy-wide JOLTS series JTS000000000000000JOR and related, CPS unemployment LNS13000000 and LNS14000000, CES employment CES0000000001, CES9093161101, CES9092161101, and industry series JTS<i>iiiiii</i>000000000<i>XXX</i>, including 923000 state &amp; local education and 929000 state &amp; local excluding education). Seasonally adjusted except the October state benchmarks, which use the not-seasonally-adjusted series JTU923000000000000JOR and JTU000000000000000JOR. An automated job refreshes these data weekly, so new JOLTS releases appear within days.</p>
       <p><strong>School Pulse Panel</strong> estimates come from the NCES "Staff Vacancies" workbook (nces.ed.gov/surveys/spp), re-checked automatically for new waves. They are shown as NCES publishes them: percent of positions vacant, rounded to whole percents, with standard errors used for the confidence intervals in tooltips. NCES's flags are carried through: estimates it says to interpret with caution are marked, and its warning that questionnaire changes affect comparisons across waves is noted wherever the waves are compared.</p>
+      <p><strong>Staff and enrollment</strong> come from NCES Digest of Education Statistics Table 213.10, built from the Common Core of Data: full-time-equivalent staff by type and pupils per staff member for public schools, 50 states and DC, fall 2000 on. Enrollment is computed from NCES's own teacher counts and pupils-per-teacher ratio, so staff and students share a source and units. This differs from the BLS employment chart, which counts payroll jobs and mixes K-12 with other local education employers. The <strong>rates relative to their own history</strong> divide each JOLTS series by its own January 2015 – December 2019 average, the same baseline the summary at the top uses.</p>
       <p><strong>State data</strong> are curated by hand from state agency publications (sources listed under each state above) and updated as states release new figures. The provenance page records, state by state, which figures were checked against the agency's own publication and which were carried over without re-checking. Where a state publishes a rate, the published rate is shown. Where it publishes only the components, the rate is computed and labeled. Where no denominator exists, no rate is shown.</p>
       <p><strong>Full documentation</strong> of every series (who publishes it, the exact file, how it is retrieved, every transformation, and known problems) is on the <a href="provenance.html">data provenance page</a>.</p>
       <p><strong>Composition illustration.</strong> The breakdown of state &amp; local education openings is an illustration under equal vacancy rates, shown as shares rather than counts. It divides openings pro-rata using the CES local/state government education payroll-job shares (local is overwhelmingly K-12, state overwhelmingly higher education) and the NCES Common Core of Data teacher share of K-12 staff FTE, so it mixes payroll jobs with FTE. Vacancy rates differ by role, so it does not identify the number of teacher vacancies. Treat it as context for what the pooled rate covers.</p>
@@ -265,6 +285,7 @@
         <a href="data/national.json">National data (JSON)</a> ·
         <a href="data/states.json">State panel with notes (JSON)</a> ·
         <a href="data/spp.json">School Pulse Panel extract (JSON)</a> ·
+        <a href="data/staffing.json">NCES staff and enrollment (JSON)</a> ·
         <a href="data/state_inventory.json">50-state inventory (JSON)</a>
       </p>
       <p class="small" id="build-info"></p>

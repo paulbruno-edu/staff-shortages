@@ -40,6 +40,15 @@ jobs:
           pip install --quiet openpyxl
           python scripts/fetch_spp.py
 
+      # NCES staff and enrollment (Digest Table 213.10). New editions appear about once a
+      # year; the script tries the newest edition first. A failure here does not block
+      # the BLS update.
+      - name: Fetch NCES staffing and enrollment data
+        continue-on-error: true
+        run: |
+          pip install --quiet openpyxl
+          python scripts/fetch_staffing.py
+
       - name: Commit if the data changed
         run: |
           if git diff --quiet -- data/; then
@@ -49,10 +58,11 @@ jobs:
           # generated_utc changes on every run; only commit when a value changed.
           git show HEAD:data/national.json > /tmp/old_national.json 2>/dev/null || echo '{}' > /tmp/old_national.json
           git show HEAD:data/spp.json > /tmp/old_spp.json 2>/dev/null || echo '{}' > /tmp/old_spp.json
+          git show HEAD:data/staffing.json > /tmp/old_staffing.json 2>/dev/null || echo '{}' > /tmp/old_staffing.json
           if python - <<'EOF'
           import json, sys
           changed = False
-          for old_path, new_path in [("/tmp/old_national.json", "data/national.json"), ("/tmp/old_spp.json", "data/spp.json")]:
+          for old_path, new_path in [("/tmp/old_national.json", "data/national.json"), ("/tmp/old_spp.json", "data/spp.json"), ("/tmp/old_staffing.json", "data/staffing.json")]:
               old = json.load(open(old_path)); new = json.load(open(new_path))
               old.pop("generated_utc", None); new.pop("generated_utc", None)
               changed = changed or old != new
