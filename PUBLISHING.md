@@ -79,13 +79,13 @@ Open your repository in the browser: in GitHub Desktop, **Repository → View on
 
 1. Click the **Actions** tab. If GitHub asks whether to enable workflows, click the green button to enable them.
 2. Click **Update national data** in the left list, then **Run workflow → Run workflow**.
-3. After a minute or so, a green check means it worked. A red X means it failed. Click it to see the log; failures are usually a temporary BLS or FRED outage, and the site keeps its previous data either way.
+3. After a minute or so, a green check means it worked. A red X means it failed. Click it to see the log; failures are usually a temporary BLS or NCES outage, and the site keeps its previous data either way.
 
 From now on it runs every Tuesday and Friday on its own. If a run fails, GitHub emails you.
 
-### 9. (Optional) Add a free BLS key
+### 9. Add a free BLS key (recommended)
 
-The refresh works without one, but a key gives more room under BLS's daily request limits.
+Without a key, BLS allows 25 requests a day per internet address, and GitHub's servers share addresses with many other users, so that allowance can already be used up when the refresh runs (each run makes 8 requests). A free key raises the limit to 500 a day, tied to your key.
 
 1. Register at <https://data.bls.gov/registrationEngine/>. The key arrives by email.
 2. In the repository: **Settings → Secrets and variables → Actions → New repository secret**.
@@ -162,4 +162,4 @@ The automatic refresh commits to the repository on its own. Before you change a 
 
 - **The site shows "Could not load data"** after an edit: almost always a JSON typo (a missing comma or quote) in `states.json`. Open the file in VS Code, which highlights the error, fix it, commit, and push.
 - **You want to undo a change:** in GitHub Desktop, open **History**, right-click the commit, and choose **Revert changes in commit**. Then push.
-- **The Action fails repeatedly:** open the failed run under **Actions** to read the error. A change at BLS, FRED, or NCES (a renamed series or moved file) would need a small fix to the scripts in `scripts/`.
+- **The Action fails repeatedly:** open the failed run under **Actions** to read the error. A change at BLS or NCES (a renamed series or moved file) would need a small fix to the scripts in `scripts/`.

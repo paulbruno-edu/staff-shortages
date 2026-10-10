@@ -11,10 +11,10 @@
   const MONTHS_LONG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const RECESSIONS = [['2001-03', '2001-11'], ['2007-12', '2009-06'], ['2020-02', '2020-04']]; // NBER
   const METRICS = {
-    JOR: { name: 'Job openings rate', fred: 'JTSJOR', def: 'openings rate is job openings on the last business day of the month ÷ (employment + openings).' },
-    HIR: { name: 'Hires rate', fred: 'JTSHIR', def: 'hires rate is all hires during the month ÷ employment.' },
-    QUR: { name: 'Quits rate', fred: 'JTSQUR', def: 'quits rate is voluntary separations during the month ÷ employment.' },
-    LDR: { name: 'Layoffs & discharges rate', fred: 'JTSLDR', def: 'layoffs & discharges rate is involuntary separations during the month ÷ employment.' },
+    JOR: { name: 'Job openings rate', total: 'JTSJOR', def: 'openings rate is job openings on the last business day of the month ÷ (employment + openings).' },
+    HIR: { name: 'Hires rate', total: 'JTSHIR', def: 'hires rate is all hires during the month ÷ employment.' },
+    QUR: { name: 'Quits rate', total: 'JTSQUR', def: 'quits rate is voluntary separations during the month ÷ employment.' },
+    LDR: { name: 'Layoffs & discharges rate', total: 'JTSLDR', def: 'layoffs & discharges rate is involuntary separations during the month ÷ employment.' },
   };
 
   // ---------------------------------------------------------------- helpers
@@ -470,7 +470,7 @@
     const months = all.slice(start);
     const sm = (arr) => (smooth ? arr.map((_, i) => (i < 2 || arr[i] == null || arr[i - 1] == null || arr[i - 2] == null ? null : (arr[i] + arr[i - 1] + arr[i - 2]) / 3)) : arr);
     const cut = (arr) => sm(arr).slice(start);
-    const ed = cut(ser(`SLED_${metric}`)), tot = cut(ser(METRICS[metric].fred)), xed = cut(ser(`SLXED_${metric}`));
+    const ed = cut(ser(`SLED_${metric}`)), tot = cut(ser(METRICS[metric].total)), xed = cut(ser(`SLXED_${metric}`));
     const bands = RECESSIONS.map(([a, b]) => [months.indexOf(a), months.indexOf(b)]).filter(([a, b]) => a >= 0 && b >= 0);
     const xTitle = (i) => monthLabel(months[i]) + (smooth ? ' (3-month avg.)' : '');
     const fmt = (v) => (smooth ? `${v.toFixed(2)}%` : pct(v));

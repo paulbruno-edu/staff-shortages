@@ -76,7 +76,7 @@
         <p class="sub" id="market-sub"></p>
       </figcaption>
       <div class="chart" id="chart-market"></div>
-      <p class="note">Seasonally adjusted. The <span id="metric-def"></span> Shaded bands are recessions (NBER). Source: BLS JOLTS, via FRED and the BLS Public Data API.</p>
+      <p class="note">Seasonally adjusted. The <span id="metric-def"></span> Shaded bands are recessions (NBER). Source: BLS JOLTS, via the BLS Public Data API.</p>
     </figure>
 
     <div class="grid2">
@@ -142,7 +142,7 @@
         <p class="sub">Local government education (mostly K-12), state government education (mostly higher education), and all nonfarm jobs</p>
       </figcaption>
       <div class="chart" id="chart-staff"></div>
-      <p class="note">Seasonally adjusted. BLS Current Employment Statistics: CES9093161101, CES9092161101, PAYEMS, via FRED. Counts people on payrolls, not FTE. Uses the period selected <a href="#market">above</a>.</p>
+      <p class="note">Seasonally adjusted. BLS Current Employment Statistics: CES9093161101, CES9092161101, and total nonfarm (CES0000000001), via the BLS Public Data API. Counts people on payrolls, not FTE. Uses the period selected <a href="#market">above</a>.</p>
     </figure>
   </section>
 
@@ -254,7 +254,7 @@
     <h2 id="methods-h">Methods, sources, and data</h2>
     <div class="methods">
       <p><strong>Rates.</strong> Every rate on this page has the same form: openings (or unfilled positions) ÷ (employment + openings), or unfilled ÷ (filled + unfilled), as a percent. Because it is a rate rather than a count, it can be compared across time and across industries of very different sizes.</p>
-      <p><strong>National data</strong> come from the BLS Job Openings and Labor Turnover Survey and Current Employment Statistics, retrieved from FRED (series JTSJOR, JTSJOL, JTSHIR, JTSQUR, JTSLDR, PAYEMS, UNRATE, UNEMPLOY, CES9093161101, CES9092161101) and the BLS Public Data API (industry series JTS<i>iiiiii</i>000000000<i>XXX</i>, including 923000 state &amp; local education and 929000 state &amp; local excluding education). Seasonally adjusted except the October state benchmarks, which use the not-seasonally-adjusted series JTU923000000000000JOR and JTU000000000000000JOR. An automated job refreshes these data weekly, so new JOLTS releases appear within days.</p>
+      <p><strong>National data</strong> come from the BLS Job Openings and Labor Turnover Survey and Current Employment Statistics, retrieved from the BLS Public Data API (economy-wide JOLTS series JTS000000000000000JOR and related, CPS unemployment LNS13000000 and LNS14000000, CES employment CES0000000001, CES9093161101, CES9092161101, and industry series JTS<i>iiiiii</i>000000000<i>XXX</i>, including 923000 state &amp; local education and 929000 state &amp; local excluding education). Seasonally adjusted except the October state benchmarks, which use the not-seasonally-adjusted series JTU923000000000000JOR and JTU000000000000000JOR. An automated job refreshes these data weekly, so new JOLTS releases appear within days.</p>
       <p><strong>School Pulse Panel</strong> estimates come from the NCES "Staff Vacancies" workbook (nces.ed.gov/surveys/spp), re-checked automatically for new waves. They are shown as NCES publishes them: percent of positions vacant, rounded to whole percents, with standard errors used for the confidence intervals in tooltips.</p>
       <p><strong>State data</strong> are curated by hand from state agency publications (sources listed under each state above) and updated as states release new figures. The provenance page records, state by state, which figures were checked against the agency's own publication and which were carried over without re-checking. Where a state publishes a rate, the published rate is shown. Where it publishes only the components, the rate is computed and labeled. Where no denominator exists, no rate is shown.</p>
       <p><strong>Full documentation</strong> of every series (who publishes it, the exact file, how it is retrieved, every transformation, and known problems) is on the <a href="provenance.html">data provenance page</a>.</p>

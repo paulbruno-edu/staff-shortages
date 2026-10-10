@@ -1,8 +1,11 @@
 """Fetch national labor-market data for the School Staff Shortages dashboard.
 
-Pulls economy-wide series from FRED (public CSV, no key) and JOLTS industry
-series from the BLS Public Data API (v2; key optional via BLS_API_KEY), then
-writes data/national.json and data/national_monthly.csv.
+Pulls every series from the BLS Public Data API (v2; key optional via
+BLS_API_KEY) and writes data/national.json and data/national_monthly.csv.
+(Earlier versions used FRED's public CSV for the economy-wide series, but FRED
+does not answer requests from GitHub's servers. These are all BLS series, so
+the dashboard now gets them from BLS directly; the FRED-style names are kept
+as keys so the page and downloads are unchanged.)
 
 Standard library only, so it runs unchanged on a laptop or in GitHub Actions.
 Nothing is interpolated: a value missing at the source is written as null.
@@ -14,7 +17,6 @@ Usage:  python scripts/fetch_national.py
 
 import csv
 import datetime as dt
-import io
 import json
 import os
 import sys
@@ -23,20 +25,21 @@ import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(ROOT, "data")
-START = "2000-12-01"  # first JOLTS reference month
+START = "2000-12"  # first JOLTS reference month
 
-# --- FRED: economy-wide series (all seasonally adjusted as published) --------
-FRED_SERIES = {
-    "JTSJOR": "All-sector openings rate (%)",
-    "JTSJOL": "All-sector openings level (thousands)",
-    "JTSHIR": "All-sector hires rate (%)",
-    "JTSQUR": "All-sector quits rate (%)",
-    "JTSLDR": "All-sector layoffs & discharges rate (%)",
-    "PAYEMS": "Total nonfarm employment (thousands)",
-    "UNRATE": "Unemployment rate (%)",
-    "UNEMPLOY": "Unemployed persons (thousands)",
-    "CES9093161101": "Local government education employment (thousands)",
-    "CES9092161101": "State government education employment (thousands)",
+# --- Economy-wide series (all seasonally adjusted as published) --------------
+# key used in national.json (the FRED name) -> (BLS series ID, description)
+NATIONAL_SERIES = {
+    "JTSJOR": ("JTS000000000000000JOR", "All-sector openings rate (%)"),
+    "JTSJOL": ("JTS000000000000000JOL", "All-sector openings level (thousands)"),
+    "JTSHIR": ("JTS000000000000000HIR", "All-sector hires rate (%)"),
+    "JTSQUR": ("JTS000000000000000QUR", "All-sector quits rate (%)"),
+    "JTSLDR": ("JTS000000000000000LDR", "All-sector layoffs & discharges rate (%)"),
+    "PAYEMS": ("CES0000000001", "Total nonfarm employment (thousands)"),
+    "UNRATE": ("LNS14000000", "Unemployment rate (%)"),
+    "UNEMPLOY": ("LNS13000000", "Unemployed persons (thousands)"),
+    "CES9093161101": ("CES9093161101", "Local government education employment (thousands)"),
+    "CES9092161101": ("CES9092161101", "State government education employment (thousands)"),
 }
 
 # --- BLS JOLTS ---------------------------------------------------------------
@@ -85,36 +88,6 @@ INDUSTRIES = [
 
 BLS_URL = "https://api.bls.gov/publicAPI/v2/timeseries/data/"
 UA = {"User-Agent": "Mozilla/5.0 (compatible; staff-shortages-dashboard/1.0)"}
-
-
-def http_get(url, retries=3):
-    for attempt in range(retries):
-        try:
-            req = urllib.request.Request(url, headers=UA)
-            with urllib.request.urlopen(req, timeout=60) as r:
-                return r.read().decode("utf-8")
-        except Exception as e:  # noqa: BLE001
-            if attempt == retries - 1:
-                raise
-            print(f"  retry after error: {e}", file=sys.stderr)
-            time.sleep(5 * (attempt + 1))
-
-
-def fetch_fred():
-    ids = ",".join(FRED_SERIES)
-    url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={ids}&cosd={START}"
-    print("FRED:", url)
-    text = http_get(url)
-    rows = list(csv.DictReader(io.StringIO(text)))
-    date_col = [k for k in rows[0] if k not in FRED_SERIES][0]
-    out = {}
-    for row in rows:
-        month = row[date_col][:7]
-        out[month] = {}
-        for sid in FRED_SERIES:
-            v = (row.get(sid) or "").strip()
-            out[month][sid] = float(v) if v not in ("", ".") else None
-    return out
 
 
 def bls_query(series_ids, start_year, end_year, key):
@@ -166,24 +139,23 @@ def main():
     key = os.environ.get("BLS_API_KEY", "").strip()
     this_year = dt.date.today().year
 
-    fred = fetch_fred()
-
+    # One batch for all monthly history: 10 economy-wide + 10 education + 2 October NSA series.
+    nat_ids = [bls_id for bls_id, _ in NATIONAL_SERIES.values()]
     hist_ids = [f"JTS{code}000000000{el}" for code in HISTORY_INDUSTRIES for el in ELEMENTS]
-    hist = fetch_bls(hist_ids + list(NSA_SERIES), 2000, this_year, key)
+    hist = fetch_bls(nat_ids + hist_ids + list(NSA_SERIES), 2000, this_year, key)
 
     ind_ids = [f"JTS{code}000000000{el}" for _, code, _, _ in INDUSTRIES for el in ELEMENTS]
     ind = fetch_bls(ind_ids, this_year - 1, this_year, key)
 
     # ---- monthly panel -------------------------------------------------------
-    months = sorted(m for m in fred if m >= START[:7])
-    # Trim trailing months where the headline JOLTS rate has not been released yet.
-    while months and fred[months[-1]]["JTSJOR"] is None:
-        months.pop()
+    headline = hist[NATIONAL_SERIES["JTSJOR"][0]]
+    months = sorted(m for m, (v, _) in headline.items() if m >= START and v is not None)
     if not months:
-        raise RuntimeError("FRED returned no JOLTS observations")
+        raise RuntimeError("BLS returned no JOLTS observations")
     latest = months[-1]
 
-    series = {sid: [fred[m][sid] for m in months] for sid in FRED_SERIES}
+    series = {k: [hist[bls_id].get(m, (None, False))[0] for m in months]
+              for k, (bls_id, _) in NATIONAL_SERIES.items()}
     for code, tag in HISTORY_INDUSTRIES.items():
         for el in ELEMENTS:
             sid = f"JTS{code}000000000{el}"
@@ -227,7 +199,8 @@ def main():
         "generated_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%MZ"),
         "latest_month": latest,
         "latest_preliminary": bool(hist["JTS923000000000000JOR"].get(latest, (None, False))[1]),
-        "series_labels": {**FRED_SERIES,
+        "source": "BLS Public Data API v2 (https://api.bls.gov/publicAPI/v2/timeseries/data/)",
+        "series_labels": {**{k: f"{desc} [BLS {bls_id}]" for k, (bls_id, desc) in NATIONAL_SERIES.items()},
                           **{f"{t}_{el}": f"JTS{c}000000000{el}" for c, t in HISTORY_INDUSTRIES.items() for el in ELEMENTS},
                           "VU": "Openings per unemployed person (JTSJOL / UNEMPLOY, computed)"},
         "months": months,

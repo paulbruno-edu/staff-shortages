@@ -61,9 +61,9 @@
 
 <section id="national">
   <h2>National series (BLS)</h2>
-  <p class="lede">All from the U.S. Bureau of Labor Statistics. Economy-wide and employment series are retrieved through FRED (Federal Reserve Bank of St. Louis) as public CSV; industry JOLTS series come from the BLS Public Data API v2. Seasonally adjusted unless noted.</p>
+  <p class="lede">All from the U.S. Bureau of Labor Statistics. Every series is retrieved directly from the BLS Public Data API v2. (The series keys below, such as JTSJOR and PAYEMS, are the familiar FRED names, kept so the downloadable files stay stable; the values are BLS's own.) Seasonally adjusted unless noted.</p>
   <div class="table-wrap"><table class="data" id="national-table"><caption>Series retrieved automatically</caption></table></div>
-  <p class="small">FRED request: <code>https://fred.stlouisfed.org/graph/fredgraph.csv?id=…&amp;cosd=2000-12-01</code>. BLS request: <code>POST https://api.bls.gov/publicAPI/v2/timeseries/data/</code> with series IDs of the form <code>JTS</code> + 6-digit industry code + <code>000000000</code> + element (<code>JOL</code> level, <code>JOR</code> openings rate, <code>HIR</code> hires, <code>QUR</code> quits, <code>LDR</code> layoffs &amp; discharges). The industry table uses the latest month for 21 industries; mining &amp; logging and transportation, warehousing &amp; utilities are not returned by the API and are omitted.</p>
+  <p class="small">Request: <code>POST https://api.bls.gov/publicAPI/v2/timeseries/data/</code> with series IDs of the form <code>JTS</code> + 6-digit industry code + <code>000000000</code> + element (<code>JOL</code> level, <code>JOR</code> openings rate, <code>HIR</code> hires, <code>QUR</code> quits, <code>LDR</code> layoffs &amp; discharges). The industry table uses the latest month for 21 industries; mining &amp; logging and transportation, warehousing &amp; utilities are not returned by the API and are omitted.</p>
 </section>
 
 <section id="spp">
@@ -130,6 +130,7 @@
     <table class="data">
       <thead><tr><th scope="col">Date</th><th scope="col">Change</th></tr></thead>
       <tbody>
+        <tr><td>2026-10-10</td><td><strong>Data retrieval:</strong> economy-wide and employment series now come directly from the BLS Public Data API instead of FRED, which does not answer requests from GitHub's servers. Values were compared month by month before the switch: identical in all 309 months of all 21 series.</td></tr>
         <tr><td>2026-10-09</td><td><strong>Iowa:</strong> latest rate corrected from 1.12% (a figure from news coverage) to 1.15% (Iowa DOE). The apparent "conflict" between two Iowa releases resolved: both describe the same 434 positions; one labels it by collection year (2025-26), the other by the year the postings cover (2024-25). Iowa's measure reclassified as a 12-month flow of postings (not a fall snapshot), with a denominator of employed teachers; points re-plotted at the school year they cover.</td></tr>
         <tr><td>2026-10-09</td><td><strong>Virginia 2022-23</strong> relabeled as a third-party calculation, not a VDOE publication.</td></tr>
         <tr><td>2026-10-09</td><td><strong>South Carolina</strong> relabeled to include service staff; coverage range corrected to 71–83 entities. <strong>Nebraska</strong> relabeled from "teaching FTE" to teaching and specialist positions, public and nonpublic. <strong>Illinois</strong> described as a survey with 92% response, not a census.</td></tr>
