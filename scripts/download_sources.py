@@ -96,7 +96,7 @@ def main():
                 "manifest.csv lists each file's source URL, download date, size, and SHA-256 checksum.\n"
                 "Files that could not be downloaded automatically should be saved here by hand:\n"
                 + "".join(f"  {u}\n" for u, _ in failed))
-    print(f"\nSaved {len(rows)} of {len(urls)} files to {dest}")
+    print(f"\n{len(rows)} files recorded in {dest}\\manifest.csv; {len(failed)} could not be downloaded")
     if failed:
         print("Save these by hand:")
         for u, e in failed:

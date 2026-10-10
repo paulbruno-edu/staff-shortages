@@ -1,7 +1,8 @@
 """Check that every source the dashboard cites still resolves.
 
-Run monthly by .github/workflows/check-links.yml. Exits non-zero (so GitHub emails the repository
-owner) only for clear signs a link is dead: 404 or 410, a host that no longer exists, or a server
+Run monthly by .github/workflows/check-links.yml. Checks both the cited links and their Wayback
+Machine copies in data/archive.json. Exits non-zero (so GitHub emails the repository owner) only
+for clear signs a link or archived copy is dead: 404 or 410, a host that no longer exists, or a server
 error on both of two tries. Sites that refuse automated requests (401, 403, 429) or time out are
 listed as "could not check" but do not fail the run, since many agency sites block automated
 traffic. For each problem link, prints the Wayback Machine copy from data/archive.json, if any.
@@ -62,13 +63,30 @@ def main():
         kind, detail = status(url)
         results[kind].append((url, detail))
         time.sleep(1)
-    print(f"Checked {len(links)} links: {len(results['ok'])} OK, {len(results['dead'])} dead, "
+    print(f"Checked {len(links)} cited links: {len(results['ok'])} OK, {len(results['dead'])} dead, "
           f"{len(results['error'])} server errors, {len(results['blocked'])} could not be checked automatically.")
     for kind, label in (("dead", "DEAD"), ("error", "SERVER ERROR"), ("blocked", "could not check")):
         for url, detail in results[kind]:
-            arch = (archive.get(url) or {}).get("archive_url") or "no archived copy"
-            print(f"  {label} ({detail}): {url}\n      archived: {arch}")
-    sys.exit(1 if results["dead"] or results["error"] else 0)
+            copy = (archive.get(url) or {}).get("archive_url") or "no archived copy"
+            print(f"  {label} ({detail}): {url}\n      archived: {copy}")
+
+    # Archived copies: the fallback readers rely on if an original disappears.
+    copies = {}
+    for url in links:
+        copy = (archive.get(url) or {}).get("archive_url")
+        if copy and copy != url and copy not in copies:
+            copies[copy] = url
+    arch_res = {"ok": [], "dead": [], "blocked": [], "error": []}
+    for copy, url in copies.items():
+        kind, detail = status(copy)
+        arch_res[kind].append((copy, url, detail))
+        time.sleep(2)
+    print(f"Checked {len(copies)} archived copies: {len(arch_res['ok'])} OK, {len(arch_res['dead'])} dead, "
+          f"{len(arch_res['error'])} server errors, {len(arch_res['blocked'])} could not be checked.")
+    for kind, label in (("dead", "DEAD ARCHIVED COPY"), ("error", "ARCHIVE SERVER ERROR"), ("blocked", "could not check archived copy")):
+        for copy, url, detail in arch_res[kind]:
+            print(f"  {label} ({detail}): {copy}\n      for: {url}")
+    sys.exit(1 if results["dead"] or results["error"] or arch_res["dead"] else 0)
 
 
 if __name__ == "__main__":

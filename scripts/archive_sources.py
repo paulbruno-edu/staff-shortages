@@ -65,6 +65,9 @@ def stamp(snapshot_url):
     """'20261010164735' -> '2026-10-10'."""
     try:
         ts = snapshot_url.split("/web/")[1].split("/")[0][:8]
+        ts = "".join(ch for ch in ts if ch.isdigit())
+        if len(ts) < 8:  # an address giving only a year (or year and month)
+            return ts[:4] or None
         return f"{ts[:4]}-{ts[4:6]}-{ts[6:8]}"
     except Exception:  # noqa: BLE001
         return None
@@ -97,8 +100,11 @@ def main():
         write(archive, links)
         time.sleep(PAUSE)
     write(archive, links)
-    missing = [u for u in links if not archive.get(u, {}).get("archive_url") and "doi.org/" not in u]
-    print(f"Done. {len(links) - len(missing)} of {len(links)} links have an archived copy.")
+    dois = [u for u in links if "doi.org/" in u]
+    have = [u for u in links if archive.get(u, {}).get("archive_url")]
+    missing = [u for u in links if u not in have and u not in dois]
+    print(f"Done. {len(have)} of {len(links)} links have an archived copy; "
+          f"{len(dois)} DOIs are not archived by design; {len(missing)} have no archived copy.")
     for u in missing:
         print("  not archived:", u)
 
