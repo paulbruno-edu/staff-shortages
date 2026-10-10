@@ -892,7 +892,7 @@
       { label: 'Filled by someone not fully qualified', color: 'var(--bar-muted)', text: '' },
     ]));
     const l = ne[ne.length - 1];
-    $('#ne-rule').textContent = `Nebraska's data illustrate why this matters: of the ${num(l.unfilled, 2)} positions it counted as "unfilled" in ${l.sy}, ${num(l.vacant, 2)} were vacant. The other ${num(l.unfilled - l.vacant, 2)} were filled, but by staff who were not fully qualified for them. Iowa's count, by contrast, includes positions covered by temporary or substitute staff, so even "vacancy" means different things in different states.`;
+    $('#ne-rule').textContent = `Nebraska's data illustrate why this matters: of the ${num(l.unfilled, 2)} positions it counted as "unfilled" in ${l.sy}, ${num(l.vacant, 2)} were vacant. The other ${num(l.unfilled - l.vacant, 2)} were filled, but by staff who were not fully qualified for them. A position covered temporarily by a substitute while the district keeps recruiting is a different case: the district is still trying to fill it, and several states, including Iowa, count it as unfilled.`;
   }
 
   // ---------------------------------------------------------------- boot
