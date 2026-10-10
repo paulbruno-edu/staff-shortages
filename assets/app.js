@@ -440,22 +440,22 @@
 
     // Verdict: every clause is chosen by comparing numbers, so it stays true after a refresh.
     const mkt = cmpWord(tot, totAvg, 0.3);
-    const mktChar = mkt === 'close to' ? 'a labor market near its pre-pandemic norm, not the exceptional tightness of 2021–22 that shaped many shortage narratives'
-      : mkt === 'above' ? 'a labor market tighter than its pre-pandemic norm, which raises every employer\'s difficulty filling jobs, schools included'
-        : 'a labor market looser than its pre-pandemic norm, which should make jobs easier to fill for every employer, schools included';
+    const mktChar = mkt === 'close to' ? 'By that measure, the labor market is roughly where it was before the pandemic, and much less tight than in 2021–22, when many of the most alarming stories about "teacher shortages" were written.'
+      : mkt === 'above' ? 'By that measure, employers in general are having an unusually hard time filling jobs, and schools are unlikely to be an exception.'
+        : 'By that measure, employers in general should be finding it easier than usual to fill jobs.';
     const peakPhr = totPeak.value - tot > 1 ? `well below its ${pct(totPeak.value)} peak in ${monthLabel(totPeak.month)}` : `near its ${pct(totPeak.value)} peak in ${monthLabel(totPeak.month)}`;
     const edCmp = cmpWord(ed, edAvg, 0.2);
     let edTail;
-    if (edCmp === 'above' && mkt !== 'above') edTail = 'Education\'s openings rate is elevated relative to its own history while the wider market\'s is not, so the economy alone does not explain it. That remainder is where education-specific explanations come in: pay, preparation pipelines, working conditions, licensure, or simply more positions to fill (see staffing levels below).';
-    else if (edCmp === 'above') edTail = 'Both are elevated relative to their pre-pandemic norms, so much of education\'s difficulty may reflect the wider market.';
-    else if (edCmp === 'below') edTail = 'By its own pre-pandemic standard, education\'s openings rate is low.';
-    else edTail = 'By its own pre-pandemic standard, education\'s openings rate is unremarkable.';
+    if (edCmp === 'above' && mkt !== 'above') edTail = 'So openings in public education are somewhat elevated relative to their own history even though openings in the economy as a whole are not, which suggests something particular to education may be at work. That could reflect real difficulty hiring, but it could also reflect schools trying to employ more people than before (see staffing levels, below).';
+    else if (edCmp === 'above') edTail = 'Openings are elevated both in education and in the wider economy, so at least some of education\'s hiring difficulty plausibly reflects the labor market as a whole.';
+    else if (edCmp === 'below') edTail = 'By its own historical standard, education\'s openings rate is low.';
+    else edTail = 'By its own historical standard, education\'s openings rate is unremarkable.';
 
     $('#verdict').replaceChildren(
       el('p', { class: 'kicker', text: `Context as of ${monthLabel(N.latest_month, true)}` }),
-      para([`The all-sector job openings rate was `, { b: pct(tot) }, `, ${peakPhr} and ${mkt} its 2015–19 average of ${pct(totAvg)}. There ${vu >= 1 ? 'were' : 'were only'} `, { b: vu.toFixed(2) }, ` openings per unemployed person. That is ${mktChar}.`]),
-      para([`State & local education's openings rate was `, { b: pct(ed) }, `, ${ratio}% of the all-sector rate and ${edCmp} its own 2015–19 average of ${pct(edAvg)} (its series peak: ${pct(edPeak.value)}, ${monthLabel(edPeak.month)}). ${edTail}`]),
-      para([`Single months of JOLTS industry data are noisy and the latest month is preliminary. The charts below show the trend.`], 'small'),
+      para([`Across the whole economy, the job openings rate was `, { b: pct(tot) }, `, ${peakPhr} and ${mkt} its 2015–19 average of ${pct(totAvg)}. There ${vu >= 1 ? 'were' : 'were only'} `, { b: vu.toFixed(2) }, ` job openings per unemployed person. ${mktChar}`]),
+      para([`In state & local education, the openings rate was `, { b: pct(ed) }, `, about ${ratio}% of the economy-wide rate, and ${edCmp} the sector's own 2015–19 average of ${pct(edAvg)}. ${edTail}`]),
+      para([`This education series combines public schools and colleges and all of their employees, so it says little about teachers specifically. Single months are also noisy, and the latest month is preliminary; the charts below show the trends.`], 'small'),
     );
   }
 
@@ -556,9 +556,9 @@
     const xed = N.industries.find((r) => r.code === '929000');
     const rank = [...rows0].sort((a, b) => a.JOR - b.JOR).findIndex((r) => r.code === '923000') + 1;
     $('#ind-lede').replaceChildren(document.createTextNode(
-      `In ${monthLabel(N.industry_month, true)}, state & local education had about ${num(ed.JOL)},000 job openings, an openings rate of ${pct(ed.JOR)}, against ${pct(all.JOR)} for all sectors and ${pct(xed.JOR)} for the rest of state and local government. ` +
-      `${rank <= 3 ? `That is among the lowest of the ${rows0.length} industry series shown. ` : ''}` +
-      `Turnover is also low: education's quits rate was ${pct(ed.QUR)}, against ${pct(all.QUR)} for all sectors. Low openings and low quits together describe a sector that loses relatively few workers and has relatively few unfilled jobs, by labor-market standards.`));
+      `In ${monthLabel(N.industry_month, true)}, state & local education had about ${num(ed.JOL)},000 job openings, an openings rate of ${pct(ed.JOR)}, compared with ${pct(all.JOR)} for all sectors and ${pct(xed.JOR)} for the rest of state and local government. ` +
+      `${rank <= 3 ? `That rate is among the lowest of the ${rows0.length} industry series shown.` : ''}` +
+      `Education's quits rate was also comparatively low (${pct(ed.QUR)}, compared with ${pct(all.QUR)} for all sectors). By the standards of the broader labor market, then, public education employers do not appear to be losing workers unusually quickly or struggling unusually to fill positions, though the picture can look very different for particular positions and places.`));
   }
 
   // --- section 5: states
@@ -735,11 +735,11 @@
     const nonTeach = P.roles.filter((r) => r.group === 'non-teaching' && !r.total && r.values[latest]);
     const higher = nonTeach.filter((r) => r.values[latest].pct > teachTotal).sort((x, y) => y.values[latest].pct - x.values[latest].pct);
     $('#spp-sub').textContent = `Percent of positions vacant, October ${yr}. Vertical line marks all teaching positions (${teachTotal}%)`;
-    $('#spp-lede').textContent = `NCES's School Pulse Panel asked a national sample of public school principals how many positions they had in each role ("filled + vacant") and how many were vacant. ` +
-      `It is the only national, start-of-year, teacher-specific vacancy rate: ${Object.entries(sppTeach().values).sort().map(([k, v]) => `${v.pct}% in October ${k.slice(0, 4)}`).join(', ')}. ` +
-      `The share of schools with at least one vacant teaching position was ${Object.entries(sch).map(([k, v]) => `${v}% in ${k.slice(0, 4)}`).join(', ')}. ` +
-      `In October ${yr}, ${higher.length} of ${nonTeach.length} non-teaching roles had higher vacancy rates than teaching positions overall, led by ${higher.filter((r) => !/^other/i.test(r.name)).slice(0, 3).map((r) => `${r.name.toLowerCase()} (${r.values[latest].pct}%)`).join(', ')}. ` +
-      `The survey's last staffing wave was October ${yr}; NCES has not announced another.`;
+    $('#spp-lede').textContent = `Nationally, the most direct recent evidence on teacher vacancies comes from NCES's School Pulse Panel, which asked a national sample of public school leaders how many positions they had in each role ("filled + vacant") and how many were vacant. ` +
+      `By that measure, ${Object.entries(sppTeach().values).sort().map(([k, v], i) => `${v.pct}%${i === 0 ? ' of teaching positions were vacant' : ''} in October ${k.slice(0, 4)}`).join(', ').replace(/, ([^,]*)$/, ', and $1')}. ` +
+      `The share of schools with at least one vacant teaching position was ${Object.entries(sch).map(([k, v]) => `${v}% in ${k.slice(0, 4)}`).join(', ').replace(/, ([^,]*)$/, ', and $1')}. ` +
+      `As in Illinois, vacancy rates were generally higher for non-teaching staff than for teachers: in October ${yr}, ${higher.length} of ${nonTeach.length} non-teaching roles had higher vacancy rates than teaching positions overall, led by ${higher.filter((r) => !/^other/i.test(r.name)).slice(0, 3).map((r) => `${r.name.toLowerCase()} (${r.values[latest].pct}%)`).join(', ')}. ` +
+      `The survey's last staffing wave was October ${yr}, and NCES has not announced another.`;
   }
 
   // Why only these states? Summarize the 50-state inventory.
@@ -828,8 +828,8 @@
     const allStaff = series.find((s) => s.label.startsWith('All')).values[li];
     const teachRank = latest.findIndex((s) => s.name === 'Teaching') + 1;
     $('#il-lede').replaceChildren(document.createTextNode(
-      `Pooled figures hide which jobs are hard to fill. Illinois publishes filled and unfilled positions by job category. In ${ic.years[li]}, the computed rates were: ${latest.map((s) => `${s.name.toLowerCase()} ${s.v.toFixed(2)}%`).join(', ')}, and ${allStaff.toFixed(2)}% for all staff combined. ` +
-      `Teaching ranked ${['', 'first', 'second', 'third', 'fourth'][teachRank]} of four. In rate terms, the state's sharpest shortages were among ${latest[0].name.toLowerCase()}, which an all-staff or teacher-only figure would not show.`));
+      `Pooled figures can hide which positions are hardest to fill. Illinois publishes filled and unfilled positions separately for different kinds of school staff. In ${ic.years[li]}, vacancy rates were ${latest.map((s) => `${s.v.toFixed(2)}% for ${s.name.toLowerCase()}`).join(', ')}, and ${allStaff.toFixed(2)}% across all four categories. ` +
+      `${teachRank === 1 ? 'Teaching had the highest vacancy rate of the four.' : `Teaching was not the hardest category to staff: vacancy rates were highest for ${latest[0].name.toLowerCase()}, a pattern that data on teachers alone would miss.`}`));
   }
 
   function stackBlock(host, parts, total) {
@@ -892,7 +892,7 @@
       { label: 'Filled by someone not fully qualified', color: 'var(--bar-muted)', text: '' },
     ]));
     const l = ne[ne.length - 1];
-    $('#ne-rule').textContent = `Nebraska shows the stakes: of the ${num(l.unfilled, 2)} positions it counted as "unfilled" in ${l.sy}, only ${num(l.vacant, 2)} were vacant. The other ${num(l.unfilled - l.vacant, 2)} were filled by staff who were not fully qualified. Iowa's count, by contrast, includes positions filled by temporary or substitute staff, so even "vacancy" means different things in different states.`;
+    $('#ne-rule').textContent = `Nebraska's data illustrate why this matters: of the ${num(l.unfilled, 2)} positions it counted as "unfilled" in ${l.sy}, ${num(l.vacant, 2)} were vacant. The other ${num(l.unfilled - l.vacant, 2)} were filled, but by staff who were not fully qualified for them. Iowa's count, by contrast, includes positions covered by temporary or substitute staff, so even "vacancy" means different things in different states.`;
   }
 
   // ---------------------------------------------------------------- boot

@@ -10,7 +10,7 @@
       "series_label": "Illinois, teaching",
       "coverage": "Teaching positions",
       "timing": "October 1 snapshot",
-      "definition": "ISBE's Unfilled Positions data collection: budgeted positions unfilled as of October 1, in FTE, by category. Not a full census: 92% of education entities (1,029 of 1,120) responded for SY25. ISBE's vacancy rate pairs each year's unfilled FTE with the prior year's filled FTE (filled counts are only final after the year ends): SY25 = SY25 unfilled / (SY24 filled + SY25 unfilled). SY23-SY25 rates are computed here from ISBE's published components and match ISBE's rounded figures. SY22 pairs SY22 unfilled with SY22's own filled count, a same-year pairing, so it is not strictly comparable to later years. SY26 is a rate published by ISBE. SY18-SY21 have unfilled counts only, with no denominator, so no rate exists. Context the rate does not show: teaching positions filled by substitutes or retirees rose from 276 (2019) to 1,159 (2025), per the same report; those positions count as filled.",
+      "definition": "ISBE's Unfilled Positions data collection: positions districts report they are actively trying to fill as of October 1, in FTE, by category. A position can count as unfilled even if someone is covering it on a temporary basis while the district searches for a permanent hire, and a filled position is not necessarily filled by someone with any particular qualification. Not a full census: 92% of education entities (1,029 of 1,120) responded for SY25. ISBE's vacancy rate pairs each year's unfilled FTE with the prior year's filled FTE (filled counts are only final after the year ends): SY25 = SY25 unfilled / (SY24 filled + SY25 unfilled). SY23-SY25 rates are computed here from ISBE's published components and match ISBE's rounded figures. SY22 pairs SY22 unfilled with SY22's own filled count, a same-year pairing, so it is not strictly comparable to later years. SY26 is a rate published by ISBE. SY18-SY21 have unfilled counts only, with no denominator, so no rate exists. In the same report's superintendent survey, the number of teaching positions filled by substitutes or retirees rose from 276 (2019) to 1,159 (2025).",
       "points": [
         {
           "sy": "2017-18",
@@ -79,8 +79,8 @@
       ],
       "tier": "snapshot",
       "measure": {
-        "counted": "Budgeted teaching positions unfilled on October 1",
-        "includes_substitute_covered": "No: positions covered by substitutes or retirees count as filled",
+        "counted": "Positions districts are actively trying to fill on October 1",
+        "includes_substitute_covered": "Possibly: a position can count as unfilled while someone covers it temporarily during the search for a permanent hire",
         "positions": "Teaching positions (ISBE reports administrators, support staff and paraprofessionals separately)",
         "timing": "Point in time: October 1",
         "denominator": "Prior year's filled FTE + this year's unfilled FTE",

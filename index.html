@@ -17,7 +17,7 @@
   <div class="wrap">
     <p class="crumb"><a href="https://www.paul-bruno.com/">Paul Bruno</a> <span aria-hidden="true">/</span> Data</p>
     <h1>School Staff Shortages in Labor-Market Context</h1>
-    <p class="dek">How hard is it for schools to fill jobs, compared with the rest of the economy? This dashboard tracks school staff vacancies alongside the whole U.S. labor market, using the best available federal and state data.</p>
+    <p class="dek">How hard is it for schools to fill positions, and how does that compare with other employers? This dashboard collects some of the best available data on school staff vacancies and puts them in context: over time, relative to the labor market as a whole, and across the different kinds of positions schools need to fill.</p>
     <p class="stamp" id="stamp">Loading data…</p>
   </div>
 </header>
@@ -41,7 +41,7 @@
   <!-- 1. Right now ------------------------------------------------------- -->
   <section id="now" aria-labelledby="now-h">
     <h2 id="now-h">The context right now</h2>
-    <p class="lede">Schools compete for workers with every other employer. An unfilled position means something different when one job in thirteen is open across the economy than when openings are scarce. So the first question about any "shortage" is how tight the whole labor market is.</p>
+    <p class="lede">Schools compete for workers with other employers, so it is hard to know what to make of schools' hiring problems without some sense of how other employers are doing. That is not the only context that matters. Which positions are hard to fill, in which schools, and how staffing levels are changing matter at least as much, and later sections take those up. But whether schools' hiring problems are unique to schools cannot be understood without considering the economy as a whole, and that comparison is often missing from discussions of "teacher shortages."</p>
     <div class="tiles" id="tiles"></div>
     <div class="verdict" id="verdict"></div>
   </section>
@@ -49,7 +49,7 @@
   <!-- 2. Over time ------------------------------------------------------- -->
   <section id="market" aria-labelledby="market-h">
     <h2 id="market-h">Education and the whole labor market since 2000</h2>
-    <p class="lede">The Job Openings and Labor Turnover Survey (JOLTS) has no category for public schools. The closest is <strong>state &amp; local government education</strong>: public school districts plus public colleges and universities, all occupations pooled together. It is shown below against all sectors and against the rest of state and local government.</p>
+    <p class="lede">There is no ongoing national data series on unfilled positions in public schools specifically. The closest thing in federal labor-market data is the Job Openings and Labor Turnover Survey's (JOLTS) <strong>state &amp; local government education</strong> industry. It combines public school districts with public colleges and universities, and it includes all of their employees, not only teachers. Below, it is compared with the economy as a whole and with the rest of state and local government.</p>
 
     <div class="controls" role="group" aria-label="Chart options for this section">
       <label>Measure
@@ -86,7 +86,7 @@
           <p class="sub">State &amp; local education rate as a percent of the all-sector rate, same measure as above</p>
         </figcaption>
         <div class="chart" id="chart-ratio"></div>
-        <p class="note">Computed here from the two published rates. 100% would mean education looks exactly like the economy as a whole. Below 100%, education's rate is lower.</p>
+        <p class="note">Computed here from the two published rates. At 100%, education's rate would equal the economy-wide rate; below 100%, it is lower.</p>
       </figure>
       <figure class="card" id="fig-vu">
         <figcaption>
@@ -128,14 +128,14 @@
       <p class="note">Seasonally adjusted, as published by BLS. "Educational services" in JOLTS is <em>private</em> education only. A few small industries (mining &amp; logging; transportation, warehousing &amp; utilities) are omitted because the BLS API does not return them.</p>
     </figure>
     <aside class="caveat">
-      <p><strong>Industry is not occupation.</strong> The education industry employs bus drivers, custodians, and administrators as well as teachers, and some teachers work outside it. <strong>All staff is not teachers.</strong> A change in the pooled education rate is mostly not a change in teacher vacancies specifically. <a href="#teachers">More below.</a></p>
+      <p><strong>An industry is not an occupation.</strong> Public education employs bus drivers, custodians, paraprofessionals, and administrators as well as teachers, and those positions are not equally hard to fill. A change in the education industry's openings rate therefore need not reflect a change in teacher vacancies. <a href="#teachers">More on teachers specifically below.</a></p>
     </aside>
   </section>
 
   <!-- 4. Staffing -------------------------------------------------------- -->
   <section id="staffing" aria-labelledby="staff-h">
     <h2 id="staff-h">How many people public education employs</h2>
-    <p class="lede" id="staff-lede">Vacancies are only half the picture. A school system can report more openings because it is trying to employ more people. The chart indexes employment to February 2020, the last month before the pandemic.</p>
+    <p class="lede" id="staff-lede">Vacancies are only one part of the picture. Schools can report more unfilled positions because they are trying to employ more people, not only because people are harder to find. In recent years, pandemic relief funds and other revenue allowed many districts to hire more staff even as enrollment fell. The chart indexes employment to February 2020, the last month before the pandemic.</p>
     <figure class="card" id="fig-staff">
       <figcaption>
         <h3>Employment, indexed to February 2020 = 100</h3>
@@ -149,10 +149,10 @@
   <!-- 5. States ---------------------------------------------------------- -->
   <section id="states" aria-labelledby="states-h">
     <h2 id="states-h">What states actually count</h2>
-    <p class="lede">No federal administrative collection counts unfilled teacher or school-staff positions. What exists is a patchwork of state surveys, and only a minority of states publish anything usable. This panel uses five states that publish rates (Illinois, Virginia, Iowa, South Carolina, Colorado) and one that publishes counts only (Nebraska). Each is an annual snapshot published months later, and each state defines "unfilled" its own way. Recent figures were checked against each agency's own publication, and the <a href="provenance.html#states">provenance page</a> records exactly what was verified and what was carried over from earlier work. None is interpolated.</p>
+    <p class="lede">Because there is no ongoing federal collection of unfilled school positions, the most direct evidence comes from states. Only a minority of states publish anything usable, and they do not all measure vacancies the same way. This section uses five states that publish vacancy rates (Illinois, Virginia, Iowa, South Carolina, and Colorado) and one that publishes counts only (Nebraska). Each is an annual snapshot, published months after the fact. Recent figures were checked against each agency's own publication, and the <a href="provenance.html#states">provenance page</a> records exactly what was verified and what was carried over from earlier work. None is interpolated.</p>
 
     <h3 class="h3" id="definitions">What counts as a "vacancy"</h3>
-    <p class="lede">The word means different things in different sources. Some count positions empty on one day; one counts a year of unfilled job postings; one counts only positions empty all year. Some treat a position covered by a substitute as filled, others as vacant. Read every number below with its definition.</p>
+    <p class="lede">Data sources do not agree on what counts as a vacancy. Some count positions that are unfilled on a particular day, one counts a year's worth of unfilled job postings, and one counts only positions left empty all year. Some count a position as vacant even if a substitute is covering it, while others count it as filled. Differences like these can matter as much as differences in actual staffing conditions, so each number below is best read alongside its definition.</p>
     <div class="measures" id="vacancy-defs"></div>
 
     <div class="controls" role="group" aria-label="State chart options">
@@ -175,7 +175,7 @@
     </div>
 
     <aside class="caveat">
-      <p><strong>Read trends within a state, not rankings across states.</strong> Colorado counts only positions unfilled for the <em>whole year</em>. Illinois and Virginia count an October stock. Iowa counts full-time teaching positions, including those filled by substitutes. South Carolina includes counselors, librarians, and other service staff. Nebraska combines public and private schools. These are related measures, not the same measure, and six states are not a national estimate. The table is in alphabetical order for that reason.</p>
+      <p><strong>Trends within a state are more informative than comparisons across states.</strong> Colorado counts only positions left unfilled for the <em>whole year</em>. Illinois and Virginia count positions unfilled in the fall. Iowa counts a year of full-time teaching postings, including positions covered by substitutes. South Carolina includes counselors, librarians, and other service staff, and Nebraska combines public and private schools. These are related measures, not the same measure, and six states are not a national estimate. For that reason, the table lists states alphabetically rather than ranking them.</p>
     </aside>
 
     <h3 class="h3">Why only these states?</h3>
@@ -199,7 +199,7 @@
       <p class="note">NCES School Pulse Panel, a survey of about 4,000 public schools; NCES calls these estimates experimental. Principals reported, for each role, total positions ("filled + vacant") and vacancies. Rates are rounded to whole percents by NCES, so small differences between roles are not meaningful. Hover over a bar for every October wave and its 95% confidence interval.</p>
     </figure>
 
-    <p class="lede" id="il-lede">Pooled figures hide which jobs are hard to fill. Illinois publishes filled and unfilled positions by job category, and the teaching rate is not the highest.</p>
+    <p class="lede" id="il-lede">Pooled figures can hide which positions are hardest to fill. Illinois publishes filled and unfilled positions separately for different kinds of school staff.</p>
 
     <figure class="card" id="fig-il">
       <figcaption>
@@ -230,8 +230,8 @@
     </div>
 
     <aside class="rule">
-      <h3>"Not fully qualified" is not "vacant"</h3>
-      <p>A position filled by a teacher on an emergency or provisional license, assigned out of field, or awaiting reciprocity is <em>filled</em>. "Not fully qualified" is an administrative credential category. It is not a vacancy, and the two should never be added together. On its own, the category does not establish a quality problem either. <span id="ne-rule"></span></p>
+      <h3>Unfilled is not the same as "not fully qualified"</h3>
+      <p>A position held by a teacher on an emergency or provisional license, or by a teacher working outside their certification area, is filled. Whether a teacher holds a particular credential is a separate question from whether a position is staffed, and degrees and credentials are generally weak predictors of how effective teachers are. Counts that combine the two can make shortages look larger than they are while saying little about what is happening in classrooms. <span id="ne-rule"></span></p>
     </aside>
   </section>
 
@@ -239,11 +239,12 @@
   <section id="limits" aria-labelledby="limits-h">
     <h2 id="limits-h">What these data cannot say</h2>
     <ul class="limits">
-      <li><strong>There is no ongoing national teacher-vacancy count.</strong> JOLTS measures industries, not occupations. NCES's School Pulse Panel, a survey of public schools, estimated that about 3% of teaching positions were vacant in October 2023 and October 2024 (4% in October 2022), but its last staffing wave was October 2024. Any other national teacher figure is either a model (like the split above, labeled as one) or an aggregation of unlike state definitions.</li>
-      <li><strong>State levels are not cross-state rankings.</strong> Definitions and frames differ. Trends within a state over time are the defensible comparison.</li>
-      <li><strong>Annual snapshots cannot show within-year dynamics.</strong> State surveys observe one fall date per year, published three to six months later. They cannot show positions that were hard to fill but were filled by October.</li>
-      <li><strong>A vacancy is not a quality judgment, and neither is a credential category.</strong> These data count empty budgeted positions and, separately, credential status. They do not measure how well students were taught.</li>
-      <li><strong>National shortages can coexist with local ones.</strong> Averages can hide severe shortages in particular subjects (such as special education), places, or schools.</li>
+      <li><strong>There is no ongoing national count of teacher vacancies.</strong> JOLTS measures industries, not occupations. NCES's School Pulse Panel, a survey of public schools, estimated that about 3% of teaching positions were vacant in October 2023 and October 2024 (4% in October 2022), but its last staffing wave was October 2024. Any other national teacher figure is either a model (like the split above, labeled as one) or an aggregation of unlike state definitions.</li>
+      <li><strong>State vacancy rates are not rankings.</strong> States define and measure vacancies differently, so changes within a state over time are more informative than comparisons between states.</li>
+      <li><strong>Vacancies depend on demand as well as supply.</strong> A district that adds positions can report more vacancies even if hiring has not gotten harder, and when budgets tighten, vacancies can fall even if nothing about the supply of candidates has improved.</li>
+      <li><strong>Annual snapshots miss a lot.</strong> Most state data describe a single point in the fall and are published months later. They cannot show how positions were filled over the course of the year, or which positions were hard to fill but filled by October.</li>
+      <li><strong>These are mostly data about quantity, not quality.</strong> Vacancy data tell us whether schools could fill the positions they wanted to fill, not how well those positions were filled or how much students learned. Credential categories do not settle the quality question either.</li>
+      <li><strong>Averages hide a great deal.</strong> Staffing problems vary between subjects, districts, and schools. In Illinois in fall 2022, for example, about half of districts reported no teacher vacancies at all while a tenth reported that 7.5% or more of their teaching positions were unfilled, and vacancy rates differed about as much between schools in the same district as between districts (<a href="https://doi.org/10.1162/edfp_a_00450">Bruno, 2026</a>). Disadvantaged students tend to attend the schools with the highest vacancy rates.</li>
       <li><strong>Computed rates carry their conventions.</strong> Where this page computes a rate from published components, it says so, and the components are in the downloadable data.</li>
       <li><strong>JOLTS is revised.</strong> The latest month is preliminary and each month is revised once. Annual benchmark revisions can change the whole history. This page re-pulls the full history every update.</li>
     </ul>
