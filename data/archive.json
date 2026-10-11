@@ -1,6 +1,6 @@
 {
  "_readme": "Wayback Machine copies of the sources the dashboard cites, made by scripts/archive_sources.py. method: 'saved' = a fresh copy was made; 'existing copy' = a new save did not succeed (the site or the Archive's save service declined or timed out), so the most recent earlier copy is used; 'is an archived copy' = the citation itself is a Wayback copy; 'not archived' = no public copy was found (these sources are preserved privately); 'DOI (not archived)' = DOI citations keep their persistent links.",
- "updated": "2026-10-10",
+ "updated": "2026-10-11",
  "links": {
   "https://www.isbe.net/Pages/Unfilled-Positions-Archive.aspx": {
    "archive_url": "https://web.archive.org/web/20261010164735/https://www.isbe.net/Pages/Unfilled-Positions-Archive.aspx",
@@ -58,9 +58,9 @@
    "method": "saved"
   },
   "https://www.pa.gov/content/dam/copapwp-pagov/en/education/documents/data-and-reporting/professional-and-support-personnel/prof-staff-summary/2025-26%20professional%20staff%20summary%20report.xlsx": {
-   "archive_url": null,
-   "archived": null,
-   "method": "not archived"
+   "archive_url": "https://web.archive.org/web/20261011181012/https://www.pa.gov/content/dam/copapwp-pagov/en/education/documents/data-and-reporting/professional-and-support-personnel/prof-staff-summary/2025-26%20professional%20staff%20summary%20report.xlsx",
+   "archived": "2026-10-11",
+   "method": "saved"
   },
   "https://educate.iowa.gov/press-release/2026-01-05/nearly-99-all-iowa-full-time-teaching-positions-filled-2025-26-national-vacancy-rate-3-times-higher": {
    "archive_url": "https://web.archive.org/web/20261010165642/https://educate.iowa.gov/press-release/2026-01-05/nearly-99-all-iowa-full-time-teaching-positions-filled-2025-26-national-vacancy-rate-3-times-higher",
@@ -233,9 +233,9 @@
    "method": "saved"
   },
   "https://www.ulm.edu/education/2024-2025-state-educator-workforce-report.pdf": {
-   "archive_url": null,
-   "archived": null,
-   "method": "not archived"
+   "archive_url": "https://web.archive.org/web/20261011181027/https://www.ulm.edu/education/2024-2025-state-educator-workforce-report.pdf",
+   "archived": "2026-10-11",
+   "method": "saved"
   },
   "https://mnmsba.org/wp-content/uploads/2025/01/MSBA-2024-Fall-Survey-Summary.pdf": {
    "archive_url": "https://web.archive.org/web/20260528044024/https://mnmsba.org/wp-content/uploads/2025/01/MSBA-2024-Fall-Survey-Summary.pdf",
@@ -253,9 +253,14 @@
    "method": "saved"
   },
   "https://members.ncasa.net/files/NCSSA%20Vacancy%20Report_2025.pdf": {
-   "archive_url": null,
-   "archived": null,
-   "method": "not archived"
+   "archive_url": "https://web.archive.org/web/20261010180507/https://members.ncasa.net/files/NCSSA%20Vacancy%20Report_2025.pdf",
+   "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://web.archive.org/web/20240901020734/https://www.ksde.org/Portals/0/TLA/LPR/Submitting%20the%20Fall%20Vacancy%20Report.pdf": {
+   "archive_url": "https://web.archive.org/web/20240901020734/https://www.ksde.org/Portals/0/TLA/LPR/Submitting%20the%20Fall%20Vacancy%20Report.pdf",
+   "archived": "2024-09-01",
+   "method": "is an archived copy"
   },
   "https://www.ksde.gov/news-center/news-releases/2026/07/16/state-board-gets-update-on-quality-instruction--educator-data-during-july-meeting": {
    "archive_url": "https://web.archive.org/web/20261010172324/https://www.ksde.gov/news-center/news-releases/2026/07/16/state-board-gets-update-on-quality-instruction--educator-data-during-july-meeting",
@@ -273,9 +278,9 @@
    "method": "saved"
   },
   "https://www.alabamaachieves.org/reports-data/educator-data/teacher-shortage-data/": {
-   "archive_url": null,
-   "archived": null,
-   "method": "not archived"
+   "archive_url": "https://web.archive.org/web/20261011181203/https://www.alabamaachieves.org/reports-data/educator-data/teacher-shortage-data/",
+   "archived": "2026-10-11",
+   "method": "saved"
   },
   "https://www.alabamaachieves.org/wp-content/uploads/2024/12/RD_ED_20241212_2024-2025-Highest-Teacher-Shortage-Areas_v1.0.pdf": {
    "archive_url": "https://web.archive.org/web/20261010172651/https://www.alabamaachieves.org/wp-content/uploads/2024/12/RD_ED_20241212_2024-2025-Highest-Teacher-Shortage-Areas_v1.0.pdf",
@@ -293,9 +298,9 @@
    "method": "saved"
   },
   "https://archive.legmt.gov/content/Committees/Interim/2023-2024/Education/Meetings/september-2023/edic-OPI-RR-sep-2023.pdf": {
-   "archive_url": null,
-   "archived": null,
-   "method": "not archived"
+   "archive_url": "https://web.archive.org/web/20250928030447/https://archive.legmt.gov/content/Committees/Interim/2023-2024/Education/Meetings/september-2023/edic-OPI-RR-sep-2023.pdf",
+   "archived": "2025-09-28",
+   "method": "existing copy"
   },
   "https://dpi.wi.gov/sites/default/files/imce/education-workforce/pdf/2023-wi-epp-workforce-annual-report.pdf": {
    "archive_url": "https://web.archive.org/web/20261010172947/https://dpi.wi.gov/sites/default/files/imce/education-workforce/pdf/2023-wi-epp-workforce-annual-report.pdf",
@@ -318,9 +323,9 @@
    "method": "not archived"
   },
   "https://mdek12.org/wp-content/uploads/sites/20/2025/12/25-26-Educator-Workforce-Shortages-and-Strategies_FINAL.pdf": {
-   "archive_url": null,
-   "archived": null,
-   "method": "not archived"
+   "archive_url": "https://web.archive.org/web/20251219194632/https://mdek12.org/wp-content/uploads/sites/20/2025/12/25-26-Educator-Workforce-Shortages-and-Strategies_FINAL.pdf",
+   "archived": "2025-12-19",
+   "method": "existing copy"
   },
   "https://mdek12.org/wp-content/uploads/sites/20/2024/12/24-25_Educator-Shortage-Survey-Results-and-Strategies.pdf": {
    "archive_url": "https://web.archive.org/web/20251119051510/https://mdek12.org/wp-content/uploads/sites/20/2024/12/24-25_Educator-Shortage-Survey-Results-and-Strategies.pdf",
@@ -472,10 +477,10 @@
    "archived": "2026-10-10",
    "method": "saved"
   },
-  "https://doi.org/10.3368/jhr.XLII.4.765": {
-   "archive_url": null,
-   "archived": null,
-   "method": "not archived"
+  "https://jhr.uwpress.org/content/42/4/765": {
+   "archive_url": "https://web.archive.org/web/20261011181518/https://jhr.uwpress.org/content/42/4/765",
+   "archived": "2026-10-11",
+   "method": "saved"
   },
   "https://doi.org/10.1016/j.econedurev.2007.05.005": {
    "archive_url": null,
@@ -501,11 +506,6 @@
    "archive_url": "https://web.archive.org/web/20260407030338/https://www2.census.gov/programs-surveys/school-pulse-panel/SPP-October-2024-Survey.pdf",
    "archived": "2026-04-07",
    "method": "saved"
-  },
-  "https://web.archive.org/web/20240901020734/https://www.ksde.org/Portals/0/TLA/LPR/Submitting%20the%20Fall%20Vacancy%20Report.pdf": {
-   "archive_url": "https://web.archive.org/web/20240901020734/https://www.ksde.org/Portals/0/TLA/LPR/Submitting%20the%20Fall%20Vacancy%20Report.pdf",
-   "archived": "2024-09-01",
-   "method": "is an archived copy"
   }
  }
 }
