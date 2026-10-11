@@ -48,14 +48,22 @@ def save(url):
     return None
 
 
+def same_page(snapshot_url, url):
+    """True if a Wayback snapshot is of the cited address itself, not of a page it redirected to."""
+    orig = snapshot_url.split("/web/", 1)[1].split("/", 1)[1] if "/web/" in snapshot_url else ""
+    norm = lambda u: urllib.parse.unquote(u).lower().replace("http://", "https://").replace("://www.", "://").rstrip("/")
+    return norm(orig) == norm(url)
+
+
 def existing(url):
     """Most recent existing Wayback copy, or None."""
     q = "https://archive.org/wayback/available?url=" + urllib.parse.quote(url, safe="")
     try:
         with urllib.request.urlopen(urllib.request.Request(q, headers=UA), timeout=60) as r:
             snap = json.load(r).get("archived_snapshots", {}).get("closest")
-        if snap and snap.get("available") and str(snap.get("status", "")).startswith(("2", "3")):
-            return snap["url"].replace("http://", "https://", 1)
+        if snap and snap.get("available") and str(snap.get("status", "")).startswith("2"):
+            u = snap["url"].replace("http://", "https://", 1)
+            return u if same_page(u, url) else None
     except Exception:  # noqa: BLE001
         pass
     return None
@@ -92,6 +100,11 @@ def main():
             write(archive, links)
             continue
         snap, how = save(url), "saved"
+        if snap and not same_page(snap, url):
+            # The cited address redirected; that copy is of a different page. Use an earlier
+            # copy of the cited page itself if there is one, and flag the link for checking.
+            print(f"  REDIRECTED: {url} now leads to {snap.split('/web/', 1)[1].split('/', 1)[1]}; check the citation")
+            snap = None
         if not snap:
             snap, how = existing(url), "existing copy"
         archive[url] = {"archive_url": snap, "archived": stamp(snap) if snap else None,

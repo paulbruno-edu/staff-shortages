@@ -7,10 +7,10 @@
    "archived": "2026-10-10",
    "method": "saved"
   },
-  "https://dpi.uillinois.edu/wp-content/uploads/2025/05/IWERC-Educator-Shortage-SY25-250313.pdf": {
-   "archive_url": "https://web.archive.org/web/20251104084122/https://dpi.uillinois.edu/wp-content/uploads/2025/05/IWERC-Educator-Shortage-SY25-250313.pdf",
-   "archived": "2025-11-04",
-   "method": "existing copy"
+  "https://dpi.illinois.edu/wp-content/uploads/2025/05/IWERC-Educator-Shortage-SY25-250313.pdf": {
+   "archive_url": "https://web.archive.org/web/20261011182726/https://dpi.illinois.edu/wp-content/uploads/2025/05/IWERC-Educator-Shortage-SY25-250313.pdf",
+   "archived": "2026-10-11",
+   "method": "saved"
   },
   "https://www.isbe.net/Documents_Superintendent_Weekly_Message/Weekly-Message-20260407.pdf": {
    "archive_url": "https://web.archive.org/web/20261010164931/https://www.isbe.net/Documents_Superintendent_Weekly_Message/Weekly-Message-20260407.pdf",
@@ -180,7 +180,7 @@
   "https://msde.maryland.gov/stateboard/documents/2026/0224/marylands-teacher-workforce-supply-demand-and-diversity-a.pdf": {
    "archive_url": "https://web.archive.org/web/20261010171102/https://msde.maryland.gov/media/25039",
    "archived": "2026-10-10",
-   "method": "saved"
+   "method": "copy of redirect target (MSDE serves this PDF from a media address; checked: same 35-page State Board presentation, Feb 24, 2026)"
   },
   "https://www.fldoe.org/newsroom/latest-news/florida-teacher-vacancies-continue-to-drop-down-13-from-last-year.stml": {
    "archive_url": "https://web.archive.org/web/20260515203835/https://www.fldoe.org/newsroom/latest-news/florida-teacher-vacancies-continue-to-drop-down-13-from-last-year.stml",
@@ -318,9 +318,9 @@
    "method": "saved"
   },
   "https://www.tn.gov/content/dam/tn/stateboardofeducation/documents/2025-sbe-meetings/november-21%2c-2025-sbe-meeting/11-21-25%20II%20D%20Educator%20Vacancy%20Report%202024-25%20Cover.pdf": {
-   "archive_url": null,
-   "archived": null,
-   "method": "not archived"
+   "archive_url": "https://web.archive.org/web/20261011182759/https://www.tn.gov/content/dam/tn/stateboardofeducation/documents/2025-sbe-meetings/november-21,-2025-sbe-meeting/11-21-25%20II%20D%20Educator%20Vacancy%20Report%202024-25%20Cover.pdf",
+   "archived": "2026-10-11",
+   "method": "saved"
   },
   "https://mdek12.org/wp-content/uploads/sites/20/2025/12/25-26-Educator-Workforce-Shortages-and-Strategies_FINAL.pdf": {
    "archive_url": "https://web.archive.org/web/20251219194632/https://mdek12.org/wp-content/uploads/sites/20/2025/12/25-26-Educator-Workforce-Shortages-and-Strategies_FINAL.pdf",
@@ -337,10 +337,10 @@
    "archived": "2026-05-13",
    "method": "existing copy"
   },
-  "https://www.proxlearn.com/state/mississippi": {
-   "archive_url": "https://web.archive.org/web/20261010173547/https://www.proxlearn.com/virtual-education-staffing/mississippi/",
-   "archived": "2026-10-10",
-   "method": "saved"
+  "https://web.archive.org/web/20260411211005/https://www.proxlearn.com/state/mississippi": {
+   "archive_url": "https://web.archive.org/web/20260411211005/https://www.proxlearn.com/state/mississippi",
+   "archived": "2026-04-11",
+   "method": "is an archived copy"
   },
   "https://www.ctc.ca.gov/commission/reports/dashboards/california-educator-assignment-monitoring/": {
    "archive_url": "https://web.archive.org/web/20261010173628/https://www.ctc.ca.gov/commission/reports/dashboards/california-educator-assignment-monitoring/",
@@ -357,25 +357,25 @@
    "archived": "2026-10-10",
    "method": "saved"
   },
-  "https://dq.cde.ca.gov/dataquest/dqcensus/StfTchHires.aspx?cdcode=00&agglevel=State&year=2022-23": {
+  "https://web.archive.org/web/20230331084121/https://dq.cde.ca.gov/dataquest/dqcensus/StfTchHires.aspx?cdcode=00&agglevel=State&year=2022-23": {
    "archive_url": "https://web.archive.org/web/20230331084121/https://dq.cde.ca.gov/dataquest/dqcensus/StfTchHires.aspx?cdcode=00&agglevel=State&year=2022-23",
    "archived": "2023-03-31",
-   "method": "existing copy"
+   "method": "is an archived copy"
   },
   "https://codes.ohio.gov/ohio-revised-code/section-3301.82": {
    "archive_url": "https://web.archive.org/web/20261010174033/https://codes.ohio.gov/ohio-revised-code/section-3301.82",
    "archived": "2026-10-10",
    "method": "saved"
   },
-  "https://tea.texas.gov/about-tea/news-and-multimedia/correspondence/taa-letters/new-tsds-core-collection-teacher-vacancy-collection": {
-   "archive_url": "https://web.archive.org/web/20261010174205/https://tea.texas.gov/taa-letters/new-tsds-core-collection-teacher-vacancy-collection",
-   "archived": "2026-10-10",
+  "https://tea.texas.gov/taa-letters/new-tsds-core-collection-teacher-vacancy-collection": {
+   "archive_url": "https://web.archive.org/web/20261011182921/https://tea.texas.gov/taa-letters/new-tsds-core-collection-teacher-vacancy-collection",
+   "archived": "2026-10-11",
    "method": "saved"
   },
-  "https://www11.maine.gov/doe/data-reporting/Staff": {
+  "https://www1.maine.gov/doe/data-reporting/Staff": {
    "archive_url": "https://web.archive.org/web/20260418131425/https://www1.maine.gov/doe/data-reporting/Staff",
    "archived": "2026-04-18",
-   "method": "saved"
+   "method": "existing copy"
   },
   "https://lldc.mainelegislature.org/Open/LDs/132/132-LD-2015.pdf": {
    "archive_url": "https://web.archive.org/web/20261010174328/https://lldc.mainelegislature.org/Open/LDs/132/132-LD-2015.pdf",
@@ -412,10 +412,10 @@
    "archived": "2026-10-10",
    "method": "saved"
   },
-  "https://boardofed.idaho.gov/resources/fy25-educator-pipeline-report/": {
-   "archive_url": "https://web.archive.org/web/20261010180552/https://boardofed.idaho.gov/office-of-state-board/k-12-resources/educator-effectiveness/",
-   "archived": "2026-10-10",
-   "method": "saved"
+  "https://web.archive.org/web/20260617134748/https://boardofed.idaho.gov/resources/fy25-educator-pipeline-report/": {
+   "archive_url": "https://web.archive.org/web/20260617134748/https://boardofed.idaho.gov/resources/fy25-educator-pipeline-report/",
+   "archived": "2026-06-17",
+   "method": "is an archived copy"
   },
   "https://web.archive.org/web/20260423073023/https://boardofed.idaho.gov/wp-content/uploads/2024/12/FY25-Educator-Pipeline-Report.pdf": {
    "archive_url": "https://web.archive.org/web/20260423073023/https://boardofed.idaho.gov/wp-content/uploads/2024/12/FY25-Educator-Pipeline-Report.pdf",
@@ -442,7 +442,7 @@
    "archived": "2026-03-12",
    "method": "saved"
   },
-  "https://education.vermont.gov/data-and-reporting/school-reports/teacher-staff-fte-report": {
+  "https://education.vermont.gov/accountability-data/school-reports/staff-fte-report": {
    "archive_url": null,
    "archived": null,
    "method": "not archived"

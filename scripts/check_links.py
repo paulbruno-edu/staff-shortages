@@ -5,7 +5,9 @@ Machine copies in data/archive.json. Exits non-zero (so GitHub emails the reposi
 for clear signs a link or archived copy is dead: 404 or 410, a host that no longer exists, or a server
 error on both of two tries. Sites that refuse automated requests (401, 403, 429) or time out are
 listed as "could not check" but do not fail the run, since many agency sites block automated
-traffic. For each problem link, prints the Wayback Machine copy from data/archive.json, if any.
+traffic. Links that now redirect to a different address are also listed, without failing the run:
+a redirect can mean a page simply moved, or that it now leads somewhere else entirely. For each
+problem link, prints the Wayback Machine copy from data/archive.json, if any.
 
 Usage:  python scripts/check_links.py
 """
@@ -16,6 +18,7 @@ import socket
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -27,6 +30,18 @@ DEAD = {404, 410}
 BLOCKED = {401, 403, 405, 406, 429}
 
 
+FINAL = {}  # cited URL -> address it finally landed on
+
+
+def moved(url):
+    """True if a link landed on a different address (beyond http/https, www, case, or a trailing slash)."""
+    final = FINAL.get(url)
+    if not final or "doi.org/" in url:
+        return False
+    norm = lambda u: urllib.parse.unquote(u).lower().replace("http://", "https://").replace("://www.", "://").rstrip("/")
+    return norm(final) != norm(url)
+
+
 def status(url):
     """Return ('ok'|'dead'|'blocked'|'error', detail)."""
     for attempt in range(2):
@@ -34,6 +49,7 @@ def status(url):
             req = urllib.request.Request(url, headers=UA)
             with urllib.request.urlopen(req, timeout=60) as r:
                 r.read(1024)
+                FINAL[url] = r.geturl()
                 return "ok", str(r.status)
         except urllib.error.HTTPError as e:
             if e.code in DEAD:
@@ -69,6 +85,13 @@ def main():
         for url, detail in results[kind]:
             copy = (archive.get(url) or {}).get("archive_url") or "no archived copy"
             print(f"  {label} ({detail}): {url}\n      archived: {copy}")
+
+    # Links that now redirect elsewhere can look fine but land on the wrong page, so list them for a look.
+    redirected = [u for u, _ in results["ok"] if moved(u)]
+    if redirected:
+        print(f"{len(redirected)} cited links now redirect to a different address (check that each still reaches the cited source):")
+        for u in redirected:
+            print(f"  REDIRECTED: {u}\n      now: {FINAL[u]}")
 
     # Archived copies: the fallback readers rely on if an original disappears.
     copies = {}
