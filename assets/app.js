@@ -835,33 +835,11 @@
       groups.append(el('div', { class: 'tier' }, el('h4', { class: 'tier-h', text: tier.label }), el('p', { class: 'tier-text', text: tier.text }), grid));
       for (const st of members) {
         const chart = el('div', { class: 'chart' });
-        grid.append(el('div', { class: 'panel' }, el('h4', { text: st.name }), el('p', { class: 'cov', text: `${st.coverage}. ${st.timing}.` }), chart));
+        grid.append(el('div', { class: 'panel' }, el('h4', { text: st.name }),
+          el('p', { class: 'cov' }, `${st.coverage}. ${st.timing}. `, el('a', { href: `#def-${st.id}`, class: 'def-link', text: 'Definition and sources' })), chart));
         statePanels[st.id] = lineChart(chart, panelCfg(st, f));
       }
     }
-  }
-
-  // "What counts as a vacancy": every measure on the page, side by side.
-  function renderDefinitions() {
-    const host = $('#vacancy-defs');
-    if (!host) return;
-    const cols = [
-      ['counted', 'What counts'],
-      ['includes_substitute_covered', 'Positions covered by substitutes or not-fully-qualified staff'],
-      ['positions', 'Which positions'],
-      ['timing', 'When'],
-      ['denominator', 'Rate denominator'],
-      ['coverage', 'Coverage'],
-    ];
-    const rows = [
-      ...S.national_measures.map((m) => ({ name: m.name, group: 'National', m })),
-      ...S.states.map((st) => ({ name: st.name, group: S.tiers[st.tier].label, m: st.measure })),
-      { name: 'Nebraska', group: 'Counts only', m: S.nebraska.measure },
-    ];
-    // One card per measure: a seven-column table is unreadable at these text lengths.
-    host.replaceChildren(...rows.map((r) => el('article', { class: 'measure' },
-      el('h4', { text: r.name }), el('p', { class: 'measure-group', text: r.group }),
-      el('dl', {}, cols.flatMap(([k, h]) => [el('dt', { text: h }), el('dd', { text: r.m[k] || '–' })])))));
   }
 
   // School Pulse Panel: vacancy rates by role, latest October wave.
@@ -905,18 +883,18 @@
       `The survey's last staffing wave was October ${yr}, and NCES has not announced another.`;
   }
 
-  // Why only these states? Summarize the 50-state inventory.
+  // Why these states? A short summary of the 50-state inventory; the state-by-state
+  // classifications, sources, and reasons are on the provenance page.
   function renderInventory() {
     const host = $('#inventory-summary');
     if (!host || !I) return;
-    const by = (c) => I.states.filter((s) => s.category === c);
-    const names = (arr) => arr.map((s) => s.state).join(', ');
+    const n = (c) => I.states.filter((s) => s.category === c).length;
+    const cand = I.states.filter((s) => s.category === 'candidate').map((s) => s.state);
+    const list = cand.length > 1 ? `${cand.slice(0, -1).join(', ')}, and ${cand[cand.length - 1]}` : cand.join('');
     host.replaceChildren(
-      el('p', {}, `Every state and DC was reviewed (as of ${I.as_of}), starting from each state agency's own publications. ${(() => { const sec = I.states.filter((s) => s.checked !== 'direct'); return sec.length ? `For ${sec.length} (${names(sec)}), some or all of the classification rests on secondary sources, such as news coverage or summaries, because the agency's own documents could not be read or do not define their terms. ` : ''; })()}` +
-        `For ${by('none').length}, no statewide vacancy data were found in this review (${names(by('none'))}). ${by('collects').length} collect vacancy data, or have just begun to, but no published statewide figures were found (${names(by('collects'))}). ${by('counts').length} publish counts without a denominator from the same source (${names(by('counts'))}), and ${by('different').length} publish figures that measure something else, such as job postings, projected hires, or positions not filled by fully licensed teachers (${names(by('different'))}). `,
-        `The closest candidates not yet on this page are ${names(by('candidate'))}:`),
-      el('ul', {}, by('candidate').map((s) => el('li', {}, el('strong', { text: `${s.state}. ` }), s.reason))),
-      el('p', {}, 'The full state-by-state inventory, with sources, is on the ', el('a', { href: 'provenance.html#inventory', text: 'data provenance page' }), '.'),
+      el('p', {}, `Every state and DC was reviewed (as of ${I.as_of}). Most publish nothing usable for this purpose: ${n('none')} have no statewide vacancy data, ${n('collects')} collect vacancy data but have published no statewide figures, ${n('counts')} publish counts without a matching denominator, and ${n('different')} publish figures that measure something else, such as job postings or positions not filled by fully licensed teachers. ` +
+        `The closest candidates not yet shown (${list}) each lack at least one of these: a published rate, a clear definition and date, or consistent coverage. `,
+        'The full inventory, with each state\'s sources and the reasons for its classification, is on the ', el('a', { href: 'provenance.html#inventory', text: 'data provenance page' }), '.'),
     );
   }
 
@@ -924,57 +902,86 @@
     const t = $('#states-table');
     t.querySelectorAll('thead,tbody').forEach((n) => n.remove());
     const change = (d) => (Math.abs(d) < 0.005 ? 'at peak' : `${d > 0 ? '+' : '−'}${Math.abs(d).toFixed(2)} pts`);
-    t.append(el('thead', {}, el('tr', {}, ['', 'What is counted', 'Latest rate', 'School year', 'Basis', 'Peak in this series', 'Latest vs. peak'].map((h, j) => el('th', { scope: 'col', class: [2, 5, 6].includes(j) ? 'num' : null, text: h })))));
+    const stack = (main, sub, cls) => el('td', { class: cls }, main, sub ? el('br') : null, sub ? el('span', { class: 'dim small', text: sub }) : null);
+    t.append(el('thead', {}, el('tr', {}, ['', 'Positions counted', 'When', 'Counts substitute-covered positions?', 'Latest rate', 'Peak in this series'].map((h, j) => el('th', { scope: 'col', class: [4, 5].includes(j) ? 'num' : null, text: h })))));
     const tb = el('tbody');
     // Alphabetical on purpose: the measures differ, so ordering by rate would imply a ranking.
     for (const st of [...S.states].sort((a, b) => a.name.localeCompare(b.name))) {
       const rated = st.points.map((p) => ({ p, r: rateOf(p) })).filter((x) => x.r.v != null);
       const latest = rated[rated.length - 1];
       const hi = rated.reduce((a, b) => (b.r.v > a.r.v ? b : a));
+      const yr = latest.p.sy + (latest.p.agency_label && latest.p.agency_label !== latest.p.sy ? ` (state's label: ${latest.p.agency_label})` : '');
       tb.append(el('tr', {},
-        el('th', { scope: 'row' }, st.name, el('br'), el('span', { class: 'dim small', text: S.tiers[st.tier].label })),
+        el('th', { scope: 'row' }, el('a', { href: `#def-${st.id}`, text: st.name }), el('br'), el('span', { class: 'dim small', text: st.tier === 'snapshot' ? 'Start-of-year snapshot' : 'Different measure' })),
         el('td', { text: st.coverage }),
-        el('td', { class: 'num', text: latest.r.text }),
-        el('td', { text: latest.p.sy + (latest.p.agency_label && latest.p.agency_label !== latest.p.sy ? ` (state's label: ${latest.p.agency_label})` : '') }),
-        el('td', { class: 'dim', text: latest.r.basis }),
-        el('td', { class: 'num', text: rated.length > 1 ? `${hi.r.text} (${hi.p.sy})` : 'one year only' }),
-        el('td', { class: 'num', text: rated.length > 1 ? change(latest.r.v - hi.r.v) : '' }),
+        el('td', { text: st.measure.timing_short }),
+        el('td', { text: st.measure.substitutes_short }),
+        stack(latest.r.text, `${yr} · ${latest.r.basis.toLowerCase()}`, 'num'),
+        rated.length > 1 ? stack(`${hi.r.text} (${hi.p.sy})`, `latest vs. peak: ${change(latest.r.v - hi.r.v)}`, 'num') : el('td', { class: 'num dim', text: 'one year only' }),
       ));
     }
     const ne = S.nebraska.years[S.nebraska.years.length - 1];
-    tb.append(el('tr', {}, el('th', { scope: 'row', text: 'Nebraska' }), el('td', { text: S.nebraska.coverage }), el('td', { class: 'num dim', text: 'no rate' }), el('td', { text: ne.sy }), el('td', { class: 'dim', text: 'Counts only; no denominator published' }), el('td', {}), el('td', {})));
+    tb.append(el('tr', {}, el('th', { scope: 'row' }, el('a', { href: '#def-NE', text: 'Nebraska' }), el('br'), el('span', { class: 'dim small', text: 'Counts only' })), el('td', { text: S.nebraska.coverage }),
+      el('td', { text: S.nebraska.measure.timing_short }), el('td', { text: S.nebraska.measure.substitutes_short }),
+      stack('no rate', `${ne.sy} · counts only; no denominator published`, 'num dim'), el('td', {})));
     // National references: one row each, as [school year, value] pairs.
     const oct = N.october_nsa.filter((o) => o.year >= 2019);
     const spp = Object.entries(sppBySchoolYear()).sort();
+    const nm = Object.fromEntries(S.national_measures.map((m) => [m.id, m]));
     const refs = [
-      ...(spp.length ? [{ name: 'NCES School Pulse Panel, teaching (national)', what: 'Share of public school teaching positions vacant in October (survey estimate)', basis: 'Published (NCES), rounded', pts: spp.map(([sy, v]) => [sy, v.pct]), d: 0, noTrend: (sppTeach() || {}).questionnaire_change }] : []),
-      { name: 'JOLTS state & local education (national)', what: 'Job openings rate, public schools and colleges, all staff; October, not seasonally adjusted', basis: 'Published (BLS)', pts: oct.map((o) => [o.school_year, o.sled_nsa]), d: 1 },
-      { name: 'JOLTS all sectors (national)', what: 'Job openings rate, all employers; October, not seasonally adjusted', basis: 'Published (BLS)', pts: oct.map((o) => [o.school_year, o.total_nsa]), d: 1 },
+      ...(spp.length ? [{ name: 'NCES School Pulse Panel, teaching (national)', id: 'spp', what: 'Public school teaching positions (survey estimate)', basis: 'Published (NCES), rounded', pts: spp.map(([sy, v]) => [sy, v.pct]), d: 0, noTrend: (sppTeach() || {}).questionnaire_change }] : []),
+      { name: 'JOLTS state & local education (national)', id: 'jolts', what: 'All jobs in public schools and colleges; not seasonally adjusted', basis: 'Published (BLS)', pts: oct.map((o) => [o.school_year, o.sled_nsa]), d: 1 },
+      { name: 'JOLTS all sectors (national)', id: 'jolts', what: 'All jobs, all employers; not seasonally adjusted', basis: 'Published (BLS)', pts: oct.map((o) => [o.school_year, o.total_nsa]), d: 1 },
     ];
     for (const r of refs) {
       const lo = r.pts[r.pts.length - 1];
       const hi = r.pts.reduce((a, c) => (c[1] > a[1] ? c : a));
-      tb.append(el('tr', {},
-        el('th', { scope: 'row', class: 'dim', text: `${r.name}, benchmark` }),
+      tb.append(el('tr', { class: 'bench-row' },
+        el('th', { scope: 'row', class: 'dim' }, el('a', { href: `#def-${r.id}`, text: r.name }), ', benchmark'),
         el('td', { class: 'dim', text: r.what }),
-        el('td', { class: 'num', text: `${lo[1].toFixed(r.d)}%` }), el('td', { text: lo[0] }), el('td', { class: 'dim', text: r.basis }),
-        ...(r.noTrend
+        el('td', { class: 'dim', text: nm[r.id].timing_short }),
+        el('td', { class: 'dim', text: nm[r.id].substitutes_short }),
+        stack(`${lo[1].toFixed(r.d)}%`, `${lo[0]} · ${r.basis.replace(/^Published/, 'published')}`, 'num'),
+        r.noTrend
           // NCES warns its questionnaire changed between waves, so no peak or change is computed.
-          ? [el('td', { colspan: 2, class: 'dim small', text: 'Not compared across years: NCES warns that questionnaire changes limit comparability' })]
-          : [el('td', { class: 'num', text: `${hi[1].toFixed(r.d)}% (${hi[0]})` }), el('td', { class: 'num', text: change(lo[1] - hi[1]) })])));
+          ? el('td', { class: 'dim small', text: 'Not compared across years: NCES warns that questionnaire changes limit comparability' })
+          : stack(`${hi[1].toFixed(r.d)}% (${hi[0]})`, `latest vs. peak: ${change(lo[1] - hi[1])}`, 'num')));
     }
     t.append(tb);
   }
+  // Definitions, sources, and limitations: the single detailed home for each measure.
   function renderStateDefs() {
     const box = $('#state-defs');
-    const all = [...S.states, { name: 'Nebraska', agency: S.nebraska.agency, timing: S.nebraska.timing, definition: S.nebraska.definition, sources: S.nebraska.sources, points: S.nebraska.years.map((y) => ({ sy: y.sy, note: `${y.vacant} vacant; ${y.unfilled} "unfilled" (broader measure).${y.note ? ' ' + y.note : ''}` })) }];
-    box.replaceChildren(...all.map((st) => el('details', {},
-      el('summary', {}, `${st.name} `, el('span', { text: `· ${st.agency} · ${st.timing}` })),
-      el('div', { class: 'body' },
-        el('p', { text: st.definition }),
+    const FIELDS = [
+      ['counted', 'What counts'],
+      ['includes_substitute_covered', 'Positions covered by substitutes or not-fully-qualified staff'],
+      ['positions', 'Which positions'],
+      ['timing', 'When'],
+      ['denominator', 'Rate denominator'],
+      ['coverage', 'Coverage'],
+    ];
+    const fields = (m) => el('dl', { class: 'prov-dl' }, FIELDS.flatMap(([k, h]) => [el('dt', { text: h }), el('dd', { text: m[k] || '–' })]));
+    const sources = (list) => el('p', { style: 'margin-top:8px' }, 'Sources: ', ...list.flatMap((src, i) => [i ? ' · ' : '', el('a', { href: src.url, rel: 'noopener', text: src.label })]));
+    const entry = (id, title, sub, body) => el('details', { id: `def-${id}` }, el('summary', {}, `${title} `, el('span', { text: `· ${sub}` })), el('div', { class: 'body' }, ...body));
+    const states = [...S.states, { id: 'NE', name: 'Nebraska', agency: S.nebraska.agency, timing: S.nebraska.timing, measure: S.nebraska.measure, definition: S.nebraska.definition, sources: S.nebraska.sources, points: S.nebraska.years.map((y) => ({ sy: y.sy, note: `${y.vacant} vacant; ${y.unfilled} "unfilled" (broader measure).${y.note ? ' ' + y.note : ''}` })) }];
+    const NATIONAL_SOURCES = {
+      spp: [{ label: 'NCES School Pulse Panel', url: 'https://nces.ed.gov/surveys/spp/' }],
+      jolts: [{ label: 'BLS Job Openings and Labor Turnover Survey', url: 'https://www.bls.gov/jlt/' }],
+    };
+    box.replaceChildren(
+      ...states.map((st) => entry(st.id, st.name, `${st.agency} · ${st.timing}`, [
+        fields(st.measure),
+        el('p', {}, el('strong', { text: 'Qualifications. ' }), st.definition),
+        el('p', { class: 'small', style: 'margin:8px 0 2px' }, el('strong', { text: 'Figures by school year' })),
         el('ul', {}, st.points.map((p) => el('li', {}, el('strong', { text: `${p.sy}${p.agency_label && p.agency_label !== p.sy ? ` (state's label: ${p.agency_label})` : ''}: ` }), (rateOf(p).v != null ? `${rateOf(p).text}. ` : ''), p.note || ''))),
-        el('p', { style: 'margin-top:8px' }, 'Sources: ', ...st.sources.flatMap((s, i) => [i ? ' · ' : '', el('a', { href: s.url, rel: 'noopener', text: s.label })])),
-      ))));
+        sources(st.sources),
+      ])),
+      ...S.national_measures.map((m) => entry(m.id, m.name, 'national benchmark', [fields(m), sources(NATIONAL_SOURCES[m.id] || [])])),
+    );
+    // Links to an entry (from chart panels and the table) open it.
+    const openFromHash = () => { const d = location.hash.startsWith('#def-') && document.getElementById(location.hash.slice(1)); if (d) { d.open = true; d.scrollIntoView(); } };
+    window.addEventListener('hashchange', openFromHash);
+    openFromHash();
   }
 
   // --- section 6: teachers
@@ -1137,7 +1144,6 @@
     run('states', renderStates);
     run('states-table', renderStatesTable);
     run('state-defs', renderStateDefs);
-    run('definitions', renderDefinitions);
     run('inventory', renderInventory);
     run('spp', renderSppRoles);
     run('illinois', renderIllinois);

@@ -172,11 +172,16 @@
   <!-- 5. States ---------------------------------------------------------- -->
   <section id="states" aria-labelledby="states-h">
     <h2 id="states-h">What states actually count</h2>
-    <p class="lede">Because there is no ongoing federal collection of unfilled school positions, the most direct evidence comes from states. Only a minority of states publish anything usable, and they do not all measure vacancies the same way. This section uses seven states with vacancy rates (Colorado, Illinois, Iowa, Michigan, Pennsylvania, South Carolina, and Virginia) and one that publishes counts only (Nebraska). Some have only a year or two of data. Each figure describes a school year, using the reporting period given in its definition below, and is published months after the fact. Recent figures were checked against each agency's own publication, and the <a href="provenance.html#states">provenance page</a> records exactly what was verified and what was carried over from earlier work. None is interpolated.</p>
+    <p class="lede">Because there is no ongoing federal collection of unfilled school positions, the most direct evidence comes from states. Only a minority of states publish anything usable. This section uses seven states with vacancy rates (Colorado, Illinois, Iowa, Michigan, Pennsylvania, South Carolina, and Virginia) and one that publishes counts only (Nebraska). Some have only a year or two of data, and each figure is published months after the school year it describes. Recent figures were checked against each agency's own publication, and the <a href="provenance.html#states">provenance page</a> records exactly what was verified. None is interpolated.</p>
 
-    <h3 class="h3" id="definitions">What counts as a "vacancy"</h3>
-    <p class="lede">Data sources do not agree on what counts as a vacancy. Some count positions that are unfilled on a particular day, one counts a year's worth of unfilled job postings, and one counts only positions left empty all year. Some count a position as vacant even if a substitute is covering it, while others count it as filled. Differences like these can matter as much as differences in actual staffing conditions, so each number below is best read alongside its definition.</p>
-    <div class="measures" id="vacancy-defs"></div>
+    <aside class="caveat" id="definitions">
+      <p><strong>These are related measures, not one measure.</strong> States do not agree on what counts as a vacancy, and the differences can matter as much as differences in staffing conditions:</p>
+      <ul>
+        <li><strong>When it is counted.</strong> Most count positions vacant or unfilled early in the school year. Iowa instead counts a year's worth of unfilled postings, and Colorado counts only positions left empty all year.</li>
+        <li><strong>Whether a position covered by a substitute counts.</strong> Illinois, Michigan, Pennsylvania, and Iowa count some or all substitute-covered positions as unfilled; Colorado counts them as filled; other sources do not say.</li>
+      </ul>
+      <p>So each state's trend over time is more informative than comparing levels across states. The table below the chart summarizes each measure, and each state's full definition is under <a href="#state-defs-h">Definitions, sources, and limitations</a>.</p>
+    </aside>
 
     <div class="controls" role="group" aria-label="State chart options">
       <label class="check"><input type="checkbox" id="bench-long"> Extend JOLTS benchmarks back to 2001</label>
@@ -193,19 +198,16 @@
 
     <div class="table-wrap">
       <table class="data" id="states-table">
-        <caption>Latest rate and trend by state</caption>
+        <caption>Latest rate and trend by state, with what each measure counts</caption>
       </table>
     </div>
+    <p class="small">Listed alphabetically rather than ranked, because the measures differ. National benchmarks are listed below the states.</p>
 
-    <aside class="caveat">
-      <p><strong>Trends within a state are more informative than comparisons across states.</strong> Colorado counts only positions left unfilled for the <em>whole year</em>. Illinois, Pennsylvania, and Virginia count positions unfilled in the fall, and Michigan also counts positions held for teachers on leave. Iowa counts a year of full-time teaching postings, including positions covered by substitutes. South Carolina includes counselors, librarians, and other service staff, and Nebraska combines public and private schools. These are related measures, not the same measure, and eight states are not a national estimate. For that reason, the table lists states alphabetically rather than ranking them.</p>
-    </aside>
-
-    <h3 class="h3">Why only these states?</h3>
-    <div id="inventory-summary" class="methods"></div>
-
-    <h3 class="h3">Each state's sources, notes, and gaps</h3>
+    <h3 class="h3" id="state-defs-h">Definitions, sources, and limitations</h3>
     <div id="state-defs" class="defs"></div>
+
+    <h3 class="h3">Why these states?</h3>
+    <div id="inventory-summary" class="methods"></div>
   </section>
 
   <!-- 6. Teachers -------------------------------------------------------- -->

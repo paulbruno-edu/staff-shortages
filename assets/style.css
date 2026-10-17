@@ -247,6 +247,10 @@ table.data .dim { color: var(--muted); }
 .caveat { border-left: 3px solid var(--baseline); padding: 4px 0 4px 16px; margin: 4px 0 16px; max-width: 860px; color: var(--ink-2); font-size: 15px; }
 .caveat p { margin: 0; }
 .caveat strong { color: var(--ink); }
+.caveat ul { margin: 6px 0 8px; padding-left: 20px; }
+.caveat li { margin: 3px 0; }
+.panel .cov .def-link { white-space: nowrap; }
+#states-table tr.bench-row:first-of-type th, #states-table tr.bench-row th { font-weight: 400; }
 .rule { background: var(--rule-bg); border: 1px solid color-mix(in srgb, var(--rule-edge) 45%, transparent); border-radius: 12px; padding: 16px 20px; max-width: 860px; margin: 8px 0 16px; }
 .rule h3 { margin: 0 0 6px; font-size: 17px; }
 .rule p { margin: 0; font-size: 15px; color: var(--ink-2); }
@@ -345,3 +349,7 @@ table.data .dim { color: var(--muted); }
 .start-card .why { margin-top: 8px; font-size: 13px; color: var(--muted); }
 .empty { color: var(--muted); font-size: 14px; padding: 8px 0; }
 .entry[hidden], .empty[hidden] { display: none; }
+#states-table th[scope="row"] { min-width: 150px; }
+#states-table td:nth-child(3) { min-width: 120px; }
+#states-table td:nth-child(2) { min-width: 140px; }
+#states-table td.num .small { white-space: normal; display: inline-block; max-width: 150px; }

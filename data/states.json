@@ -93,7 +93,9 @@
         "timing": "Point in time: October 1",
         "denominator": "Prior year's filled FTE + this year's unfilled FTE",
         "unit": "FTE",
-        "coverage": "Unfilled positions: reported by districts and other education entities (92% responded in SY25). Filled positions: ISBE staff records (EIS)."
+        "coverage": "Unfilled positions: reported by districts and other education entities (92% responded in SY25). Filled positions: ISBE staff records (EIS).",
+        "timing_short": "October 1 snapshot",
+        "substitutes_short": "Yes, if the position has no permanent holder"
       },
       "verification": "Verified directly on 2026-10-09: SY23-SY25 unfilled and filled FTE (IWERC/ISBE SY25 report, Table 5, which also confirms ISBE's lagged-denominator definition and 92% response) and SY26 (ISBE Weekly Message, Apr 7, 2026). Carried over from the October 2026 baseline workbook without re-checking: SY22 components and SY18-SY21 unfilled counts (ISBE archived data sets). Definition re-checked on 2026-10-10 against ISBE's 2021 Unfilled Positions Q&A and SY26 opening Q&A; it had been described here, following older guidance, as positions districts are 'actively trying to fill.'"
     },
@@ -157,7 +159,9 @@
         "timing": "Point in time: fall (October 1 collection)",
         "denominator": "Total available FTE teacher positions",
         "unit": "FTE",
-        "coverage": "All school divisions (state collection)"
+        "coverage": "All school divisions (state collection)",
+        "timing_short": "Fall (October 1) snapshot",
+        "substitutes_short": "Not stated"
       },
       "verification": "Verified directly on 2026-10-09: 2023-24 (3.9%) and 2025-26 (2.5%) in VDOE's Dec 10, 2025 news release; 2022-23 (3,573.3 of 92,579) in the SwailLandis brief. VDOE's Board presentation blocks automated access: the 2024-25 rate (3.4%), the 2023-24 unfilled count (3,649), and the rate definition were confirmed only through a summary of that document."
     },
@@ -190,7 +194,9 @@
         "timing": "Point in time: fall",
         "denominator": "All teaching FTE (filled + vacant)",
         "unit": "FTE",
-        "coverage": "All districts (state personnel records); reporting required from 2023-24"
+        "coverage": "All districts (state personnel records); reporting required from 2023-24",
+        "timing_short": "Fall snapshot",
+        "substitutes_short": "Yes; also positions held for staff on leave"
       },
       "verification": "Verified directly on 2026-10-10 against the January 2026 Michigan Teacher Shortage Study (definition of 'vacant' in the methods section; 2.8% in the vacancy section)."
     },
@@ -244,7 +250,9 @@
         "timing": "Point in time: October 1",
         "denominator": "Classroom teachers on the same date (Professional Staff Summary) + vacancies (computed here)",
         "unit": "Positions (vacancies) and headcount (teachers)",
-        "coverage": "All LEAs required to report; a few did not"
+        "coverage": "All LEAs required to report; a few did not",
+        "timing_short": "October 1 snapshot",
+        "substitutes_short": "Yes, until permanently filled"
       },
       "verification": "Verified directly on 2026-10-10 against PDE's vacancy workbooks for 2023-24, 2024-25 (Q1) and 2025-26 (Q1) (Summary sheets, Classroom Teachers rows) and PDE's Professional Staff Summary workbooks for the same years (State_FT+PT sheet, CT column)."
     },
@@ -312,7 +320,9 @@
         "timing": "Flow over 12 months, reported in the fall collection and released the following January",
         "denominator": "Full-time teachers employed the previous fall (not filled plus vacant)",
         "unit": "Positions",
-        "coverage": "All 325 public districts (required by law)"
+        "coverage": "All 325 public districts (required by law)",
+        "timing_short": "Postings over 12 months",
+        "substitutes_short": "Yes"
       },
       "verification": "Verified directly on 2026-10-09: all four figures in Iowa DOE's Jan 5, 2026 press release; the latest year's count, denominator (37,637), and 12-month window in Iowa's district spreadsheet."
     },
@@ -370,7 +380,9 @@
         "timing": "Point in time: beginning of school year (district survey, September to October)",
         "denominator": "Authorized FTE excluding vacancies, plus vacancies",
         "unit": "FTE",
-        "coverage": "71 to 83 reporting entities, varying by year"
+        "coverage": "71 to 83 reporting entities, varying by year",
+        "timing_short": "Start of school year",
+        "substitutes_short": "Not stated"
       },
       "verification": "Verified directly on 2026-10-09: all five years in CERRA's 2025-26 data tables, Table 5. Table 5 prints whole numbers for vacancies (e.g., 1,063); the one-decimal values here were carried over from the baseline workbook and agree to rounding."
     },
@@ -443,7 +455,9 @@
         "timing": "Whole school year (a position must stay unfilled all year to count)",
         "denominator": "All teaching positions (CDE Human Resources snapshot)",
         "unit": "FTE",
-        "coverage": "Survey of districts and BOCES"
+        "coverage": "Survey of districts and BOCES",
+        "timing_short": "Unfilled for the whole year",
+        "substitutes_short": "No: counted as filled"
       },
       "verification": "Verified directly on 2026-10-09: 2023-24 (635 of 55,686, in CDE's 2023-24 report), 2024-25 (254.64, summed from CDE's workbook), and 2025-26 (271.5 and 0.5%, CDE results page and workbook). Carried over from the baseline workbook without re-checking: 2019-20 to 2022-23 (CDE annual reports)."
     }
@@ -479,7 +493,9 @@
       "timing": "Point in time: beginning of school year",
       "denominator": "None published",
       "unit": "Positions",
-      "coverage": "81.8% response (public districts 97.7%, nonpublic 57.8%) in 2025-26"
+      "coverage": "81.8% response (public districts 97.7%, nonpublic 57.8%) in 2025-26",
+      "timing_short": "Fall snapshot",
+      "substitutes_short": "Not stated (the broader 'unfilled' count includes staff not fully qualified)"
     },
     "verification": "Verified directly on 2026-10-09: 2025-26 (489.70 unfilled, 111.40 vacant, response rates) in NDE's summary. 2024-25 'unfilled' (669.35) matches NDE's January 2026 press release as reported; 2024-25 'vacant' (200.65) was carried over from the baseline workbook."
   },
@@ -593,7 +609,9 @@
       "timing": "Point in time: October survey waves (2022, 2023, 2024)",
       "denominator": "Total positions at the school, 'filled + vacant'",
       "unit": "Positions (each part-time position counts as 1)",
-      "coverage": "Survey sample of about 4,000 public schools; experimental NCES estimates, rounded to whole percents"
+      "coverage": "Survey sample of about 4,000 public schools; experimental NCES estimates, rounded to whole percents",
+      "timing_short": "October survey",
+      "substitutes_short": "Not specified"
     },
     {
       "id": "jolts",
@@ -604,7 +622,9 @@
       "timing": "Point in time: last business day of the month",
       "denominator": "Employment + openings",
       "unit": "Jobs",
-      "coverage": "Establishment survey, national estimates"
+      "coverage": "Establishment survey, national estimates",
+      "timing_short": "Last business day of October",
+      "substitutes_short": "Not applicable"
     }
   ],
   "tiers": {
