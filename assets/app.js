@@ -476,6 +476,14 @@
         : 'By that measure, employers across the economy have fewer openings than usual relative to their workforces. That often goes with an easier hiring environment, though openings also reflect how many workers employers want and how long positions stay open.';
     const peakPhr = totPeak.value - tot > 1 ? `well below its ${pct(totPeak.value)} peak in ${monthLabel(totPeak.month)}` : `near its ${pct(totPeak.value)} peak in ${monthLabel(totPeak.month)}`;
     const edCmp = cmpWord(ed, edAvg, 0.2);
+    // Education's openings rate is normally well below the economy's, so the comparison with
+    // the economy is stated against the usual gap rather than on its own.
+    const r = ed / tot, rAvg = edAvg / totAvg;
+    const share = r < 0.5 ? `less than half the economy-wide rate of ${pct(tot)}`
+      : r < 1 ? `about ${ratio}% of the economy-wide rate of ${pct(tot)}`
+        : `at or above the economy-wide rate of ${pct(tot)}`;
+    const gap = r > rAvg * 1.1 ? ', so the gap is narrower than usual' : r < rAvg * 0.9 ? ', so the gap is wider than usual' : ', about the usual gap';
+    const vsEconomy = `That is ${share}, but education's rate is usually much lower than the economy's: in 2015–19 it averaged about ${Math.round(rAvg * 100)}% of the economy-wide rate${gap}.`;
     let edTail;
     if (edCmp === 'above' && mkt !== 'above') edTail = 'So openings in public education are somewhat elevated relative to their own history even though openings in the economy as a whole are not, which suggests something particular to education may be at work. That could reflect greater recruitment needs relative to the existing workforce, slower filling of positions, or both (see staffing levels, below)' + '.';
     else if (edCmp === 'above') edTail = 'Openings are elevated both in education and in the wider economy, so at least some of what is driving education\'s openings plausibly reflects the labor market as a whole.';
@@ -485,7 +493,7 @@
     $('#verdict').replaceChildren(
       el('p', { class: 'kicker', text: `Context as of ${monthLabel(N.latest_month, true)}` }),
       para([`Across the whole economy, the job openings rate was `, { b: pct(tot) }, `, ${peakPhr} and ${mkt} its 2015–19 average of ${pct(totAvg)}. There ${vu >= 1 ? 'were' : 'were only'} `, { b: vu.toFixed(2) }, ` job openings per unemployed person. ${mktChar}`]),
-      para([`In state & local education, the openings rate was `, { b: pct(ed) }, `, about ${ratio}% of the economy-wide rate, and ${edCmp} the sector's own 2015–19 average of ${pct(edAvg)}. ${edTail}`]),
+      para([`In state & local education, the openings rate was `, { b: pct(ed) }, `. ${vsEconomy} Measured against its own history, the rate was ${edCmp} the sector's 2015–19 average of ${pct(edAvg)}. ${edTail}`]),
       para([`This education series combines public schools and colleges and all of their employees, so it says little about teachers specifically. Single months are also noisy, and the latest month is preliminary; the charts below show the trends.`], 'small'),
     );
   }
