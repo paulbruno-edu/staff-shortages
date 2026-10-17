@@ -52,6 +52,7 @@
         <h3><a href="${esc(e.url)}">${esc(s.title || e.title.split(":")[0])}</a></h3>
         <p>${esc(first)}${e.authors.includes("&") ? " et al." : ""} (${esc(e.year)}), <em>${esc(s.venue || e.venue.split(",")[0])}</em></p>
         <p class="why">${esc(s.why)}</p>
+        ${e.by_author ? '<p class="card-own"><span class="tag own">By the dashboard\'s author</span></p>' : ""}
       </div>`;
     })
     .join("");
@@ -67,6 +68,7 @@
       return `<section id="${t.id}">
         <h2>${esc(t.heading)}</h2>
         <p class="theme-q">${esc(t.question)}</p>
+        ${t.note ? `<p class="theme-note">${esc(t.note)}</p>` : ""}
         <p class="small">On the dashboard: <a href="${esc(t.dashboard_link)}">${esc(t.dashboard_label)}</a></p>
         <ul class="entries">${items.map(([e, i]) => entry(e, i, t.id)).join("")}</ul>
         <p class="empty" hidden>No sources of this type in this section.</p>
