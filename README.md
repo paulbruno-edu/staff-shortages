@@ -67,7 +67,7 @@ python scripts/fetch_staffing.py
 - Give `rate_published` when the agency publishes the rate itself. Give `filled` (or `total`) when only components are published, and the page will compute the rate and label it "computed". Use `"basis": "Third-party calculation"` for figures not published by the agency. Leave out what isn't published, and say why in `note`. The page never estimates.
 - If a state changes what it counts, update its `measure` block, the definition the page shows in "What counts as a vacancy".
 - Update the state's `verification` text, and `"updated"` and `"verified"` at the top of the file.
-- If something was corrected, add a row to the corrections log in `provenance.html`.
+- If something was corrected or added, add a row to the "Changes and corrections" log in `provenance.html`.
 
 Where to look each year:
 
