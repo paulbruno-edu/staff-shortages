@@ -1,6 +1,6 @@
 {
  "_readme": "Wayback Machine copies of the sources the dashboard cites, made by scripts/archive_sources.py. method: 'saved' = a fresh copy was made; 'existing copy' = a new save did not succeed (the site or the Archive's save service declined or timed out), so the most recent earlier copy is used; 'is an archived copy' = the citation itself is a Wayback copy; 'not archived' = no public copy was found (these sources are preserved privately); 'DOI (not archived)' = DOI citations keep their persistent links.",
- "updated": "2026-10-11",
+ "updated": "2026-10-17",
  "links": {
   "https://www.isbe.net/Pages/Unfilled-Positions-Archive.aspx": {
    "archive_url": "https://web.archive.org/web/20261010164735/https://www.isbe.net/Pages/Unfilled-Positions-Archive.aspx",
@@ -433,9 +433,9 @@
    "method": "saved"
   },
   "https://www.oregon.gov/ode/transparency/Shared%20Documents/2026%20Educator%20Equity%20Full%20Report.pdf": {
-   "archive_url": null,
-   "archived": null,
-   "method": "not archived"
+   "archive_url": "https://web.archive.org/web/20261011181351/https://www.oregon.gov/ode/transparency/Shared%20Documents/2026%20Educator%20Equity%20Full%20Report.pdf",
+   "archived": "2026-10-11",
+   "method": "saved"
   },
   "https://schools.utah.gov/licensing/licensingfiles/Utah%20TSA%20Criticality%20Index%202024.pdf": {
    "archive_url": "https://web.archive.org/web/20260312221925/https://www.schools.utah.gov/licensing/licensingfiles/Utah%20TSA%20Criticality%20Index%202024.pdf",
@@ -443,9 +443,9 @@
    "method": "saved"
   },
   "https://education.vermont.gov/accountability-data/school-reports/staff-fte-report": {
-   "archive_url": null,
-   "archived": null,
-   "method": "not archived"
+   "archive_url": "https://web.archive.org/web/20261017142450/https://education.vermont.gov/accountability-data/school-reports/staff-fte-report",
+   "archived": "2026-10-17",
+   "method": "saved"
   },
   "https://ospi.k12.wa.us/sites/default/files/2025-10/statewide-workforce-recruitment-and-absence-manamgent-system-2025-legislative-report.pdf": {
    "archive_url": "https://web.archive.org/web/20251230020307/https://ospi.k12.wa.us/sites/default/files/2025-10/statewide-workforce-recruitment-and-absence-manamgent-system-2025-legislative-report.pdf",
@@ -477,6 +477,51 @@
    "archived": "2026-10-10",
    "method": "saved"
   },
+  "https://www.educationnext.org/figuring-out-when-to-panic-about-teacher-shortages/": {
+   "archive_url": "https://web.archive.org/web/20261017142507/https://www.educationnext.org/figuring-out-when-to-panic-about-teacher-shortages/",
+   "archived": "2026-10-17",
+   "method": "saved"
+  },
+  "https://doi.org/10.1162/edfp_a_00450": {
+   "archive_url": null,
+   "archived": null,
+   "method": "not archived"
+  },
+  "https://livehandbook.org/k-12-education/workforce-teachers/teacher-supply-and-turnover/": {
+   "archive_url": "https://web.archive.org/web/20261017142533/https://livehandbook.org/k-12-education/workforce-teachers/teacher-supply-and-turnover/",
+   "archived": "2026-10-17",
+   "method": "saved"
+  },
+  "https://www.the74million.org/article/article-opinion-sorting-out-the-issues-in-the-teacher-shortage-crisis/": {
+   "archive_url": "https://web.archive.org/web/20261017142600/https://www.the74million.org/article/article-opinion-sorting-out-the-issues-in-the-teacher-shortage-crisis/",
+   "archived": "2026-10-17",
+   "method": "saved"
+  },
+  "https://www.the74million.org/article/new-employment-data-5-things-to-know-about-the-state-of-the-education-workforce/": {
+   "archive_url": "https://web.archive.org/web/20261017142704/https://www.the74million.org/article/new-employment-data-5-things-to-know-about-the-state-of-the-education-workforce/",
+   "archived": "2026-10-17",
+   "method": "saved"
+  },
+  "https://caldercenter.org/publications/esser-funding-and-school-system-jobs-evidence-job-posting-data": {
+   "archive_url": "https://web.archive.org/web/20261017142738/https://caldercenter.org/publications/esser-funding-and-school-system-jobs-evidence-job-posting-data",
+   "archived": "2026-10-17",
+   "method": "saved"
+  },
+  "https://www.educationnext.org/where-are-all-the-special-educators-teacher-shortage/": {
+   "archive_url": "https://web.archive.org/web/20261017142805/https://www.educationnext.org/where-are-all-the-special-educators-teacher-shortage/",
+   "archived": "2026-10-17",
+   "method": "saved"
+  },
+  "https://scholarworks.uark.edu/edrepub/138/": {
+   "archive_url": "https://web.archive.org/web/20261017142832/https://scholarworks.uark.edu/edrepub/138/",
+   "archived": "2026-10-17",
+   "method": "saved"
+  },
+  "https://epic.unc.edu/wp-content/uploads/sites/1268/2023/02/Educator-Attrition-and-Hiring-in-NC.pdf": {
+   "archive_url": "https://web.archive.org/web/20261007140601/https://epic.unc.edu/wp-content/uploads/sites/1268/2023/02/Educator-Attrition-and-Hiring-in-NC.pdf",
+   "archived": "2026-10-07",
+   "method": "saved"
+  },
   "https://jhr.uwpress.org/content/42/4/765": {
    "archive_url": "https://web.archive.org/web/20261011181518/https://jhr.uwpress.org/content/42/4/765",
    "archived": "2026-10-11",
@@ -491,11 +536,6 @@
    "archive_url": "https://web.archive.org/web/20261010175759/https://livehandbook.org/k-12-education/workforce-teachers/teacher-licensure/",
    "archived": "2026-10-10",
    "method": "saved"
-  },
-  "https://doi.org/10.1162/edfp_a_00450": {
-   "archive_url": null,
-   "archived": null,
-   "method": "not archived"
   },
   "https://nces.ed.gov/surveys/spp/results.asp": {
    "archive_url": "https://web.archive.org/web/20261010175941/https://nces.ed.gov/surveys/spp/results.asp",
