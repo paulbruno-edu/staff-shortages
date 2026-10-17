@@ -312,3 +312,34 @@ table.data .dim { color: var(--muted); }
 .prov-dl dd { margin: 0; color: var(--ink-2); }
 @media (max-width: 560px) { .prov-dl { grid-template-columns: 1fr; } .prov-dl dd { margin-bottom: 6px; } }
 .verify { background: var(--wash); border-radius: 8px; padding: 8px 12px; font-size: 14px; }
+
+/* Further reading page (reading.html) */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 4px 0 8px; }
+.filters .lbl { font-size: 13px; color: var(--muted); margin-right: 4px; }
+.chip { font: inherit; font-size: 13px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--page); }
+.chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.theme-q { font-size: 15px; color: var(--muted); margin: -6px 0 10px; font-style: italic; }
+.entries { list-style: none; padding: 0; margin: 0; max-width: 860px; }
+.entry { padding: 14px 0; border-top: 1px solid var(--grid); }
+.entry:first-child { border-top: 0; }
+.entry .cite { margin: 0; font-size: 16px; line-height: 1.45; }
+.entry .cite .ttl { font-weight: 600; }
+.entry .cite a { color: inherit; text-decoration-color: color-mix(in srgb, var(--accent) 60%, transparent); text-underline-offset: 3px; }
+.entry .cite a:hover { color: var(--accent); }
+.entry .note { margin: 6px 0 0; color: var(--ink-2); font-size: 15px; line-height: 1.5; }
+.entry .meta { margin: 8px 0 0; display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 13px; color: var(--muted); align-items: center; }
+.tag { display: inline-block; border-radius: 4px; padding: 1px 7px; background: var(--band); color: var(--ink-2); font-size: 12px; letter-spacing: .01em; }
+.tag.start { background: var(--wash); color: var(--accent); font-weight: 600; }
+.tag.diff { background: var(--rule-bg); color: var(--ink-2); }
+.tag.own { background: transparent; border: 1px dashed var(--baseline); }
+.meta a { color: var(--accent); }
+.start-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; max-width: 1000px; margin-top: 8px; }
+.start-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+.start-card .n { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.start-card h3 { font-size: 16px; margin: 4px 0 6px; line-height: 1.35; }
+.start-card h3 a { color: inherit; }
+.start-card p { margin: 0; font-size: 14px; color: var(--ink-2); line-height: 1.45; }
+.start-card .why { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.empty { color: var(--muted); font-size: 14px; padding: 8px 0; }
+.entry[hidden], .empty[hidden] { display: none; }

@@ -2,7 +2,7 @@
 
 Used by scripts/archive_sources.py (Wayback Machine copies) and scripts/check_links.py
 (monthly link check). Links come from the data files' "url" fields and from href attributes
-in the two pages; links to the dashboard itself are skipped.
+in the pages; links to the dashboard itself are skipped.
 """
 
 import json
@@ -10,8 +10,8 @@ import os
 import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_FILES = ["data/states.json", "data/state_inventory.json", "data/spp.json", "data/staffing.json"]
-PAGES = ["index.html", "provenance.html"]
+DATA_FILES = ["data/states.json", "data/state_inventory.json", "data/spp.json", "data/staffing.json", "data/reading.json"]
+PAGES = ["index.html", "provenance.html", "reading.html"]
 SELF = ("shortages.paul-bruno.com", "www.paul-bruno.com", "paul-bruno.com")
 
 
