@@ -892,7 +892,7 @@
     const cand = I.states.filter((s) => s.category === 'candidate').map((s) => s.state);
     const list = cand.length > 1 ? `${cand.slice(0, -1).join(', ')}, and ${cand[cand.length - 1]}` : cand.join('');
     host.replaceChildren(
-      el('p', {}, `Every state and DC was reviewed (as of ${I.as_of}). Most publish nothing usable for this purpose: ${n('none')} have no statewide vacancy data, ${n('collects')} collect vacancy data but have published no statewide figures, ${n('counts')} publish counts without a matching denominator, and ${n('different')} publish figures that measure something else, such as job postings or positions not filled by fully licensed teachers. ` +
+      el('p', {}, `Every state and DC was reviewed (as of ${I.as_of}). For most, this review did not find figures suitable for the rate comparisons shown here: for ${n('none')}, no statewide vacancy data were found; ${n('collects')} collect vacancy data, but no published statewide figures were found; ${n('counts')} publish counts without a matching denominator; and ${n('different')} publish figures that measure something else, such as job postings or positions not filled by fully licensed teachers. ` +
         `The closest candidates not yet shown (${list}) each lack at least one of these: a published rate, a clear definition and date, or consistent coverage. `,
         'The full inventory, with each state\'s sources and the reasons for its classification, is on the ', el('a', { href: 'provenance.html#inventory', text: 'data provenance page' }), '.'),
     );
