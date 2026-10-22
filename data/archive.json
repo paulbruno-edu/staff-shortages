@@ -1,6 +1,6 @@
 {
  "_readme": "Wayback Machine copies of the sources the dashboard cites, made by scripts/archive_sources.py. method: 'saved' = a fresh copy was made; 'existing copy' = a new save did not succeed (the site or the Archive's save service declined or timed out), so the most recent earlier copy is used; 'is an archived copy' = the citation itself is a Wayback copy; 'not archived' = no public copy was found (these sources are preserved privately); 'DOI (not archived)' = DOI citations keep their persistent links.",
- "updated": "2026-10-17",
+ "updated": "2026-10-21",
  "links": {
   "https://www.isbe.net/Pages/Unfilled-Positions-Archive.aspx": {
    "archive_url": "https://web.archive.org/web/20261010164735/https://www.isbe.net/Pages/Unfilled-Positions-Archive.aspx",
@@ -61,6 +61,56 @@
    "archive_url": "https://web.archive.org/web/20261011181012/https://www.pa.gov/content/dam/copapwp-pagov/en/education/documents/data-and-reporting/professional-and-support-personnel/prof-staff-summary/2025-26%20professional%20staff%20summary%20report.xlsx",
    "archived": "2026-10-11",
    "method": "saved"
+  },
+  "https://marylandpublicschools.org/stateboard/documents/2026/0224/marylands-teacher-workforce-supply-demand-and-diversity-a.pdf": {
+   "archive_url": "https://web.archive.org/web/20260729221355/https://www.marylandpublicschools.org/stateboard/Documents/2026/0224/Marylands-Teacher-Workforce-Supply-Demand-and-Diversity-A.pdf",
+   "archived": "2026-07-29",
+   "method": "existing copy"
+  },
+  "https://www.marylandpublicschools.org/stateboard/Documents/2025/0225/Educator-Workforce-Overview-A.pdf": {
+   "archive_url": "https://web.archive.org/web/20260730063242/https://www.marylandpublicschools.org/stateboard/Documents/2025/0225/Educator-Workforce-Overview-A.pdf",
+   "archived": "2026-07-30",
+   "method": "existing copy"
+  },
+  "https://marylandpublicschools.org/stateboard/Documents/2024/0521/Maryland-Teacher-Workforce-Supply-Demand-and-Diversity-A.pdf": {
+   "archive_url": "https://web.archive.org/web/20260730063359/https://www.marylandpublicschools.org/stateboard/Documents/2024/0521/Maryland-Teacher-Workforce-Supply-Demand-and-Diversity-A.pdf",
+   "archived": "2026-07-30",
+   "method": "existing copy"
+  },
+  "https://www.marylandpublicschools.org/about/Documents/DCAA/SSP/20252026Staff/2026-Professional-Staff-by-Assignment-Race-Ethnicity-Gender-A.pdf": {
+   "archive_url": "https://web.archive.org/web/20260729223316/https://www.marylandpublicschools.org/about/Documents/DCAA/SSP/20252026Staff/2026-Professional-Staff-by-Assignment-Race-Ethnicity-Gender-A.pdf",
+   "archived": "2026-07-29",
+   "method": "existing copy"
+  },
+  "https://web.archive.org/web/20250406190144/https://marylandpublicschools.org/about/Documents/DCAA/SSP/20242025Staff/2025-Professional-Staff-by-Assignment-Race-Ethnicity-Gender-A.pdf": {
+   "archive_url": "https://web.archive.org/web/20250406190144/https://marylandpublicschools.org/about/Documents/DCAA/SSP/20242025Staff/2025-Professional-Staff-by-Assignment-Race-Ethnicity-Gender-A.pdf",
+   "archived": "2025-04-06",
+   "method": "is an archived copy"
+  },
+  "https://web.archive.org/web/20240425211037/https://marylandpublicschools.org/about/Documents/DCAA/SSP/20232024Staff/2024-Staff-by-Race-Gender-A.pdf": {
+   "archive_url": "https://web.archive.org/web/20240425211037/https://marylandpublicschools.org/about/Documents/DCAA/SSP/20232024Staff/2024-Staff-by-Race-Gender-A.pdf",
+   "archived": "2024-04-25",
+   "method": "is an archived copy"
+  },
+  "https://web.archive.org/web/20230529193237/https://www.marylandpublicschools.org/about/Documents/DCAA/SSP/20222023Staff/2023ProfStaffbyRace.pdf": {
+   "archive_url": "https://web.archive.org/web/20230529193237/https://www.marylandpublicschools.org/about/Documents/DCAA/SSP/20222023Staff/2023ProfStaffbyRace.pdf",
+   "archived": "2023-05-29",
+   "method": "is an archived copy"
+  },
+  "https://web.archive.org/web/20230529193357/https://www.marylandpublicschools.org/about/Documents/DCAA/SSP/20212022Staff/2022ProfStaffbyRace_Revised.pdf": {
+   "archive_url": "https://web.archive.org/web/20230529193357/https://www.marylandpublicschools.org/about/Documents/DCAA/SSP/20212022Staff/2022ProfStaffbyRace_Revised.pdf",
+   "archived": "2023-05-29",
+   "method": "is an archived copy"
+  },
+  "https://governor.maryland.gov/news/press-releases/governor-moore-announces-teacher-vacancy-rate-drop-over-70-percent-4-years": {
+   "archive_url": "https://web.archive.org/web/20261022013917/https://governor.maryland.gov/news/press-releases/governor-moore-announces-teacher-vacancy-rate-drop-over-70-percent-4-years",
+   "archived": "2026-10-22",
+   "method": "saved"
+  },
+  "https://marylandpublicschools.org/about/Documents/DEE/PSTEB/2026/March-PSTEB-Meeting-Minutes-3.5.26-A.pdf": {
+   "archive_url": "https://web.archive.org/web/20260730001841/https://www.marylandpublicschools.org/about/Documents/DEE/PSTEB/2026/March-PSTEB-Meeting-Minutes-3.5.26-A.pdf",
+   "archived": "2026-07-30",
+   "method": "existing copy"
   },
   "https://educate.iowa.gov/press-release/2026-01-05/nearly-99-all-iowa-full-time-teaching-positions-filled-2025-26-national-vacancy-rate-3-times-higher": {
    "archive_url": "https://web.archive.org/web/20261010165642/https://educate.iowa.gov/press-release/2026-01-05/nearly-99-all-iowa-full-time-teaching-positions-filled-2025-26-national-vacancy-rate-3-times-higher",
@@ -176,11 +226,6 @@
    "archive_url": "https://web.archive.org/web/20261010171048/https://edsight.ct.gov/relatedreports/ReportNotes_EducatorVacancy.pdf",
    "archived": "2026-10-10",
    "method": "saved"
-  },
-  "https://msde.maryland.gov/stateboard/documents/2026/0224/marylands-teacher-workforce-supply-demand-and-diversity-a.pdf": {
-   "archive_url": "https://web.archive.org/web/20261010171102/https://msde.maryland.gov/media/25039",
-   "archived": "2026-10-10",
-   "method": "copy of redirect target (MSDE serves this PDF from a media address; checked: same 35-page State Board presentation, Feb 24, 2026)"
   },
   "https://www.fldoe.org/newsroom/latest-news/florida-teacher-vacancies-continue-to-drop-down-13-from-last-year.stml": {
    "archive_url": "https://web.archive.org/web/20260515203835/https://www.fldoe.org/newsroom/latest-news/florida-teacher-vacancies-continue-to-drop-down-13-from-last-year.stml",
