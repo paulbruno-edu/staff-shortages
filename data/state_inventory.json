@@ -1,6 +1,6 @@
 {
   "_readme": "Every state (plus DC) classified by what statewide vacancy data it publishes, and why it is or is not on the dashboard. Every entry was checked directly by this project (see 'protocol'); 'checked' says how: 'direct' = read the agency's (or publisher's) own page or document; 'secondary' = the primary source could not be read automatically and the classification rests on news coverage or a legislative summary of it. 'evidence' lists what was read. 'lpi' records how the Learning Policy Institute's July 2026 scan classified the state, as a cross-check only. Re-check annually.",
-  "as_of": "2026-10-10",
+  "as_of": "2026-10-21",
   "protocol": [
     "1. Search the state education agency's own website for vacancy or unfilled-position data (site-restricted search).",
     "2. Search more broadly for statewide figures from other publishers: state boards, legislatures, university partners, associations, unions (recorded as non-agency).",
