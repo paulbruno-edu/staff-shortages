@@ -22,6 +22,7 @@
     const [y, mo] = m.split('-');
     return `${(long ? MONTHS_LONG : MONTHS)[+mo - 1]} ${y}`;
   };
+  const longDate = (iso) => new Date(`${iso}T12:00:00`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   const pct = (v, d = 1) => (v == null || isNaN(v) ? '–' : `${v.toFixed(d)}%`);
   const num = (v, d = 0) => (v == null ? '–' : v.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d }));
   const mean = (arr) => { const a = arr.filter((v) => v != null); return a.length ? a.reduce((s, v) => s + v, 0) / a.length : null; };
@@ -796,7 +797,7 @@
     const host = $('#chart-states');
     host.replaceChildren();
     const legend = el('ul', { class: 'legend' }, [
-      { label: "The state's reported rate", color: 'var(--s1)', marker: 'circle', width: 2.25 },
+      { label: 'State series: published or computed', color: 'var(--s1)', marker: 'circle', width: 2.25 },
       ...BENCH,
     ].map((s) => el('li', {}, legendKey(s), s.label)));
     const tableBox = el('div', { class: 'chart-table', hidden: true });
@@ -836,7 +837,8 @@
       for (const st of members) {
         const chart = el('div', { class: 'chart' });
         grid.append(el('div', { class: 'panel' }, el('h4', { text: st.name }),
-          el('p', { class: 'cov' }, `${st.coverage}. ${st.timing}. `, el('a', { href: `#def-${st.id}`, class: 'def-link', text: 'Definition and sources' })), chart));
+          el('p', { class: 'cov' }, `${st.coverage}. ${st.timing}. `, el('a', { href: `#def-${st.id}`, class: 'def-link', text: 'Definition and sources' })),
+          st.panel_note ? el('p', { class: 'panel-note', text: st.panel_note }) : null, chart));
         statePanels[st.id] = lineChart(chart, panelCfg(st, f));
       }
     }
@@ -892,7 +894,7 @@
     const cand = I.states.filter((s) => s.category === 'candidate').map((s) => s.state);
     const list = cand.length > 1 ? `${cand.slice(0, -1).join(', ')}, and ${cand[cand.length - 1]}` : cand.join('');
     host.replaceChildren(
-      el('p', {}, `Every state and DC was reviewed (as of ${I.as_of}). For most, this review did not find figures suitable for the rate comparisons shown here: for ${n('none')}, no statewide vacancy data were found; ${n('collects')} collect vacancy data, but no published statewide figures were found; ${n('counts')} publish counts without a matching denominator; and ${n('different')} publish figures that measure something else, such as job postings or positions not filled by fully licensed teachers. ` +
+      el('p', {}, `Every state and DC was reviewed (full review completed ${longDate(I.full_review)}; inventory last updated ${longDate(I.as_of)}, with later changes recorded in the changes log). For most, this review did not find figures suitable for the rate comparisons shown here: for ${n('none')}, no statewide vacancy data were found; ${n('collects')} collect vacancy data, but no published statewide figures were found; ${n('counts')} publish counts without a matching denominator; and ${n('different')} publish figures that measure something else, such as job postings or positions not filled by fully licensed teachers. ` +
         `The closest candidates not yet shown (${list}) each lack at least one of these: a published rate, a clear definition and date, or consistent coverage. `,
         'The full inventory, with each state\'s sources and the reasons for its classification, is on the ', el('a', { href: 'provenance.html#inventory', text: 'data provenance page' }), '.'),
     );
