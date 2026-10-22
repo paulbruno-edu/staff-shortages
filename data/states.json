@@ -1,5 +1,5 @@
 {
-  "_readme": "Hand-curated state data. Update once a year as states publish. 'panel_note', if present, is shown under the state's chart panel. 'updated' is set automatically when this file's content changes (.github/workflows/stamp-dates.yml). Rate rule: if rate_published is set, it is shown as published; otherwise the page computes unfilled / (unfilled + filled) or unfilled / total from the components given here. 'basis' overrides the basis label. 'sy' is the school year a figure describes (used for plotting); 'agency_label' records the agency's own year label when it differs. 'measure' documents what each state counts; 'tier' is the comparability group shown on the page. Never enter an estimate: leave a value out and explain why in 'note'.",
+  "_readme": "Hand-curated state data. Update once a year as states publish. 'panel_note', if present, is shown on the state's chart panel; 'rate_qualifier' is added to the basis of computed rates in the table and chart. 'updated' is set automatically when this file's content changes (.github/workflows/stamp-dates.yml). Rate rule: if rate_published is set, it is shown as published; otherwise the page computes unfilled / (unfilled + filled) or unfilled / total from the components given here. 'basis' overrides the basis label. 'sy' is the school year a figure describes (used for plotting); 'agency_label' records the agency's own year label when it differs. 'measure' documents what each state counts; 'tier' is the comparability group shown on the page. Never enter an estimate: leave a value out and explain why in 'note'.",
   "updated": "2026-10-22",
   "states": [
     {
@@ -347,6 +347,7 @@
         }
       ],
       "tier": "snapshot",
+      "rate_qualifier": "approximate",
       "panel_note": "Computed from first-day vacancies and October 15 teacher headcounts; the units and dates differ, so these percentages approximate vacancy rates. 2026-27: 572 vacancies (governor's release); no rate until MSDE publishes its October 2026 teacher count.",
       "measure": {
         "counted": "Teacher vacancies on the first day of school (Annual Vacancy Data Collection)",

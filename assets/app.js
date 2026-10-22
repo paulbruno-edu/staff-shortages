@@ -770,7 +770,7 @@
       if (!p) return '';
       const b = rateOf(p).basis;
       const bits = [];
-      if (b === 'Computed') bits.push('computed');
+      if (b === 'Computed') bits.push(st.rate_qualifier ? `computed; ${st.rate_qualifier}` : 'computed');
       if (b === 'Third-party calculation') bits.push('third-party calc.');
       if (p.agency_label && p.agency_label !== p.sy) bits.push(`state labels it ${p.agency_label}`);
       return bits.length ? ` (${bits.join('; ')})` : '';
@@ -918,7 +918,7 @@
         el('td', { text: st.coverage }),
         el('td', { text: st.measure.timing_short }),
         el('td', { text: st.measure.substitutes_short }),
-        stack(latest.r.text, `${yr} · ${latest.r.basis.toLowerCase()}`, 'num'),
+        stack(latest.r.text, `${yr} · ${latest.r.basis.toLowerCase()}${st.rate_qualifier && latest.r.basis === 'Computed' ? `; ${st.rate_qualifier}` : ''}`, 'num'),
         rated.length > 1 ? stack(`${hi.r.text} (${hi.p.sy})`, `latest vs. peak: ${change(latest.r.v - hi.r.v)}`, 'num') : el('td', { class: 'num dim', text: 'one year only' }),
       ));
     }
