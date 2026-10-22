@@ -106,7 +106,7 @@
       "series_label": "Virginia, teaching",
       "coverage": "Teaching positions",
       "timing": "Fall (October) snapshot, Positions & Exits Collection",
-      "definition": "VDOE's Positions and Exits Collection. VDOE defines the rate as fall unfilled FTE teacher positions divided by total available FTE teacher positions. 2023-24 through 2025-26 are VDOE's published rates. 2022-23 is a third-party calculation (SwailLandis, March 2023) from VDOE's Staffing and Vacancy 'Build-a-Table' data; its denominator column is labeled 'FTE Teachers', so whether it includes the unfilled positions is unclear, and the same brief also cites a 2.6% figure. No exact 2021-22 rate exists in any primary source checked; only approximations (JLARC: 'about 2,600' vacant), so 2021-22 is left unplotted.",
+      "definition": "VDOE's Positions and Exits Collection. VDOE defines the rate as fall unfilled FTE teacher positions divided by total available FTE teacher positions. 2023-24 through 2025-26 are VDOE's published rates. 2022-23 is a third-party calculation (SwailLandis, March 2023) from VDOE's Staffing and Vacancy 'Build-a-Table' data; its denominator column is labeled 'FTE Teachers', so whether it includes the unfilled positions is unclear, and the same brief also cites a 2.6% figure. No exact 2021-22 rate exists in any primary source checked; only approximations (JLARC: 'about 2,600' vacant), so 2021-22 is left unplotted. VDOE also publishes a separate Summer and First Week of School Vacancy Report (since 2024), which counts a position as vacant if it is unfilled or filled with an unlicensed teacher and divides by the previous fall's teacher FTE. That report pools vacancies with unlicensed hires, so it is not used here; the rates shown are VDOE's fall figures, which its December 2025 release describes as based on positions and exits data.",
       "points": [
         {
           "sy": "2021-22",
@@ -149,6 +149,10 @@
         {
           "label": "SwailLandis brief, March 2023 (2022-23 figures)",
           "url": "https://content.govdelivery.com/attachments/VADOE/2023/03/07/file_attachments/2429275/230303%20MARCH%202023%20BRIEF.pdf"
+        },
+        {
+          "label": "VDOE Education Workforce Data & Reports (summer report definition; Staffing and Vacancy Report)",
+          "url": "https://www.doe.virginia.gov/teaching-learning-assessment/teaching-in-virginia/education-workforce-data-reports"
         }
       ],
       "tier": "snapshot",
