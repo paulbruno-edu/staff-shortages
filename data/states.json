@@ -1,7 +1,6 @@
 {
   "_readme": "Hand-curated state data. Update once a year as states publish. Rate rule: if rate_published is set, it is shown as published; otherwise the page computes unfilled / (unfilled + filled) or unfilled / total from the components given here. 'basis' overrides the basis label. 'sy' is the school year a figure describes (used for plotting); 'agency_label' records the agency's own year label when it differs. 'measure' documents what each state counts; 'tier' is the comparability group shown on the page. Never enter an estimate: leave a value out and explain why in 'note'.",
   "updated": "2026-10-21",
-  "verified": "2026-10-21",
   "states": [
     {
       "id": "IL",

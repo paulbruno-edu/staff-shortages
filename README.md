@@ -30,6 +30,7 @@ It is a static site: plain HTML/CSS/JS, with no build step and no server, hosted
 | `scripts/source_links.py`, `scripts/archive_sources.py`, `scripts/check_links.py`, `scripts/download_sources.py` | Source archiving: collect every cited link; save Wayback copies; check links monthly (`.github/workflows/check-links.yml`); save private copies of source files. Standard library only. |
 | `scripts/fetch_staffing.py` | Pulls the newest edition of NCES Digest Table 213.10 (staff by type and pupils per staff member). Needs `openpyxl`. |
 | `.github/workflows/update-data.yml` | Runs the three fetch scripts on Tuesdays and Fridays and commits only when a value changes. |
+| `scripts/stamp_dates.py`, `.github/workflows/stamp-dates.yml` | After a push that changes `data/states.json` or `data/state_inventory.json`, sets the file's date (`updated` or `as_of`) to the push date (U.S. Central time), unless it was already changed by hand, and commits it. Pull before editing again. |
 | `PUBLISHING.md` | Step-by-step guide to putting the site online and keeping it updated. |
 
 Working materials that are not published live outside this repository: the original brief and workbook in `C:\GoogleDrive\UIUC\Projects\staffshortagesdashboard\baselineattempt\`, and private copies of the source files behind the figures in `C:\Users\paulb\projects\staff-shortages-sources\` (see "Source archiving" below).
@@ -66,7 +67,7 @@ python scripts/fetch_staffing.py
 - `sy` is the school year the figure *describes*. If the agency labels it differently (Iowa does), also record `"agency_label"`.
 - Give `rate_published` when the agency publishes the rate itself. Give `filled` (or `total`) when only components are published, and the page will compute the rate and label it "computed". Use `"basis": "Third-party calculation"` for figures not published by the agency. Leave out what isn't published, and say why in `note`. The page never estimates.
 - If a state changes what it counts, update its `measure` block, the definition the page shows in "What counts as a vacancy".
-- Update the state's `verification` text, and `"updated"` and `"verified"` at the top of the file.
+- Update the state's `verification` text. The date at the top of the file (`"updated"`, and `"as_of"` in `data/state_inventory.json`) is set automatically when the file's content changes (see below); setting it by hand also works.
 - If something was corrected or added, add a row to the "Changes and corrections" log in `provenance.html`.
 
 Where to look each year:

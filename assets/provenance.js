@@ -44,7 +44,7 @@
       $('#stamp').textContent = `Could not load data (${e.message}).`;
       return;
     }
-    $('#stamp').textContent = `National data generated ${N.generated_utc} (latest month ${mlab(N.latest_month)}). State data verified ${S.verified || S.updated}. Inventory as of ${I ? I.as_of : 'n/a'}.`;
+    $('#stamp').textContent = `National data generated ${N.generated_utc} (latest month ${mlab(N.latest_month)}). State data updated ${S.updated}. Inventory as of ${I ? I.as_of : 'n/a'}.`;
 
     // National table, with the latest value actually in the file.
     const nt = $('#national-table');

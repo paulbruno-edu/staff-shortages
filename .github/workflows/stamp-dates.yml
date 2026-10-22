@@ -1,0 +1,47 @@
+name: Stamp state data dates
+
+# When data/states.json or data/state_inventory.json changes on main, sets its
+# date ("updated" or "as_of") to the push date, unless it was already changed by
+# hand. Pushes made by this workflow do not trigger it again.
+on:
+  push:
+    branches: [main]
+    paths:
+      - data/states.json
+      - data/state_inventory.json
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stamp-dates
+  cancel-in-progress: false
+
+jobs:
+  stamp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Set dates
+        run: python scripts/stamp_dates.py "${{ github.event.before }}"
+
+      - name: Commit if a date changed
+        run: |
+          if git diff --quiet -- data/; then
+            echo "No date to change."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/states.json data/state_inventory.json
+          git commit -m "Set state data dates ($(TZ=America/Chicago date +%Y-%m-%d))"
+          # Another workflow (the national update) may have pushed meanwhile.
+          git pull --rebase
+          git push

@@ -415,7 +415,7 @@
     const gen = new Date(N.generated_utc.replace('Z', ':00Z'));
     const genTxt = gen.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
     const stUpd = new Date(`${S.updated}T12:00:00`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-    $('#stamp').textContent = `National data through ${monthLabel(lm, true)}${N.latest_preliminary ? ' (preliminary)' : ''}, refreshed ${genTxt}. State data as of ${stUpd}.`;
+    $('#stamp').textContent = `National data through ${monthLabel(lm, true)}${N.latest_preliminary ? ' (preliminary)' : ''}, updated ${genTxt}. State data as of ${stUpd}.`;
     $('#build-info').textContent = `National data file generated ${N.generated_utc} (UTC); ${N.months.length} months, ${monthLabel(N.months[0])} to ${monthLabel(lm)}. Industry table: ${monthLabel(N.industry_month)}. State file updated ${S.updated}.`;
     $('#cite-date').textContent = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   }
