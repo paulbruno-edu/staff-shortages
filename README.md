@@ -68,7 +68,8 @@ python scripts/fetch_staffing.py
 - Give `rate_published` when the agency publishes the rate itself. Give `filled` (or `total`) when only components are published, and the page will compute the rate and label it "computed". Use `"basis": "Third-party calculation"` for figures not published by the agency. Leave out what isn't published, and say why in `note`. The page never estimates.
 - If a state changes what it counts, update its `measure` block, the definition the page shows in "What counts as a vacancy".
 - Update the state's `verification` text. The date at the top of the file (`"updated"`, and `"as_of"` in `data/state_inventory.json`) is set automatically when the file's content changes (see below); setting it by hand also works.
-- If something was corrected or added, add a row to the "Changes and corrections" log in `provenance.html`.
+- If something was corrected or added, add a row to the "Changes and corrections" log in `provenance.html`, newest first, with an `id` (`log-YYYY-MM-DD-short-name`), a `data-type`, and the matching label. It is a correction if a reader could have taken away something wrong (a figure, definition, calculation, or claim), even if only wording changed; otherwise it is an update. Entries that mix the two are corrections. A reclassification is a correction when closer checking showed the earlier description was wrong, and an update when something changed externally (for example, a state began publishing data).
+- Editing the log: small fixes (typos, links) are fine. Never delete an entry or materially rewrite one silently; add a dated note to the entry instead ("Amended YYYY-MM-DD: ..."). Keep entry `id`s unchanged so links to them keep working.
 
 Where to look each year:
 

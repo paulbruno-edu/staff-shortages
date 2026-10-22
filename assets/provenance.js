@@ -123,5 +123,23 @@
         el('tbody', {}, rows.map((s) => el('tr', {}, el('th', { scope: 'row', text: s.state }), el('td', { text: I.categories[s.category] }), el('td', { text: s.what || 'No statewide vacancy data' }), el('td', { text: s.reason || '' }), el('td', { class: 'small' }, ...links(s)), el('td', { text: s.checked }), el('td', { class: 'small', text: s.lpi || '' })))));
     }
   }
+  // Changes log: count correction entries and offer a corrections-only view.
+  function changesLog() {
+    const box = $('#log-filter');
+    if (!box) return;
+    const rows = [...document.querySelectorAll('#changes tbody tr')];
+    const nFix = rows.filter((r) => r.dataset.type === 'correction').length;
+    const btn = el('button', { type: 'button', class: 'link-btn', 'aria-pressed': 'false', text: 'Show corrections only' });
+    const set = (only) => {
+      rows.forEach((r) => { r.hidden = only && r.dataset.type !== 'correction'; });
+      btn.setAttribute('aria-pressed', String(only)); btn.textContent = only ? 'Show all entries' : 'Show corrections only';
+    };
+    btn.addEventListener('click', () => set(btn.getAttribute('aria-pressed') !== 'true'));
+    // A link to an update entry shows it even when the filter is on.
+    window.addEventListener('hashchange', () => { const t = document.getElementById(location.hash.slice(1)); if (t && t.hidden) set(false); });
+    box.replaceChildren(`${nFix} correction entries and ${rows.length - nFix} update entries · `, btn);
+    box.hidden = false;
+  }
+  changesLog();
   boot();
 })();
