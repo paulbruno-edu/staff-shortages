@@ -257,6 +257,107 @@
       "verification": "Verified directly on 2026-10-10 against PDE's vacancy workbooks for 2023-24, 2024-25 (Q1) and 2025-26 (Q1) (Summary sheets, Classroom Teachers rows) and PDE's Professional Staff Summary workbooks for the same years (State_FT+PT sheet, CT column)."
     },
     {
+      "id": "MD",
+      "name": "Maryland",
+      "agency": "Maryland State Department of Education (MSDE)",
+      "series_label": "Maryland, teaching",
+      "coverage": "Teaching positions",
+      "timing": "First day of school (Annual Vacancy Data Collection); teacher counts as of October 15",
+      "definition": "MSDE's Annual Vacancy Data Collection counts teacher vacancies on the first day of school, reported by local school systems in full-time equivalents. MSDE does not publish an operational definition and does not say whether positions covered by long-term substitutes count as vacant. Conditionally licensed teachers are reported separately (6,067 in 2025-26) and are not counted as vacancies, so the measure is not credential-based. MSDE publishes no rate. Rates are computed here: first-day vacancies divided by teachers in MSDE's Professional Staff by Assignment, Race/Ethnicity and Gender report for the same school year (all teachers, including those reported at central offices, as of October 15) plus the vacancies. Vacancies are full-time equivalents and teachers are a headcount, each counted once in their primary assignment, so the units differ slightly; the two counts are about six to eight weeks apart within the same school year. MSDE's March 2026 minutes note that falling vacancy counts may partly reflect positions cut locally, which state data do not capture. The 2023-24 count was 1,935.4 in MSDE's May 2024 presentation and 1,941.4 in later presentations; the later figure is used. The 2026-27 count (572) comes from the governor's release of Oct. 19, 2026, which rounds it and gives no date; it has no rate until MSDE publishes its October 2026 teacher count.",
+      "points": [
+        {
+          "sy": "2021-22",
+          "unfilled": 1615.0,
+          "filled": 62913,
+          "note": "1,615.0 FTE teacher vacancies on the first day of school (MSDE vacancy collection); 62,913 teachers as of Oct. 15, 2021 (Professional Staff by Assignment, revised edition). Rate computed here."
+        },
+        {
+          "sy": "2022-23",
+          "unfilled": 2144.9,
+          "filled": 62686,
+          "note": "2,144.9 FTE teacher vacancies on the first day of school; 62,686 teachers as of Oct. 15, 2022. Rate computed here."
+        },
+        {
+          "sy": "2023-24",
+          "unfilled": 1941.4,
+          "filled": 63220,
+          "note": "1,941.4 FTE teacher vacancies on the first day of school (1,935.4 in MSDE's May 2024 presentation); 63,220 teachers as of Oct. 15, 2023. Rate computed here."
+        },
+        {
+          "sy": "2024-25",
+          "unfilled": 1619.0,
+          "filled": 63515,
+          "note": "1,619.0 FTE teacher vacancies on the first day of school; 63,515 teachers as of Oct. 15, 2024. Rate computed here."
+        },
+        {
+          "sy": "2025-26",
+          "unfilled": 886.2,
+          "filled": 64191,
+          "note": "886.2 FTE teacher vacancies on the first day of school; 64,191 teachers as of Oct. 15, 2025. Rate computed here."
+        },
+        {
+          "sy": "2026-27",
+          "unfilled": 572,
+          "note": "572 teacher vacancies, rounded, from the governor's release of Oct. 19, 2026 (no date given). No rate: MSDE has not yet published its October 2026 teacher count."
+        }
+      ],
+      "sources": [
+        {
+          "label": "MSDE State Board presentation, Feb. 24, 2026 (vacancy series, Oct. 2025 teachers, conditional licenses)",
+          "url": "https://marylandpublicschools.org/stateboard/documents/2026/0224/marylands-teacher-workforce-supply-demand-and-diversity-a.pdf"
+        },
+        {
+          "label": "MSDE State Board presentation, Feb. 25, 2025 (\"Teacher Vacancies on the First Day of School\")",
+          "url": "https://www.marylandpublicschools.org/stateboard/Documents/2025/0225/Educator-Workforce-Overview-A.pdf"
+        },
+        {
+          "label": "MSDE State Board presentation, May 21, 2024",
+          "url": "https://marylandpublicschools.org/stateboard/Documents/2024/0521/Maryland-Teacher-Workforce-Supply-Demand-and-Diversity-A.pdf"
+        },
+        {
+          "label": "MSDE Professional Staff by Assignment, Race/Ethnicity and Gender, October 2025 (Table 5)",
+          "url": "https://www.marylandpublicschools.org/about/Documents/DCAA/SSP/20252026Staff/2026-Professional-Staff-by-Assignment-Race-Ethnicity-Gender-A.pdf"
+        },
+        {
+          "label": "Same report, October 2024 (Internet Archive copy)",
+          "url": "https://web.archive.org/web/20250406190144/https://marylandpublicschools.org/about/Documents/DCAA/SSP/20242025Staff/2025-Professional-Staff-by-Assignment-Race-Ethnicity-Gender-A.pdf"
+        },
+        {
+          "label": "Same report, October 2023 (Internet Archive copy)",
+          "url": "https://web.archive.org/web/20240425211037/https://marylandpublicschools.org/about/Documents/DCAA/SSP/20232024Staff/2024-Staff-by-Race-Gender-A.pdf"
+        },
+        {
+          "label": "Same report, October 2022 (Internet Archive copy)",
+          "url": "https://web.archive.org/web/20230529193237/https://www.marylandpublicschools.org/about/Documents/DCAA/SSP/20222023Staff/2023ProfStaffbyRace.pdf"
+        },
+        {
+          "label": "Same report, October 2021, revised (Internet Archive copy)",
+          "url": "https://web.archive.org/web/20230529193357/https://www.marylandpublicschools.org/about/Documents/DCAA/SSP/20212022Staff/2022ProfStaffbyRace_Revised.pdf"
+        },
+        {
+          "label": "Governor's release, Oct. 19, 2026 (2026-27 count)",
+          "url": "https://governor.maryland.gov/news/press-releases/governor-moore-announces-teacher-vacancy-rate-drop-over-70-percent-4-years"
+        },
+        {
+          "label": "MSDE PSTEB minutes, March 5, 2026 (position cuts not captured)",
+          "url": "https://marylandpublicschools.org/about/Documents/DEE/PSTEB/2026/March-PSTEB-Meeting-Minutes-3.5.26-A.pdf"
+        }
+      ],
+      "tier": "snapshot",
+      "measure": {
+        "counted": "Teacher vacancies on the first day of school (Annual Vacancy Data Collection)",
+        "includes_substitute_covered": "Not stated by MSDE",
+        "positions": "Teaching positions",
+        "timing": "Point in time: first day of school",
+        "denominator": "Teachers as of October 15 of the same school year (Professional Staff by Assignment report) + vacancies (computed here)",
+        "unit": "FTE (vacancies) and headcount (teachers)",
+        "coverage": "Statewide collection from local school systems",
+        "timing_short": "First day of school",
+        "substitutes_short": "Not stated"
+      },
+      "verification": "Verified directly on 2026-10-21 against MSDE State Board presentations of May 2024, February 2025 and February 2026 (vacancy series, labeled first day of school) and MSDE's Professional Staff by Assignment, Race/Ethnicity and Gender reports for October 2021 through October 2025 (all-teachers table; the October 2023, 2024 and 2025 totals match the board presentations; the 2021-2024 editions are no longer on MSDE's site and were read from Internet Archive copies). The 2026-27 count is from the governor's release of Oct. 19, 2026."
+    },
+    {
       "id": "IA",
       "name": "Iowa",
       "agency": "Iowa Department of Education",
