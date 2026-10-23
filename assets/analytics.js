@@ -5,6 +5,9 @@
 (() => {
   'use strict';
   const CODE = 'shortages';
+  // Count the page without its query string, so /?v=… is counted as /.
+  // GoatCounter records referrers and campaign tags separately.
+  window.goatcounter = { path: () => location.pathname };
   const s = document.createElement('script');
   s.async = true;
   s.src = 'https://gc.zgo.at/count.js';
