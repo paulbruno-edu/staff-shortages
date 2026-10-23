@@ -29,6 +29,7 @@ It is a static site: plain HTML/CSS/JS, with no build step and no server, hosted
 | `data/archive.json` | Wayback Machine copies of every cited source, made by `scripts/archive_sources.py`. The pages show them as "(archived)" links. |
 | `scripts/source_links.py`, `scripts/archive_sources.py`, `scripts/check_links.py`, `scripts/download_sources.py` | Source archiving: collect every cited link; save Wayback copies; check links monthly (`.github/workflows/check-links.yml`); save private copies of source files. Standard library only. |
 | `scripts/fetch_staffing.py` | Pulls the newest edition of NCES Digest Table 213.10 (staff by type and pupils per staff member). Needs `openpyxl`. |
+| `assets/analytics.js` | GoatCounter visitor counts (no cookies): page views, chart CSV downloads, and clicks on outside links. The site code is set at the top of the file. |
 | `.github/workflows/update-data.yml` | Runs the three fetch scripts on Tuesdays and Fridays and commits only when a value changes. |
 | `scripts/stamp_dates.py`, `.github/workflows/stamp-dates.yml` | After a push that changes `data/states.json` or `data/state_inventory.json`, sets the file's date (`updated` or `as_of`) to the push date (U.S. Central time), unless it was already changed by hand, and commits it. Pull before editing again. |
 | `PUBLISHING.md` | Step-by-step guide to putting the site online and keeping it updated. |
