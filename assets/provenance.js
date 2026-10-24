@@ -120,7 +120,9 @@
       const links = (s) => (s.evidence || []).flatMap((e, i) => [i ? ' · ' : '', el('a', { href: e.url, rel: 'noopener', text: e.label })]);
       $('#inv-table').append(
         el('thead', {}, el('tr', {}, ['State', 'Status', 'What is published', 'Why it is or is not on the dashboard', 'Evidence', 'Checked', 'LPI 2026'].map((h) => el('th', { scope: 'col', text: h })))),
-        el('tbody', {}, rows.map((s) => el('tr', {}, el('th', { scope: 'row', text: s.state }), el('td', { text: I.categories[s.category] }), el('td', { text: s.what || 'No statewide vacancy data' }), el('td', { text: s.reason || '' }), el('td', { class: 'small' }, ...links(s)), el('td', { text: s.checked }), el('td', { class: 'small', text: s.lpi || '' })))));
+        el('tbody', {}, rows.map((s) => el('tr', { id: `inv-${s.state.toLowerCase().replace(/[^a-z]+/g, '-')}` }, el('th', { scope: 'row', text: s.state }), el('td', { text: I.categories[s.category] }), el('td', { text: s.what || 'No statewide vacancy data' }), el('td', { text: s.reason || '' }), el('td', { class: 'small' }, ...links(s)), el('td', { text: s.checked }), el('td', { class: 'small', text: s.lpi || '' })))));
+      // Rows are added after the page loads, so a link to one state's row needs scrolling here.
+      if (location.hash.startsWith('#inv-')) { const row = document.getElementById(location.hash.slice(1)); if (row) { row.classList.add('is-target'); row.scrollIntoView(); } }
     }
   }
   // Changes log: count correction entries and offer a corrections-only view.

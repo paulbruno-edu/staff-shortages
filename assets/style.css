@@ -340,7 +340,7 @@ table.data .dim { color: var(--muted); }
 .tag.start { background: var(--wash); color: var(--accent); font-weight: 600; }
 .tag.fix { background: var(--rule-bg); color: var(--rule-edge); font-weight: 600; }
 #changes td:first-child { white-space: nowrap; }
-#changes tr:target td { background: var(--wash); }
+#changes tr:target td, #inv-table tr.is-target th, #inv-table tr.is-target td { background: var(--wash); }
 .link-btn { background: none; border: 0; padding: 0; font: inherit; color: var(--accent); text-decoration: underline; cursor: pointer; }
 .tag.diff { background: var(--rule-bg); color: var(--ink-2); }
 .tag.own { background: transparent; border: 1px dashed var(--baseline); }
