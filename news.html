@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shortages in the News: School Staff Shortages</title>
+<meta name="description" content="Annotated news stories about school staff shortages: what each claims, how it is measured, whether a rate is available, and what consequences are reported.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%232a78d6'/%3E%3Cpath d='M3 11 L6 7 L9 9 L13 4' stroke='white' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .news-filters { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: end; margin: 6px 0 10px; }
+  .news-filters label { display: flex; flex-direction: column; font-size: 13px; color: var(--muted); gap: 4px; }
+  .news-filters select { font: inherit; font-size: 14px; padding: 4px 8px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); }
+  .stories { list-style: none; padding: 0; margin: 0; max-width: 900px; }
+  .story { border-top: 1px solid var(--grid); padding: 16px 0; }
+  .story:first-child { border-top: 0; }
+  .story h3 { margin: 0; font-size: 17px; line-height: 1.4; }
+  .story h3 a { color: inherit; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, var(--accent) 60%, transparent); }
+  .story .src { margin: 3px 0 8px; font-size: 14px; color: var(--muted); }
+  .story .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+  .tag.rate-reported, .tag.rate-source, .tag.rate-calculated { background: var(--wash); color: var(--accent); font-weight: 600; }
+  .tag.rate-none { background: var(--band); color: var(--ink-2); font-weight: 600; }
+  .story .prov-dl { margin: 0; }
+  .story .prov-dl dt.oq { color: var(--accent); }
+  .jump { margin: 10px 0 0; font-size: 15px; }
+  .story .group { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+  .method { max-width: 860px; margin: 4px 0 0; }
+  .method summary { cursor: pointer; font-weight: 600; font-size: 15px; color: var(--accent); }
+  .method .limits { margin-top: 10px; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <p class="crumb"><a href="https://www.paul-bruno.com/">Paul Bruno</a> <span aria-hidden="true">/</span> <a href="./">School Staff Shortages</a> <span aria-hidden="true">/</span> In the news</p>
+    <h1>School staff shortages in the news</h1>
+    <p class="dek">Recent news stories about school staffing, annotated with the context needed to make sense of them: what each story claims, how the shortage is measured, whether a rate is available, and what consequences it reports.</p>
+    <p class="jump"><a href="#stories-sec">Go to the latest stories</a></p>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section id="purpose">
+  <h2>Why this page</h2>
+  <p>News coverage is how most people learn about school staffing problems, and it shapes how those problems are understood. But the figures in a story rarely come with what is needed to judge them: what exactly is being counted, how large it is relative to the workforce, whether it is changing, which positions and schools are affected, what it means for students, and how schools compare with other employers competing for the same workers.</p>
+  <p>This page follows the coverage with those questions in mind. Each entry records what the story says and adds context the story leaves out when it can be found elsewhere, such as an agency's definition, a matching count of positions, or the <a href="./">dashboard</a>'s state figures. When we could not find the context needed to interpret a figure, the entry says so. The aim is to keep track of the news, and also of how shortages are being described and measured, so the news is easier to interpret.</p>
+</section>
+
+<section id="coverage">
+  <h2>What the coverage shows so far</h2>
+  <p class="small">Based on the 22 stories logged as of October 24, 2026. Stories are selected by rule, not sampled, so these are patterns in this coverage, not measures of shortages themselves.</p>
+  <ul class="limits">
+    <li><strong>Teacher stories mostly report improvement; transportation stories mostly report continuing problems.</strong> Most teacher stories with a comparison over time report fewer vacancies than a year or more earlier (Maryland, Illinois, Iowa, South Carolina, Providence, West Contra Costa, Washoe, and Clark County). Transportation stories more often describe double runs, late buses, early dismissals, and proposed schedule changes; Albemarle County, Va., where open routes fell over the summer, is an exception. 11 of the 22 stories involve transportation, including 5 of the 6 entries added most recently.</li>
+    <li><strong>Falling vacancy counts often come with fewer positions.</strong> Declines reported in Maryland, Clark County, West Contra Costa, and Fort Worth appear alongside position cuts or falling enrollment, and North Carolina's superintendents' association attributes the previous year's larger drop to positions cut when federal pandemic funds ended. Iowa's teachers union raises a similar objection to the state's measure. Not every decline is described that way: The Banner reports that Anne Arundel County, Md., reduced vacancies without cuts or layoffs. A smaller count can mean positions were filled or eliminated, and the stories rarely say which.</li>
+    <li><strong>Headlines and figures often measure different things.</strong> A story about vacancies reports departures (Texas); "teacher vacancies" include counselors and librarians (South Carolina); "zero vacancies" covers core classroom positions only (Fort Worth); and a reported rate does not state its denominator or date (Maryland).</li>
+    <li><strong>Scale is rarely available.</strong> 15 of the 22 entries lack a comparable rate for their main measure, usually because no matching count of positions is given, so it is hard to tell whether, for example, 160 teacher openings is large or small for that district.</li>
+    <li><strong>Comparisons over time often mix dates or definitions,</strong> such as an early-August count set beside earlier first-day counts (Providence) or departure windows that differ by district (Texas).</li>
+    <li><strong>No quantitative comparison with other industries.</strong> None of the selected stories compares school staffing with conditions in other industries; one (Maryland) notes that some federal workers who lost jobs have moved into teaching. The next section gives the comparison.</li>
+  </ul>
+</section>
+
+<section id="labor-market">
+  <h2>The wider labor market</h2>
+  <p id="lm-text">Schools compete with other employers for workers. National job-openings data give the closest comparison, though they cover industries, not particular jobs such as teaching or driving a school bus; see the <a href="./#now">dashboard</a>.</p>
+</section>
+
+<section id="about">
+  <h2>How stories are chosen and described</h2>
+  <ul class="limits">
+    <li><strong>Selected, not comprehensive.</strong> Stories are chosen by stated rules, described below; how often a topic appears here is not a measure of how common shortages are.</li>
+    <li><strong>Claims are attributed, and rates are labeled.</strong> Each entry says who makes each claim and what is counted. A rate is shown only when the story reports one, the underlying release publishes one, or one can be calculated from figures for the same positions at about the same time; otherwise the entry says no comparable rate is available.</li>
+  </ul>
+  <details class="method">
+    <summary>Full rules and methods</summary>
+    <ul class="limits">
+    <li><strong>Selected, not comprehensive.</strong> Stories are included if they come from U.S. news outlets (not automated meeting summaries or vendor blogs), are freely readable in full when logged, make a specific claim about a defined place and staff role, and are not repeats of an underlying release already logged (related coverage is grouped instead). Stories about improving staffing are included deliberately. How often a topic appears here is not a measure of how common shortages are. Paywalled outlets, including many large newspapers, are excluded by rule; a free syndicated copy of a paywalled outlet's story qualifies.</li>
+    <li><strong>Claims are attributed.</strong> "The district says…" reports a claim; it is not independent verification. The source of key figures is labeled specifically, such as a union estimate, a vendor-sponsored survey, or a district administrative count, either for the whole entry or beside the figures concerned. Each entry separates when a figure was measured from when the story was published. Consequences are labeled by kind: observed and documented, reported by someone (named by role), a concern, or anticipated if a proposal is adopted. Direction tags describe what the story reports about staffing measures (vacancies, openings, departures) relative to a stated baseline; stories with no such comparison have no direction tag. Reports about service, such as a parent's account of worsening delays, are attributed in the entry instead.</li>
+    <li><strong>Rates are labeled by where they come from.</strong> The label refers to the entry's main measure; rates for other measures mentioned in a story are described in the entry. <em>Reported in the story</em>; <em>from the underlying release</em> (published by the source but not in the story); <em>calculated here</em>, from figures that measure the same positions at about the same time, with the calculation shown; or <em>no comparable rate available</em>, when no compatible count of positions exists. No rates are calculated from mismatched figures; arithmetic on rounded but compatible figures may give "about" a value. Each rate also says what kind of rate it is (a vacancy rate, a fill rate, or another share); a rate reported in a story is not necessarily comparable with others. Calculated vacancy rates use vacant positions divided by filled plus vacant positions for the same roles, places, units, and time. Figures and definitions brought in from outside the story are linked beside the entry.</li>
+    <li><strong>Updated weekly.</strong> New stories are found and drafted with the help of an AI assistant, then read and reviewed before they are added. Corrections to entries are recorded in the <a href="provenance.html#changes">changes log</a>.</li>
+    <li><strong>Context is added, and gaps are named.</strong> Where a story concerns one district, or a state's figures other than its official vacancy data, a "State context" line says what the state publishes and links its entry on the dashboard or in the 50-state inventory; it describes the state, not the district in the story. "What else we might want to know" names information that would help interpret the story and that neither the story nor the added context supplies.</li>
+  </ul>
+  </details>
+</section>
+
+<section id="stories-sec">
+  <h2>Stories</h2>
+  <div class="news-filters" role="group" aria-label="Filter stories">
+    <label>Staff role<select id="f-role"><option value="">All</option></select></label>
+    <label>Measure<select id="f-measure"><option value="">All</option></select></label>
+    <label>Rate<select id="f-rate"><option value="">All</option></select></label>
+    <label>Place<select id="f-level"><option value="">All</option></select></label>
+  </div>
+  <p class="small" id="count" aria-live="polite"></p>
+  <ul class="stories" id="stories"></ul>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap"><p><a href="./">Back to the dashboard</a> · <a href="reading.html">Further reading</a> · <a href="provenance.html">Data provenance</a>. Built by <a href="https://www.paul-bruno.com/">Paul Bruno</a>.</p></div>
+</footer>
+
+<script src="assets/archive-links.js" defer></script>
+<script src="assets/analytics.js" defer></script>
+<script>
+const RATE_LABEL = {"reported":"Rate reported in the story","source":"Rate from the underlying release","calculated":"Rate calculated here","none":"No comparable rate available"};
+const DIR_LABEL = {"Improving":"Story reports improvement","Worsening":"Story reports worsening","Mixed":"Story reports mixed changes"};
+let GROUPS = {}, S = [];
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const fmtDate = (d) => new Date(d + "T12:00:00").toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+const FIELDS = [["claim", "Claim"], ["place", "Place and roles"], ["measured", "When measured"], ["measure", "What is measured"], ["numbers", "Numbers"], ["rateText", "Rate"], ["context", "Context"], ["consequences", "Consequences"]];
+
+function storyHTML(s) {
+  const dd = (k) => k === "place" ? `${esc(s.place)}. ${esc(s.roles.join(", "))}.`
+    : k === "rateText" && s.rateType ? `<strong>${esc(s.rateType)}</strong> (${RATE_LABEL[s.rate].replace(/^Rate /, "").toLowerCase()}). ${esc(s.rateText)}`
+    : esc(s[k]);
+  const srcs = s.sources && s.sources.length ? `<dt>Sources for added figures</dt><dd>${s.sources.map((x) => `<a href="${esc(x.url)}">${esc(x.label)}</a>`).join(" · ")}</dd>` : "";
+  const stc = s.stateContext ? `<dt>State context</dt><dd>${esc(s.stateContext.text)} <a href="${esc(s.stateContext.url)}">${s.stateContext.url.startsWith("index.html") ? "Dashboard entry" : "State inventory"}</a></dd>` : "";
+  const oq = s.openQuestions ? `<dt class="oq">What else we might want to know</dt><dd>${esc(s.openQuestions)}</dd>` : "";
+  const dash = s.dash ? `<dt>On the dashboard</dt><dd><a href="index.html#def-${s.dash}">${esc(s.place)}'s definition and figures</a></dd>` : "";
+  return `<li class="story" data-roles="${esc(s.roles.join("|"))}" data-measure="${esc(s.measureCat)}" id="story-${esc(s.id)}" data-rate="${s.rate}" data-level="${s.level}">
+    <h3><a href="${esc(s.url)}">${esc(s.title)}</a></h3>
+    <p class="src">${esc(s.outlet)} · ${fmtDate(s.date)}</p>
+    <p class="tags">${s.status === "draft" ? `<span class="tag diff">Draft, not yet reviewed</span>` : ""}<span class="tag">${s.level}</span>${s.roles.map((r) => `<span class="tag">${esc(r)}</span>`).join("")}<span class="tag rate-${s.rate}">${RATE_LABEL[s.rate]}</span>${s.dirLabel ? `<span class="tag">${esc(s.dirLabel)}</span>` : DIR_LABEL[s.direction] ? `<span class="tag">${DIR_LABEL[s.direction]}${s.dirBase ? ` (${esc(s.dirBase)})` : ""}</span>` : ""}${s.sourceType ? `<span class="tag diff" title="Source of the story's main figures">${esc(s.sourceType)}</span>` : ""}</p>
+    <dl class="prov-dl">${FIELDS.map(([k, h]) => `<dt>${h}</dt><dd>${dd(k)}</dd>`).join("")}${stc}${oq}${srcs}${dash}</dl>
+    ${s.group ? `<p class="group">${esc(GROUPS[s.group])} See also: ${S.filter((o) => o.group === s.group && o.id !== s.id).map((o) => `<a href="#story-${esc(o.id)}">${esc(o.outlet)}, ${fmtDate(o.date)}</a>`).join("; ")}.</p>` : ""}
+  </li>`;
+}
+
+// Wider labor market: the same BLS data the dashboard uses, so the figures stay current.
+(async () => {
+  try {
+    const N = await (await fetch('data/national.json', { cache: 'no-store' })).json();
+    const MON = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const ml = (m) => `${MON[+m.slice(5, 7) - 1]} ${m.slice(0, 4)}`;
+    const last = (k) => { const v = N.series[k]; for (let i = v.length - 1; i >= 0; i--) if (v[i] != null) return [N.months[i], v[i]]; };
+    const base = (k) => { const v = N.months.map((m, i) => (m >= '2015-01' && m <= '2019-12' ? N.series[k][i] : null)).filter((x) => x != null); return v.reduce((a, b) => a + b, 0) / v.length; };
+    const rel = (v, b) => { const d = Math.round((v / b - 1) * 100); return d === 0 ? 'about the same as' : `${Math.abs(d)}% ${d > 0 ? 'above' : 'below'}`; };
+    const [m, ed] = last('SLED_JOR'); const [, all] = last('JTSJOR');
+    const tr = N.industries.find((r) => r.code === '480099');
+    document.getElementById('lm-text').innerHTML =
+      `Schools compete with other employers for workers. National job-openings data (BLS JOLTS) give the closest comparison, though they cover industries, not particular jobs such as teaching or driving a school bus. ` +
+      `In ${ml(m)}${N.latest_preliminary ? ' (preliminary)' : ''}, state and local education, which covers all jobs in public schools and colleges, had an openings rate of ${ed.toFixed(1)}%, ${rel(ed, base('SLED_JOR'))} its 2015–19 average. The rate for all employers was ${all.toFixed(1)}%, ${rel(all, base('JTSJOR'))} its own 2015–19 average. ` +
+      (tr && tr.JOR != null ? `School bus drivers employed by districts are counted in state and local education. Districts hiring drivers with commercial licenses compete for them with other employers, including transportation companies; that industry (transportation, warehousing, and utilities) had an openings rate of ${tr.JOR.toFixed(1)}% in ${ml(N.industry_month)}. ` : '') +
+      `These are economy-wide benchmarks, not measures of how hard particular positions are to fill. More on the <a href="./#now">dashboard</a>, including <a href="./#industries">openings by industry</a>.`;
+  } catch (e) { /* keep the static paragraph */ }
+})();
+
+(async () => {
+  const d = await (await fetch('data/news.json', { cache: 'no-store' })).json();
+  const showDrafts = new URLSearchParams(location.search).has('drafts');
+  GROUPS = d.groups; S = d.stories.filter((s) => s.status === 'reviewed' || showDrafts);
+const sorted = [...S].sort((a, b) => b.date.localeCompare(a.date));
+document.getElementById("stories").innerHTML = sorted.map(storyHTML).join("");
+
+const fill = (id, vals, labels) => { const sel = document.getElementById(id); [...new Set(vals)].sort().forEach((v) => sel.insertAdjacentHTML("beforeend", `<option value="${esc(v)}">${esc(labels ? labels[v] : v)}</option>`)); };
+fill("f-role", S.flatMap((s) => s.roles));
+fill("f-measure", S.map((s) => s.measureCat));
+fill("f-rate", S.map((s) => s.rate), RATE_LABEL);
+fill("f-level", S.map((s) => s.level));
+
+function apply() {
+  const role = document.getElementById("f-role").value, m = document.getElementById("f-measure").value, r = document.getElementById("f-rate").value, l = document.getElementById("f-level").value;
+  let n = 0;
+  document.querySelectorAll(".story").forEach((li) => {
+    const on = (!role || li.dataset.roles.split("|").includes(role)) && (!m || li.dataset.measure === m) && (!r || li.dataset.rate === r) && (!l || li.dataset.level === l);
+    li.hidden = !on; n += on;
+  });
+  document.getElementById("count").textContent = `${n} of ${S.length} stories shown, newest first.`;
+}
+// Reveal an entry hidden by filters: clear only the filters that exclude it, then scroll to it.
+function reveal(id) {
+  const li = document.getElementById(id);
+  if (!li || !li.classList.contains("story")) return;
+  if (li.hidden) {
+    const sel = (x) => document.getElementById(x);
+    if (sel("f-role").value && !li.dataset.roles.split("|").includes(sel("f-role").value)) sel("f-role").value = "";
+    if (sel("f-measure").value && li.dataset.measure !== sel("f-measure").value) sel("f-measure").value = "";
+    if (sel("f-rate").value && li.dataset.rate !== sel("f-rate").value) sel("f-rate").value = "";
+    if (sel("f-level").value && li.dataset.level !== sel("f-level").value) sel("f-level").value = "";
+    apply();
+  }
+  li.scrollIntoView();
+}
+document.querySelectorAll(".news-filters select").forEach((s) => s.addEventListener("change", apply));
+document.getElementById("stories").addEventListener("click", (e) => {
+  const a = e.target.closest('a[href^="#story-"]');
+  if (!a) return;
+  e.preventDefault();
+  history.pushState(null, "", a.getAttribute("href"));
+  reveal(a.getAttribute("href").slice(1));
+});
+window.addEventListener("hashchange", () => reveal(location.hash.slice(1)));
+apply();
+if (location.hash.startsWith("#story-")) reveal(location.hash.slice(1));
+})();
+</script>
+</body>
+</html>
