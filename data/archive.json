@@ -1,6 +1,6 @@
 {
  "_readme": "Wayback Machine copies of the sources the dashboard cites, made by scripts/archive_sources.py. method: 'saved' = a fresh copy was made; 'existing copy' = a new save did not succeed (the site or the Archive's save service declined or timed out), so the most recent earlier copy is used; 'is an archived copy' = the citation itself is a Wayback copy; 'not archived' = no public copy was found (these sources are preserved privately); 'DOI (not archived)' = DOI citations keep their persistent links.",
- "updated": "2026-10-24",
+ "updated": "2026-10-29",
  "links": {
   "https://www.isbe.net/Pages/Unfilled-Positions-Archive.aspx": {
    "archive_url": "https://web.archive.org/web/20261010164735/https://www.isbe.net/Pages/Unfilled-Positions-Archive.aspx",
@@ -150,6 +150,11 @@
   "https://www.education.ne.gov/wp-content/uploads/2026/01/2025-TVS-Summary-Final-.pdf": {
    "archive_url": "https://web.archive.org/web/20260608120731/https://www.education.ne.gov/wp-content/uploads/2026/01/2025-TVS-Summary-Final-.pdf",
    "archived": "2026-06-08",
+   "method": "saved"
+  },
+  "https://www.bls.gov/oes/2025/may/oessrci.htm": {
+   "archive_url": "https://web.archive.org/web/20261021150015/https://www.bls.gov/oes/2025/may/oessrci.htm",
+   "archived": "2026-10-21",
    "method": "saved"
   },
   "https://www.isbe.net/pages/illinois-state-report-card-data.aspx": {
