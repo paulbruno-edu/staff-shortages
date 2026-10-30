@@ -1094,6 +1094,8 @@
     host.replaceChildren();
     stackBlock(host, parts, jol);
     host.append(stackLegend(parts));
+    const ts = $('#ind-teach-share');
+    if (ts) ts.replaceChildren(` By a rough estimate, K-12 teachers account for about ${Math.round(kShare * tShare * 100)}% of the industry's jobs (`, el('a', { href: '#fig-comp', text: 'see the composition illustration' }), ').');
     $('#comp-note').textContent = `An illustration, not a count of teacher vacancies. Local government, used here as a stand-in for K-12, is ${Math.round(kShare * 100)}% of state & local education payroll jobs (CES, ${monthLabel(N.latest_month)}); teachers are ${(tShare * 100).toFixed(1)}% of public K-12 staff FTE (NCES CCD, ${c.nces_year}), so the calculation also mixes jobs with FTE. Its main point is that teachers are a minority of what the JOLTS education line covers. It assumes every group has the same vacancy rate, which is unlikely: rates differ by role (see the School Pulse Panel figures above), in directions that depend on both turnover and how long positions stay open.`;
   }
 
