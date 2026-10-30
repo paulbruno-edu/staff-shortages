@@ -1,0 +1,60 @@
+name: Archive cited sources
+
+# After a push that changes the pages or data files, asks the Internet Archive to
+# save any newly cited link (scripts/archive_sources.py) and commits the updated
+# data/archive.json. Links already archived are skipped, so most runs finish
+# quickly. Links that could not be archived are listed in the run summary.
+# Pushes made by this workflow do not trigger it again.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "*.html"
+      - "data/*.json"
+      - "!data/archive.json"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: archive-sources
+  cancel-in-progress: false
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Archive new links
+        run: |
+          python scripts/archive_sources.py | tee archive.log
+          { echo '```'; tail -n 20 archive.log; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit if a link was archived
+        run: |
+          # archive.json records today's date on every run; commit only when a link's entry changed.
+          git show HEAD:data/archive.json > /tmp/old_archive.json
+          if python - <<'EOF'
+          import json, sys
+          old = json.load(open("/tmp/old_archive.json"))["links"]
+          new = json.load(open("data/archive.json"))["links"]
+          sys.exit(0 if old != new else 1)
+          EOF
+          then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/archive.json
+            git commit -m "Archive new cited sources"
+            # Another workflow may have pushed meanwhile.
+            git pull --rebase
+            git push
+          else
+            echo "No new archived links."
+          fi

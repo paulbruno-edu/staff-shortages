@@ -32,6 +32,7 @@ It is a static site: plain HTML/CSS/JS, with no build step and no server, hosted
 | `scripts/fetch_staffing.py` | Pulls the newest edition of NCES Digest Table 213.10 (staff by type and pupils per staff member). Needs `openpyxl`. |
 | `data/composition.json` | Employment composition of state & local education (BLS OEWS, by hand once a year), for the "Who works in state & local education" chart. Separate from `data/states.json` so that updating it does not change the state-data date. |
 | `assets/analytics.js` | GoatCounter visitor counts (no cookies): page views, chart CSV downloads, and clicks on outside links. The site code is set at the top of the file. |
+| `.github/workflows/archive-sources.yml`, `.github/workflows/monthly-checklist.yml`, `scripts/monthly_checklist.py` | Automatic Wayback archiving of newly cited links after each push, and a monthly GitHub issue listing that month's by-hand maintenance (calendar in the script). |
 | `.github/workflows/update-data.yml` | Runs the three fetch scripts on Tuesdays and Fridays and commits only when a value changes. |
 | `scripts/stamp_dates.py`, `.github/workflows/stamp-dates.yml` | After a push that changes `data/states.json` or `data/state_inventory.json`, sets the file's date (`updated` or `as_of`) to the push date (U.S. Central time), unless it was already changed by hand, and commits it. Pull before editing again. |
 | `PUBLISHING.md` | Step-by-step guide to putting the site online and keeping it updated. |
@@ -86,6 +87,7 @@ Where to look each year:
 | South Carolina | Winter/spring | CERRA Educator Supply & Demand data tables (Table 5) |
 | Colorado | Spring/summer | CDE Educator Shortage Survey results page and workbook |
 | Nebraska | January | NDE Teacher Vacancy Survey summary |
+| Maryland | February (State Board); October (first-day count) | MSDE State Board workforce presentation for first-day teacher vacancies; the new school year's count is usually announced in October. The October teacher count (the rate's denominator) comes from MSDE's Professional Staff by Assignment report, usually out by spring. Rate is computed. |
 
 **Employment composition (once a year, spring):** check whether BLS has published a new year of Occupational Employment and Wage Statistics (OEWS) estimates (usually late March or April, for May of the previous year). If so, update `data/composition.json` from the national industry-by-ownership tables, following its `_note`, set `reference` to the new estimates' date, and update the figures in the provenance page's "Employment composition" row. Do not change `reference` without new data.
 
@@ -97,8 +99,10 @@ Where to look each year:
 The October JOLTS benchmarks on the state panels come from the automated national pull, so a new school year's benchmark appears once BLS publishes October data (early December).
 
 **Source archiving.** Cited sources disappear or move (Idaho's pipeline report PDF already has). Three safeguards:
-- **Wayback copies.** After adding or changing a source link, run `python scripts/archive_sources.py`. It asks the Internet Archive to save each new link (about a minute per link) and records the copy in `data/archive.json`; the pages then show an "(archived)" link. Links the Archive refuses are listed at the end: save those by hand at web.archive.org, or keep a private copy.
+- **Wayback copies.** `.github/workflows/archive-sources.yml` runs `scripts/archive_sources.py` after any push that changes the pages or data files. It asks the Internet Archive to save each new link (about a minute per link), records the copy in `data/archive.json`, and commits it; the pages then show an "(archived)" link. Links the Archive refuses are listed in the run summary: save those by hand at web.archive.org, or keep a private copy. The script can also be run locally.
 - **Monthly link check.** `.github/workflows/check-links.yml` runs `scripts/check_links.py` on the 3rd of each month. A dead link (404, 410, or a missing server) or a server error on two tries fails the run, for cited links and their archived copies alike, and GitHub emails you; the log lists each problem link with its archived copy. Sites that block automated checks are listed but do not fail the run.
 - **Private copies.** Run `python scripts/download_sources.py` to save any new cited PDFs and spreadsheets to `..\staff-shortages-sources\`, with a manifest of URLs, dates, and checksums. Files already saved are kept. Sites that block downloads (Arizona's and New Hampshire's) need saving by hand; the script lists them.
+
+**Reminders.** Two schedules keep the by-hand work from being forgotten. `.github/workflows/monthly-checklist.yml` opens a GitHub issue on the 1st of each month listing that month's work; the calendar is in `scripts/monthly_checklist.py`, so update it when a source's timing changes. A monthly maintenance task in the Claude app (on the 2nd) checks the sources due that month and records new releases in `maintenance-log.md` (local, not in git) for review; it never edits the site or commits.
 
 **Adding a state:** add an object to `states` in `data/states.json`, with the same shape as the others, including `tier` (`snapshot` or `different`) and a `measure` block. The page draws a panel for it automatically. Move the state from `candidate` to `included` in `data/state_inventory.json`.
