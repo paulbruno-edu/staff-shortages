@@ -1,6 +1,6 @@
 {
   "_readme": "Hand-curated state data. Update once a year as states publish. 'panel_note', if present, is shown on the state's chart panel; 'rate_qualifier' is added to the basis of computed rates in the table and chart. 'updated' is set automatically when this file's content changes (.github/workflows/stamp-dates.yml). Rate rule: if rate_published is set, it is shown as published; otherwise the page computes unfilled / (unfilled + filled) or unfilled / total from the components given here. 'basis' overrides the basis label. 'sy' is the school year a figure describes (used for plotting); 'agency_label' records the agency's own year label when it differs. 'measure' documents what each state counts; 'tier' is the comparability group shown on the page. Never enter an estimate: leave a value out and explain why in 'note'.",
-  "updated": "2026-10-29",
+  "updated": "2026-10-24",
   "states": [
     {
       "id": "IL",
@@ -698,15 +698,6 @@
       "2023-24"
     ],
     "filled_school_year_note": "The school year each 'filled' value describes. Filled counts come from ISBE's staff records (EIS), which ISBE finalizes after the year ends, so ISBE pairs each year's unfilled FTE with the prior year's filled FTE: the SY23 row's filled count is 2021-22's (the same as SY22's), SY24's is 2022-23's, and SY25's is 2023-24's."
-  },
-  "composition": {
-    "_note": "Employment composition of state & local education: BLS OEWS national industry-by-ownership estimates, state and local government ownership combined. Calculated here; BLS does not publish these shares. total_jobs = Educational Services (NAICS 611000), state- plus locally owned, all occupations; k12_jobs = Elementary and Secondary Schools (611100), state- plus locally owned; k12_teachers = SOC 25-2000 (preschool, elementary, middle, secondary, and special education teachers) minus 25-2011 (preschool teachers) and 25-2051 (preschool special education teachers) in those schools; k12_short_term_subs = SOC 25-3031 in those schools, counted under other K-12 staff. Update when BLS publishes the next OEWS round (usually spring) and set 'reference' to the data entered; do not advance it otherwise.",
-    "reference": "May 2025",
-    "source_url": "https://www.bls.gov/oes/2025/may/oessrci.htm",
-    "total_jobs": 10507170,
-    "k12_jobs": 7908230,
-    "k12_teachers": 3395120,
-    "k12_short_term_subs": 374290
   },
   "national_measures": [
     {

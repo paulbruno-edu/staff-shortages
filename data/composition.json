@@ -1,0 +1,9 @@
+{
+  "_note": "Employment composition of state & local education: BLS OEWS national industry-by-ownership estimates, state and local government ownership combined. Calculated here; BLS does not publish these shares. total_jobs = Educational Services (NAICS 611000), state- plus locally owned, all occupations; k12_jobs = Elementary and Secondary Schools (611100), state- plus locally owned; k12_teachers = SOC 25-2000 (preschool, elementary, middle, secondary, and special education teachers) minus 25-2011 (preschool teachers) and 25-2051 (preschool special education teachers) in those schools; k12_short_term_subs = SOC 25-3031 in those schools, counted under other K-12 staff. Kept separate from states.json so that updating it does not change the state-data date. Update when BLS publishes the next OEWS round (usually spring) and set 'reference' to the data entered; do not advance it otherwise.",
+  "reference": "May 2025",
+  "source_url": "https://www.bls.gov/oes/2025/may/oessrci.htm",
+  "total_jobs": 10507170,
+  "k12_jobs": 7908230,
+  "k12_teachers": 3395120,
+  "k12_short_term_subs": 374290
+}

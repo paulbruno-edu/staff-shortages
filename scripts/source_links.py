@@ -10,7 +10,7 @@ import os
 import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_FILES = ["data/states.json", "data/state_inventory.json", "data/spp.json", "data/staffing.json", "data/reading.json", "data/news.json"]
+DATA_FILES = ["data/states.json", "data/state_inventory.json", "data/spp.json", "data/staffing.json", "data/reading.json", "data/news.json", "data/composition.json"]
 PAGES = ["index.html", "provenance.html", "reading.html", "news.html"]
 SELF = ("shortages.paul-bruno.com", "www.paul-bruno.com", "paul-bruno.com")
 

@@ -30,6 +30,7 @@ It is a static site: plain HTML/CSS/JS, with no build step and no server, hosted
 | `data/archive.json` | Wayback Machine copies of every cited source, made by `scripts/archive_sources.py`. The pages show them as "(archived)" links. |
 | `scripts/source_links.py`, `scripts/archive_sources.py`, `scripts/check_links.py`, `scripts/download_sources.py` | Source archiving: collect every cited link; save Wayback copies; check links monthly (`.github/workflows/check-links.yml`); save private copies of source files. Standard library only. |
 | `scripts/fetch_staffing.py` | Pulls the newest edition of NCES Digest Table 213.10 (staff by type and pupils per staff member). Needs `openpyxl`. |
+| `data/composition.json` | Employment composition of state & local education (BLS OEWS, by hand once a year), for the "Who works in state & local education" chart. Separate from `data/states.json` so that updating it does not change the state-data date. |
 | `assets/analytics.js` | GoatCounter visitor counts (no cookies): page views, chart CSV downloads, and clicks on outside links. The site code is set at the top of the file. |
 | `.github/workflows/update-data.yml` | Runs the three fetch scripts on Tuesdays and Fridays and commits only when a value changes. |
 | `scripts/stamp_dates.py`, `.github/workflows/stamp-dates.yml` | After a push that changes `data/states.json` or `data/state_inventory.json`, sets the file's date (`updated` or `as_of`) to the push date (U.S. Central time), unless it was already changed by hand, and commits it. Pull before editing again. |
@@ -86,7 +87,7 @@ Where to look each year:
 | Colorado | Spring/summer | CDE Educator Shortage Survey results page and workbook |
 | Nebraska | January | NDE Teacher Vacancy Survey summary |
 
-**Employment composition (once a year, spring):** check whether BLS has published a new year of Occupational Employment and Wage Statistics (OEWS) estimates (usually late March or April, for May of the previous year). If so, update `composition` in `data/states.json` from the national industry-by-ownership tables, following its `_note`, set `reference` to the new estimates' date, and update the figures in the provenance page's "Employment composition" row. Do not change `reference` without new data.
+**Employment composition (once a year, spring):** check whether BLS has published a new year of Occupational Employment and Wage Statistics (OEWS) estimates (usually late March or April, for May of the previous year). If so, update `data/composition.json` from the national industry-by-ownership tables, following its `_note`, set `reference` to the new estimates' date, and update the figures in the provenance page's "Employment composition" row. Do not change `reference` without new data.
 
 **50-state inventory (once a year, ideally late summer):** re-check every state in `data/state_inventory.json` using the protocol recorded in that file. In short, search each state agency's own site for vacancy data, read anything found, classify it, and record the evidence links. Then compare with the Learning Policy Institute's annual scan (published each July) as a cross-check, never as the source. States to watch:
 - **Ohio** and **Texas:** new laws require vacancy collections starting in 2026-27; Ohio must publish its results.

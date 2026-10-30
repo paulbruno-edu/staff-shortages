@@ -392,13 +392,13 @@
   }
 
   // ---------------------------------------------------------------- page
-  let N, S, P, I, T; // national, state, School Pulse Panel, state inventory, NCES staffing
+  let N, S, P, I, T, C; // national, state, School Pulse Panel, state inventory, NCES staffing, employment composition
 
   async function load() {
     const get = (u) => fetch(u, { cache: 'no-cache' }).then((r) => { if (!r.ok) throw new Error(`${u}: ${r.status}`); return r.json(); });
     // The SPP and inventory files are optional: the page renders without them.
     const opt = (u) => get(u).catch((e) => { console.warn(e); return null; });
-    [N, S, P, I, T] = await Promise.all([get('data/national.json'), get('data/states.json'), opt('data/spp.json'), opt('data/state_inventory.json'), opt('data/staffing.json')]);
+    [N, S, P, I, T, C] = await Promise.all([get('data/national.json'), get('data/states.json'), opt('data/spp.json'), opt('data/state_inventory.json'), opt('data/staffing.json'), opt('data/composition.json')]);
   }
 
   const ser = (k) => N.series[k];
@@ -1075,7 +1075,8 @@
   }
 
   function renderComposition() {
-    const c = S.composition;
+    const c = C;
+    if (!c) { $('#fig-comp').hidden = true; return; }
     const parts = [
       { label: 'K-12 teachers', value: c.k12_teachers, color: 'var(--s1)' },
       { label: 'Other K-12 staff, including short-term substitute teachers', value: c.k12_jobs - c.k12_teachers, color: 'var(--s3)' },
