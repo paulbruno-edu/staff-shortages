@@ -700,10 +700,13 @@
     "filled_school_year_note": "The school year each 'filled' value describes. Filled counts come from ISBE's staff records (EIS), which ISBE finalizes after the year ends, so ISBE pairs each year's unfilled FTE with the prior year's filled FTE: the SY23 row's filled count is 2021-22's (the same as SY22's), SY24's is 2022-23's, and SY25's is 2023-24's."
   },
   "composition": {
-    "_note": "Constants for the modeled split of state & local education openings. K-12 vs higher-ed shares come live from CES (local vs state government education employment). Teacher share of K-12 staff is NCES CCD fall 2022 (Digest Table 213.20, United States row; verified 2026-10-10).",
-    "nces_year": "fall 2022",
-    "nces_total_k12_staff_fte": 6795470,
-    "nces_teacher_fte": 3228895
+    "_note": "Employment composition of state & local education: BLS OEWS national industry-by-ownership estimates, state and local government ownership combined. Calculated here; BLS does not publish these shares. total_jobs = Educational Services (NAICS 611000), state- plus locally owned, all occupations; k12_jobs = Elementary and Secondary Schools (611100), state- plus locally owned; k12_teachers = SOC 25-2000 (preschool, elementary, middle, secondary, and special education teachers) minus 25-2011 (preschool teachers) and 25-2051 (preschool special education teachers) in those schools; k12_short_term_subs = SOC 25-3031 in those schools, counted under other K-12 staff. Update when BLS publishes the next OEWS round (usually spring) and set 'reference' to the data entered; do not advance it otherwise.",
+    "reference": "May 2025",
+    "source_url": "https://www.bls.gov/oes/2025/may/oessrci.htm",
+    "total_jobs": 10507170,
+    "k12_jobs": 7908230,
+    "k12_teachers": 3395120,
+    "k12_short_term_subs": 374290
   },
   "national_measures": [
     {

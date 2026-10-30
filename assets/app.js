@@ -1075,28 +1075,24 @@
   }
 
   function renderComposition() {
-    const L = N.months.length - 1;
-    const jol = ser('SLED_JOL')[L];
-    const loc = ser('CES9093161101')[L], st = ser('CES9092161101')[L];
     const c = S.composition;
-    const kShare = loc / (loc + st);
-    const tShare = c.nces_teacher_fte / c.nces_total_k12_staff_fte;
-    const k12 = jol * kShare;
     const parts = [
-      { label: 'K-12 teachers', value: k12 * tShare, color: 'var(--s1)' },
-      { label: 'Other K-12 staff (aides, support, administrators…)', value: k12 * (1 - tShare), color: 'var(--s3)' },
-      { label: 'Higher education, all roles', value: jol * (1 - kShare), color: 'var(--s2)' },
+      { label: 'K-12 teachers', value: c.k12_teachers, color: 'var(--s1)' },
+      { label: 'Other K-12 staff, including short-term substitute teachers', value: c.k12_jobs - c.k12_teachers, color: 'var(--s3)' },
+      { label: 'Higher education and other public education', value: c.total_jobs - c.k12_jobs, color: 'var(--s2)' },
     ];
-    // Shares only: an absolute "teacher openings" figure would invite being quoted as a count.
-    parts.forEach((p) => { p.text = `${Math.round((p.value / jol) * 100)}%`; p.note = 'Illustration under equal vacancy rates, not a count.'; });
-    $('#comp-sub').textContent = `Illustration: how ${monthLabel(N.latest_month, true)}'s state & local education openings would divide if every group had the same vacancy rate. Shares, not counts`;
+    parts.forEach((p) => { p.text = `${Math.round((p.value / c.total_jobs) * 100)}%`; p.note = `Share of state & local education jobs, BLS OEWS, ${c.reference}.`; });
+    $('#comp-sub').textContent = `Shares of state & local education jobs, ${c.reference} (BLS Occupational Employment and Wage Statistics)`;
     const host = $('#chart-comp');
     host.replaceChildren();
-    stackBlock(host, parts, jol);
+    stackBlock(host, parts, c.total_jobs);
     host.append(stackLegend(parts));
+    const share = c.k12_teachers / c.total_jobs;
     const ts = $('#ind-teach-share');
-    if (ts) ts.replaceChildren(` By a rough estimate, K-12 teachers account for about ${Math.round(kShare * tShare * 100)}% of the industry's jobs (`, el('a', { href: '#fig-comp', text: 'see the composition illustration' }), ').');
-    $('#comp-note').textContent = `An illustration, not a count of teacher vacancies. Local government, used here as a stand-in for K-12, is ${Math.round(kShare * 100)}% of state & local education payroll jobs (CES, ${monthLabel(N.latest_month)}); teachers are ${(tShare * 100).toFixed(1)}% of public K-12 staff FTE (NCES CCD, ${c.nces_year}), so the calculation also mixes jobs with FTE. Its main point is that teachers are a minority of what the JOLTS education line covers. It assumes every group has the same vacancy rate, which is unlikely: rates differ by role (see the School Pulse Panel figures above), in directions that depend on both turnover and how long positions stay open.`;
+    if (ts) ts.replaceChildren(` K-12 teachers hold ${share > 0.29 && share < 0.37 ? 'roughly one-third' : `about ${Math.round(share * 100)}%`} of the industry's jobs, based on BLS OEWS estimates for ${c.reference} (`, el('a', { href: '#fig-comp', text: 'see the composition chart' }), ').');
+    $('#comp-note').replaceChildren(
+      `K-12 teachers are public elementary, middle, secondary, kindergarten, and special education teachers, not preschool teachers. Short-term substitute teachers (about ${((c.k12_short_term_subs / c.total_jobs) * 100).toFixed(1)}% of the industry's jobs) are counted under other K-12 staff; long-term substitutes in regular teaching roles are counted as teachers. These are shares of jobs, not of openings: they show who works in the industry, not where its vacancies are. `,
+      el('a', { href: 'provenance.html#derived', text: 'How these shares are calculated' }), '.');
   }
 
   function renderNebraska() {

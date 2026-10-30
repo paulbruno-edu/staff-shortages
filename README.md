@@ -86,6 +86,8 @@ Where to look each year:
 | Colorado | Spring/summer | CDE Educator Shortage Survey results page and workbook |
 | Nebraska | January | NDE Teacher Vacancy Survey summary |
 
+**Employment composition (once a year, spring):** check whether BLS has published a new year of Occupational Employment and Wage Statistics (OEWS) estimates (usually late March or April, for May of the previous year). If so, update `composition` in `data/states.json` from the national industry-by-ownership tables, following its `_note`, set `reference` to the new estimates' date, and update the figures in the provenance page's "Employment composition" row. Do not change `reference` without new data.
+
 **50-state inventory (once a year, ideally late summer):** re-check every state in `data/state_inventory.json` using the protocol recorded in that file. In short, search each state agency's own site for vacancy data, read anything found, classify it, and record the evidence links. Then compare with the Learning Policy Institute's annual scan (published each July) as a cross-check, never as the source. States to watch:
 - **Ohio** and **Texas:** new laws require vacancy collections starting in 2026-27; Ohio must publish its results.
 - **Alaska:** checked by hand in October 2026 and left off the dashboard, because it counts positions held by someone without a valid Alaska certificate as vacant. Re-check if the department starts reporting truly empty positions separately.
