@@ -1,6 +1,6 @@
 {
  "_readme": "Wayback Machine copies of the sources the dashboard cites, made by scripts/archive_sources.py. method: 'saved' = a fresh copy was made; 'existing copy' = a new save did not succeed (the site or the Archive's save service declined or timed out), so the most recent earlier copy is used; 'is an archived copy' = the citation itself is a Wayback copy; 'not archived' = no public copy was found (these sources are preserved privately); 'DOI (not archived)' = DOI citations keep their persistent links.",
- "updated": "2026-10-29",
+ "updated": "2026-10-31",
  "links": {
   "https://www.isbe.net/Pages/Unfilled-Positions-Archive.aspx": {
    "archive_url": "https://web.archive.org/web/20261010164735/https://www.isbe.net/Pages/Unfilled-Positions-Archive.aspx",
@@ -152,11 +152,6 @@
    "archived": "2026-06-08",
    "method": "saved"
   },
-  "https://www.bls.gov/oes/2025/may/oessrci.htm": {
-   "archive_url": "https://web.archive.org/web/20261021150015/https://www.bls.gov/oes/2025/may/oessrci.htm",
-   "archived": "2026-10-21",
-   "method": "saved"
-  },
   "https://www.isbe.net/pages/illinois-state-report-card-data.aspx": {
    "archive_url": "https://web.archive.org/web/20261010170058/https://www.isbe.net/pages/illinois-state-report-card-data.aspx",
    "archived": "2026-10-10",
@@ -272,6 +267,11 @@
    "archived": "2026-10-10",
    "method": "saved"
   },
+  "https://www.nd.gov/dpi/news/critical-teacher-shortage-areas": {
+   "archive_url": "https://web.archive.org/web/20261031205058/https://www.nd.gov/dpi/news/critical-teacher-shortage-areas",
+   "archived": "2026-10-31",
+   "method": "saved"
+  },
   "https://ndus.edu/new-data-collection-shines-light-on-broader-school-staff-shortages": {
    "archive_url": "https://web.archive.org/web/20261010171742/https://ndus.edu/new-data-collection-shines-light-on-broader-school-staff-shortages",
    "archived": "2026-10-10",
@@ -337,9 +337,19 @@
    "archived": "2026-10-10",
    "method": "saved"
   },
+  "https://alliance.nmsu.edu/soar-center/2026-New-Mexico-Educator-Vacancy-Report.pdf": {
+   "archive_url": null,
+   "archived": null,
+   "method": "not archived"
+  },
   "https://alliance.nmsu.edu/soar-center/2025-New-Mexico-Educator-Vacancy-Report.pdf": {
    "archive_url": "https://web.archive.org/web/20261010172513/https://alliance.nmsu.edu/soar-center/2025-New-Mexico-Educator-Vacancy-Report.pdf",
    "archived": "2026-10-10",
+   "method": "saved"
+  },
+  "https://newsroom.nmsu.edu/news/nmsu-study-finds-decrease-in-teacher-vacancies-in-2024/s/dddf82c3-1619-4093-96dc-dc6f0820c4f9": {
+   "archive_url": "https://web.archive.org/web/20261031205552/https://newsroom.nmsu.edu/news/nmsu-study-finds-decrease-in-teacher-vacancies-in-2024/s/dddf82c3-1619-4093-96dc-dc6f0820c4f9",
+   "archived": "2026-10-31",
    "method": "saved"
   },
   "https://www.alabamaachieves.org/reports-data/educator-data/teacher-shortage-data/": {
@@ -730,6 +740,91 @@
   "https://abcnews4.com/news/local/berkeley-county-parents-frustrated-as-school-bus-delays-missed-stops-continue": {
    "archive_url": "https://web.archive.org/web/20261024153153/https://abcnews4.com/news/local/berkeley-county-parents-frustrated-as-school-bus-delays-missed-stops-continue",
    "archived": "2026-10-24",
+   "method": "saved"
+  },
+  "https://www.yahoo.com/news/articles/waterford-schools-cancels-bus-routes-130323779.html": {
+   "archive_url": "https://web.archive.org/web/20261031205710/https://www.yahoo.com/news/articles/waterford-schools-cancels-bus-routes-130323779.html",
+   "archived": "2026-10-31",
+   "method": "saved"
+  },
+  "https://www.cbsnews.com/detroit/news/waterford-school-district-bus-driver-shortage/": {
+   "archive_url": null,
+   "archived": null,
+   "method": "not archived"
+  },
+  "https://www.wtrf.com/top-stories/driver-shortage-forces-indian-creek-to-cut-six-bus-routes/": {
+   "archive_url": null,
+   "archived": null,
+   "method": "not archived"
+  },
+  "https://www.wboc.com/news/bus-drivers-needed-talbot-county-school-bus-driver-shortage-leads-to-route-changes-longer-rides/article_d1d8fde0-343a-46e1-b5cc-207b1aeca609.html": {
+   "archive_url": "https://web.archive.org/web/20261031210405/https://www.wboc.com/news/bus-drivers-needed-talbot-county-school-bus-driver-shortage-leads-to-route-changes-longer-rides/article_d1d8fde0-343a-46e1-b5cc-207b1aeca609.html",
+   "archived": "2026-10-31",
+   "method": "existing copy"
+  },
+  "https://amherstbulletin.com/2026/10/27/amid-bus-driver-shortage-amherst-schools-eye-reduction-of-morning-stops/": {
+   "archive_url": null,
+   "archived": null,
+   "method": "not archived"
+  },
+  "https://www.amherstindy.org/2026/10/30/remedy-for-school-transportation-woes-in-process-with-changes-coming-november-30/": {
+   "archive_url": "https://web.archive.org/web/20261031211115/https://www.amherstindy.org/2026/10/30/remedy-for-school-transportation-woes-in-process-with-changes-coming-november-30/",
+   "archived": "2026-10-31",
+   "method": "saved"
+  },
+  "https://ksat.com/news/local/2026/10/28/northside-isd-parent-says-bus-waits-exceed-2-hours-for-magnet-school-student": {
+   "archive_url": "https://web.archive.org/web/20261031211231/https://www.ksat.com/news/local/2026/10/28/northside-isd-parent-says-bus-waits-exceed-2-hours-for-magnet-school-student/",
+   "archived": "2026-10-31",
+   "method": "saved"
+  },
+  "https://wsoctv.com/news/local/proposed-bus-route-changes-postponed-cms-seeks-community-feedback/DCQOMK4MKRBQLHKUDKCIPFMJUA": {
+   "archive_url": "https://web.archive.org/web/20261031211423/https://www.wsoctv.com/news/local/proposed-bus-route-changes-postponed-cms-seeks-community-feedback/DCQOMK4MKRBQLHKUDKCIPFMJUA/",
+   "archived": "2026-10-31",
+   "method": "existing copy"
+  },
+  "https://www.yahoo.com/news/articles/bcps-struggles-substitute-teacher-shortage-090500441.html": {
+   "archive_url": "https://web.archive.org/web/20261031211627/https://www.yahoo.com/news/articles/bcps-struggles-substitute-teacher-shortage-090500441.html",
+   "archived": "2026-10-31",
+   "method": "saved"
+  },
+  "https://foxbaltimore.com/news/local/bcps-struggles-substitute-teacher-shortage-after-dropping-contractor": {
+   "archive_url": "https://web.archive.org/web/20261031211724/https://foxbaltimore.com/news/local/bcps-struggles-substitute-teacher-shortage-after-dropping-contractor",
+   "archived": "2026-10-31",
+   "method": "existing copy"
+  },
+  "https://news.prairiepublic.org/local-news/2026-10-27/survey-shows-unfilled-teaching-positions-in-a-number-of-schools": {
+   "archive_url": "https://web.archive.org/web/20261031211939/https://news.prairiepublic.org/local-news/2026-10-27/survey-shows-unfilled-teaching-positions-in-a-number-of-schools",
+   "archived": "2026-10-31",
+   "method": "saved"
+  },
+  "https://news.prairiepublic.org/local-news/2026-10-30/bismarck-school-superintendent-there-are-areas-of-teacher-shortages": {
+   "archive_url": "https://web.archive.org/web/20261031212005/https://news.prairiepublic.org/local-news/2026-10-30/bismarck-school-superintendent-there-are-areas-of-teacher-shortages",
+   "archived": "2026-10-31",
+   "method": "existing copy"
+  },
+  "https://www.yahoo.com/news/us/articles/santa-fe-public-schools-grapples-035900923.html": {
+   "archive_url": "https://web.archive.org/web/20261031212208/https://www.yahoo.com/news/us/articles/santa-fe-public-schools-grapples-035900923.html",
+   "archived": "2026-10-31",
+   "method": "saved"
+  },
+  "https://www.npr.org/2026/10/26/nx-s1-6000653/special-education-teacher-shortage": {
+   "archive_url": "https://web.archive.org/web/20261031212321/https://www.npr.org/2026/10/26/nx-s1-6000653/special-education-teacher-shortage",
+   "archived": "2026-10-31",
+   "method": "saved"
+  },
+  "https://learningpolicyinstitute.org/product/teacher-shortages-subjects-across-states-factsheet": {
+   "archive_url": "https://web.archive.org/web/20261009062116/https://learningpolicyinstitute.org/product/teacher-shortages-subjects-across-states-factsheet",
+   "archived": "2026-10-09",
+   "method": "existing copy"
+  },
+  "https://sparccenter.org/research-findings/impact-10000-bonus-special-education-teacher-shortages-hawaii-0": {
+   "archive_url": null,
+   "archived": null,
+   "method": "not archived"
+  },
+  "https://www.bls.gov/oes/2025/may/oessrci.htm": {
+   "archive_url": "https://web.archive.org/web/20261021150015/https://www.bls.gov/oes/2025/may/oessrci.htm",
+   "archived": "2026-10-21",
    "method": "saved"
   },
   "https://jhr.uwpress.org/content/42/4/765": {
