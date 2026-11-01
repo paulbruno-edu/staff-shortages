@@ -2,6 +2,7 @@
    in data/archive.json (made by scripts/archive_sources.py). Both pages build their source
    lists after loading data, so new links are picked up as they appear. DOI links are skipped
    (DOIs are designed to keep resolving), as are citations that are already archived copies.
+   Links the archive could not save get a "(no public archive available)" note instead.
    If archive.json is missing, nothing changes. */
 (async function () {
   let map;
@@ -15,8 +16,17 @@
   const decorate = (a) => {
     if (a.dataset.arch || a.classList.contains('arch')) return;
     const e = map[a.getAttribute('href')];
-    if (!e || !e.archive_url || /(^|\.)doi\.org$/.test(a.hostname) || a.hostname === 'web.archive.org') return;
+    if (!e || /(^|\.)doi\.org$/.test(a.hostname) || a.hostname === 'web.archive.org') return;
     a.dataset.arch = '1';
+    if (!e.archive_url) {
+      // Archiving was tried and failed (the site blocks it); say so, so the gap isn't read as an oversight.
+      const note = document.createElement('span');
+      note.className = 'arch';
+      note.title = 'The Internet Archive could not save this page; a private copy is kept so figures can be re-checked';
+      note.textContent = 'no public archive available';
+      a.after(document.createTextNode(' ('), note, document.createTextNode(')'));
+      return;
+    }
     const link = document.createElement('a');
     link.href = e.archive_url;
     link.className = 'arch';
