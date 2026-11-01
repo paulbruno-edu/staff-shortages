@@ -8,7 +8,8 @@ Files that cannot be downloaded automatically are listed at the end so they can 
 
 Files already saved are kept unless --refresh is given, so reruns only fetch new sources.
 
-Usage:  python scripts/download_sources.py [destination] [--refresh]   (default: ../staff-shortages-sources)
+Usage:  python scripts/download_sources.py [destination] [--refresh]
+        (default: the Google Drive folder in DEFAULT_DEST, so the copies are backed up off this machine)
 """
 
 import csv
@@ -25,6 +26,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from source_links import ROOT, collect  # noqa: E402
 
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130 Safari/537.36"}
+DEFAULT_DEST = r"C:\GoogleDrive\UIUC\Projects\staffshortagesdashboard\staff-shortages-sources"
 FILE_RE = re.compile(r"\.(pdf|xlsx?|csv|zip|docx?)(\?|#|$)|Download\.aspx\?SourceUrl=", re.I)
 
 # Files behind computed figures that the pages do not link directly.
@@ -52,7 +54,7 @@ def filename(url):
 
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
-    dest = os.path.abspath(args[0] if args else os.path.join(ROOT, "..", "staff-shortages-sources"))
+    dest = os.path.abspath(args[0] if args else DEFAULT_DEST)
     os.makedirs(dest, exist_ok=True)
     urls = [u for u in collect() if FILE_RE.search(u)] + [u for u in EXTRA]
     urls = list(dict.fromkeys(urls))

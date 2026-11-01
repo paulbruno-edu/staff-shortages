@@ -16,7 +16,7 @@ import sys
 EVERY_MONTH = [
     "Review the weekly news drafts (`news.html?drafts`); approve or drop each one.",
     "Check that this month's link check (the 3rd) passed; fix or re-point any dead links.",
-    "Check recent \"Archive cited sources\" runs for links that could not be archived; save those by hand at web.archive.org.",
+    "Check recent \"Archive cited sources\" runs for links that could not be archived; confirm each has a private copy in the Google Drive folder (README, \"Source archiving\").",
     "Read the maintenance task's findings in `maintenance-log.md` (local) and act on any new releases.",
     "Run `python scripts/download_sources.py` to keep private copies of newly cited PDFs and spreadsheets.",
 ]
