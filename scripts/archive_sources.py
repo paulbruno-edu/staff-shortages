@@ -2,7 +2,8 @@
 
 For each link cited by the dashboard (see scripts/source_links.py), asks the Internet Archive's
 "Save Page Now" service for a fresh copy. If that fails (some sites block archiving), it falls
-back to the most recent existing copy, if any. Links already archived are skipped unless
+back to the most recent existing copy, if any. Each copy is opened before it is recorded, since
+the Archive sometimes reports a copy that was never stored. Links already archived are skipped unless
 --refresh is given, so later runs only handle new sources.
 
 The free service is rate-limited and a save can take a minute, so a full first run takes a
@@ -17,6 +18,7 @@ import json
 import os
 import sys
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 
@@ -46,6 +48,29 @@ def save(url):
         except Exception:  # noqa: BLE001 - timeouts and resets: one more try
             time.sleep(15)
     return None
+
+
+def confirmed(snapshot_url, url):
+    """True if a snapshot address actually opens on a copy of the cited page.
+
+    Save Page Now (and the availability API) can return a snapshot address for a copy that
+    was never stored, which later shows as a 404, so each copy is opened before it is recorded.
+    A fresh copy can take a short while to appear, hence the retries.
+    """
+    for attempt in range(3):
+        if attempt:
+            time.sleep(30)
+        try:
+            req = urllib.request.Request(snapshot_url, headers=UA)
+            with urllib.request.urlopen(req, timeout=90) as r:
+                r.read(1024)
+                return same_page(r.geturl(), url)
+        except urllib.error.HTTPError as e:
+            if e.code not in (404, 429) and e.code < 500:
+                return False
+        except Exception:  # noqa: BLE001 - timeouts and resets: try again
+            pass
+    return False
 
 
 def same_page(snapshot_url, url):
@@ -105,8 +130,14 @@ def main():
             # copy of the cited page itself if there is one, and flag the link for checking.
             print(f"  REDIRECTED: {url} now leads to {snap.split('/web/', 1)[1].split('/', 1)[1]}; check the citation")
             snap = None
+        if snap and not confirmed(snap, url):
+            print(f"  save reported a copy that does not open: {snap}")
+            snap = None
         if not snap:
             snap, how = existing(url), "existing copy"
+            if snap and not confirmed(snap, url):
+                print(f"  listed copy does not open: {snap}")
+                snap = None
         archive[url] = {"archive_url": snap, "archived": stamp(snap) if snap else None,
                         "method": how if snap else "not archived"}
         print(f"[{n}/{len(todo)}] {archive[url]['method']}: {url}")

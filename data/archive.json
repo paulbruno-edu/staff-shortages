@@ -1,6 +1,6 @@
 {
  "_readme": "Wayback Machine copies of the sources the dashboard cites, made by scripts/archive_sources.py. method: 'saved' = a fresh copy was made; 'existing copy' = a new save did not succeed (the site or the Archive's save service declined or timed out), so the most recent earlier copy is used; 'is an archived copy' = the citation itself is a Wayback copy; 'not archived' = no public copy was found (these sources are preserved privately); 'DOI (not archived)' = DOI citations keep their persistent links.",
- "updated": "2026-10-31",
+ "updated": "2026-11-03",
  "links": {
   "https://www.isbe.net/Pages/Unfilled-Positions-Archive.aspx": {
    "archive_url": "https://web.archive.org/web/20261010164735/https://www.isbe.net/Pages/Unfilled-Positions-Archive.aspx",
@@ -682,7 +682,7 @@
    "archived": "2026-10-24",
    "method": "saved"
   },
-  "https://wilx.com/2026/10/14/after-school-sports-take-back-seat-michigan-school-bus-driver-shortages-persist": {
+  "https://www.wilx.com/2026/10/14/after-school-sports-take-back-seat-michigan-school-bus-driver-shortages-persist/": {
    "archive_url": "https://web.archive.org/web/20261024152309/https://www.wilx.com/2026/10/14/after-school-sports-take-back-seat-michigan-school-bus-driver-shortages-persist/",
    "archived": "2026-10-24",
    "method": "saved"
@@ -698,8 +698,8 @@
    "method": "saved"
   },
   "https://news.maryland.gov/msde/msde-announces-historic-declines-in-teacher-vacancy-rate/": {
-   "archive_url": "https://web.archive.org/web/20261024152618/https://news.maryland.gov/msde/msde-announces-historic-declines-in-teacher-vacancy-rate/",
-   "archived": "2026-10-24",
+   "archive_url": "https://web.archive.org/web/20261104003218/https://news.maryland.gov/msde/msde-announces-historic-declines-in-teacher-vacancy-rate/",
+   "archived": "2026-11-04",
    "method": "saved"
   },
   "https://www.thebanner.com/education/k-12-schools/maryland-teacher-shortage-ZET3KS7XKBDJDGIOCYXIRDJ2WY/": {
@@ -768,8 +768,8 @@
    "method": "existing copy"
   },
   "https://www.amherstindy.org/2026/10/30/remedy-for-school-transportation-woes-in-process-with-changes-coming-november-30/": {
-   "archive_url": "https://web.archive.org/web/20261031211115/https://www.amherstindy.org/2026/10/30/remedy-for-school-transportation-woes-in-process-with-changes-coming-november-30/",
-   "archived": "2026-10-31",
+   "archive_url": "https://web.archive.org/web/20261104003450/https://www.amherstindy.org/2026/10/30/remedy-for-school-transportation-woes-in-process-with-changes-coming-november-30/",
+   "archived": "2026-11-04",
    "method": "saved"
   },
   "https://ksat.com/news/local/2026/10/28/northside-isd-parent-says-bus-waits-exceed-2-hours-for-magnet-school-student": {
@@ -778,13 +778,13 @@
    "method": "saved"
   },
   "https://wsoctv.com/news/local/proposed-bus-route-changes-postponed-cms-seeks-community-feedback/DCQOMK4MKRBQLHKUDKCIPFMJUA": {
-   "archive_url": "https://web.archive.org/web/20261031211423/https://www.wsoctv.com/news/local/proposed-bus-route-changes-postponed-cms-seeks-community-feedback/DCQOMK4MKRBQLHKUDKCIPFMJUA/",
-   "archived": "2026-10-31",
-   "method": "existing copy"
+   "archive_url": "https://web.archive.org/web/20261104003558/https://www.wsoctv.com/news/local/proposed-bus-route-changes-postponed-cms-seeks-community-feedback/DCQOMK4MKRBQLHKUDKCIPFMJUA/",
+   "archived": "2026-11-04",
+   "method": "saved"
   },
   "https://www.yahoo.com/news/articles/bcps-struggles-substitute-teacher-shortage-090500441.html": {
-   "archive_url": "https://web.archive.org/web/20261031211627/https://www.yahoo.com/news/articles/bcps-struggles-substitute-teacher-shortage-090500441.html",
-   "archived": "2026-10-31",
+   "archive_url": "https://web.archive.org/web/20261104003711/https://www.yahoo.com/news/articles/bcps-struggles-substitute-teacher-shortage-090500441.html",
+   "archived": "2026-11-04",
    "method": "saved"
   },
   "https://foxbaltimore.com/news/local/bcps-struggles-substitute-teacher-shortage-after-dropping-contractor": {
@@ -798,9 +798,9 @@
    "method": "saved"
   },
   "https://news.prairiepublic.org/local-news/2026-10-30/bismarck-school-superintendent-there-are-areas-of-teacher-shortages": {
-   "archive_url": "https://web.archive.org/web/20261031212005/https://news.prairiepublic.org/local-news/2026-10-30/bismarck-school-superintendent-there-are-areas-of-teacher-shortages",
-   "archived": "2026-10-31",
-   "method": "existing copy"
+   "archive_url": "https://web.archive.org/web/20261104003843/https://news.prairiepublic.org/local-news/2026-10-30/bismarck-school-superintendent-there-are-areas-of-teacher-shortages",
+   "archived": "2026-11-04",
+   "method": "saved"
   },
   "https://www.yahoo.com/news/us/articles/santa-fe-public-schools-grapples-035900923.html": {
    "archive_url": "https://web.archive.org/web/20261031212208/https://www.yahoo.com/news/us/articles/santa-fe-public-schools-grapples-035900923.html",

@@ -7,7 +7,9 @@ error on both of two tries. Sites that refuse automated requests (401, 403, 429)
 listed as "could not check" but do not fail the run, since many agency sites block automated
 traffic. Links that now redirect to a different address are also listed, without failing the run:
 a redirect can mean a page simply moved, or that it now leads somewhere else entirely. For each
-problem link, prints the Wayback Machine copy from data/archive.json, if any.
+problem link, prints the Wayback Machine copy from data/archive.json, if any. If the Internet Archive
+stops answering partway through (it sometimes refuses or rate-limits GitHub's servers), the remaining
+archived copies are skipped and the run says so, rather than waiting on each one.
 
 Usage:  python scripts/check_links.py
 """
@@ -100,12 +102,20 @@ def main():
         if copy and copy != url and copy not in copies:
             copies[copy] = url
     arch_res = {"ok": [], "dead": [], "blocked": [], "error": []}
-    for copy, url in copies.items():
+    refused = skipped = 0  # consecutive copies the Archive would not answer for; copies left unchecked
+    for n, (copy, url) in enumerate(copies.items()):
+        if refused >= 5:
+            skipped = len(copies) - n
+            break
         kind, detail = status(copy)
         arch_res[kind].append((copy, url, detail))
+        refused = refused + 1 if kind == "blocked" else 0
         time.sleep(2)
-    print(f"Checked {len(copies)} archived copies: {len(arch_res['ok'])} OK, {len(arch_res['dead'])} dead, "
+    checked = len(copies) - skipped
+    print(f"Checked {checked} archived copies: {len(arch_res['ok'])} OK, {len(arch_res['dead'])} dead, "
           f"{len(arch_res['error'])} server errors, {len(arch_res['blocked'])} could not be checked.")
+    if skipped:
+        print(f"  The Internet Archive stopped answering after 5 tries in a row; the other {skipped} archived copies were not checked this run.")
     for kind, label in (("dead", "DEAD ARCHIVED COPY"), ("error", "ARCHIVE SERVER ERROR"), ("blocked", "could not check archived copy")):
         for copy, url, detail in arch_res[kind]:
             print(f"  {label} ({detail}): {copy}\n      for: {url}")
