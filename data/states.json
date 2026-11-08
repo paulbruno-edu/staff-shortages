@@ -740,17 +740,18 @@
   "illinois_enrollment": {
     "note": "Statewide public school enrollment, Illinois Report Card public data sets, statewide row, '# Student Enrollment', by school year (the 2025 report card covers 2024-25). Report Card enrollment is a fall count.",
     "source": {
-      "label": "ISBE Report Card Data Library (annual public data sets, 2020-2025)",
+      "label": "ISBE Report Card Data Library (annual public data sets, 2020-2026)",
       "url": "https://www.isbe.net/pages/illinois-state-report-card-data.aspx"
     },
-    "verification": "Verified directly on 2026-10-10 against the statewide rows of the 2020-2025 Report Card public data sets and the Report Card Trend Data workbook (rc-trend-data.xlsx).",
+    "verification": "Verified directly on 2026-10-10 against the statewide rows of the 2020-2025 Report Card public data sets and the Report Card Trend Data workbook (rc-trend-data.xlsx). 2025-26 verified directly on 2026-11-02 against the statewide row of the 2026 Report Card public data set (General sheet, revised 2026-10-29) and the trend workbook (updated 2026-10-30), which also confirmed the earlier years unchanged.",
     "by_school_year": {
       "2019-20": 1957018,
       "2020-21": 1887316,
       "2021-22": 1869325,
       "2022-23": 1857790,
       "2023-24": 1851290,
-      "2024-25": 1848560
+      "2024-25": 1848560,
+      "2025-26": 1819118
     }
   }
 }
