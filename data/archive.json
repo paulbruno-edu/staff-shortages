@@ -853,9 +853,9 @@
    "method": "saved"
   },
   "https://www.yahoo.com/news/us/articles/growing-number-north-dakota-students-153600439.html": {
-   "archive_url": null,
-   "archived": null,
-   "method": "not archived"
+   "archive_url": "https://web.archive.org/web/20261108120614/https://www.yahoo.com/news/us/articles/growing-number-north-dakota-students-153600439.html",
+   "archived": "2026-11-08",
+   "method": "saved"
   },
   "https://www.keyc.com/2026/11/03/how-districts-are-addressing-bus-driver-shortages/": {
    "archive_url": "https://web.archive.org/web/20261108045128/https://www.keyc.com/2026/11/03/how-districts-are-addressing-bus-driver-shortages/",
