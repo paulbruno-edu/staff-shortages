@@ -1,6 +1,6 @@
 {
  "_readme": "Wayback Machine copies of the sources the dashboard cites, made by scripts/archive_sources.py. method: 'saved' = a fresh copy was made; 'existing copy' = a new save did not succeed (the site or the Archive's save service declined or timed out), so the most recent earlier copy is used; 'is an archived copy' = the citation itself is a Wayback copy; 'not archived' = no public copy was found (these sources are preserved privately); 'DOI (not archived)' = DOI citations keep their persistent links.",
- "updated": "2026-11-11",
+ "updated": "2026-11-14",
  "links": {
   "https://www.isbe.net/Pages/Unfilled-Positions-Archive.aspx": {
    "archive_url": "https://web.archive.org/web/20261010164735/https://www.isbe.net/Pages/Unfilled-Positions-Archive.aspx",
@@ -876,6 +876,41 @@
    "archive_url": "https://web.archive.org/web/20261108045840/https://www.wbur.org/news/2026/07/14/boston-school-bus-fines-transdev",
    "archived": "2026-11-08",
    "method": "saved"
+  },
+  "https://whio.com/news/local/local-school-district-facing-bus-driver-shortages/MIL4UZHOGREDPBMLJXGBXFCYJ4": {
+   "archive_url": "https://web.archive.org/web/20261114153510/https://www.whio.com/news/local/local-school-district-facing-bus-driver-shortages/MIL4UZHOGREDPBMLJXGBXFCYJ4/",
+   "archived": "2026-11-14",
+   "method": "saved"
+  },
+  "https://foxcarolina.com/2026/11/12/parents-say-laurens-county-school-bus-delays-continue-district-reports-46-drivers": {
+   "archive_url": null,
+   "archived": null,
+   "method": "not archived"
+  },
+  "https://www.foxcarolina.com/2026/11/06/laurens-county-school-district-55-bus-drivers-call-out-sick-causing-delays/": {
+   "archive_url": "https://web.archive.org/web/20261114153758/https://www.foxcarolina.com/2026/11/06/laurens-county-school-district-55-bus-drivers-call-out-sick-causing-delays/",
+   "archived": "2026-11-14",
+   "method": "saved"
+  },
+  "https://www.yahoo.com/news/articles/parents-guilford-county-schools-bus-221137759.html": {
+   "archive_url": "https://web.archive.org/web/20261114153834/https://www.yahoo.com/news/articles/parents-guilford-county-schools-bus-221137759.html",
+   "archived": "2026-11-14",
+   "method": "existing copy"
+  },
+  "https://www.yahoo.com/news/articles/austin-isd-facing-shortage-bus-220243488.html": {
+   "archive_url": "https://web.archive.org/web/20261114154253/https://www.yahoo.com/news/articles/austin-isd-facing-shortage-bus-220243488.html",
+   "archived": "2026-11-14",
+   "method": "existing copy"
+  },
+  "https://www.abqjournal.com/news/report-new-mexico-teacher-vacancies-down-by-a-third/3161183": {
+   "archive_url": "https://web.archive.org/web/20261114154550/https://www.abqjournal.com/news/report-new-mexico-teacher-vacancies-down-by-a-third/3161183",
+   "archived": "2026-11-14",
+   "method": "existing copy"
+  },
+  "https://www.wbtv.com/2026/11/04/gaston-county-schools-urgently-seeking-bus-drivers-amid-route-disruptions/": {
+   "archive_url": "https://web.archive.org/web/20261114154846/https://www.wbtv.com/2026/11/04/gaston-county-schools-urgently-seeking-bus-drivers-amid-route-disruptions/",
+   "archived": "2026-11-14",
+   "method": "existing copy"
   },
   "https://www.bls.gov/oes/2025/may/oessrci.htm": {
    "archive_url": "https://web.archive.org/web/20261021150015/https://www.bls.gov/oes/2025/may/oessrci.htm",
