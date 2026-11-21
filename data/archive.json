@@ -1,6 +1,6 @@
 {
  "_readme": "Wayback Machine copies of the sources the dashboard cites, made by scripts/archive_sources.py. method: 'saved' = a fresh copy was made; 'existing copy' = a new save did not succeed (the site or the Archive's save service declined or timed out), so the most recent earlier copy is used; 'is an archived copy' = the citation itself is a Wayback copy; 'not archived' = no public copy was found (these sources are preserved privately); 'DOI (not archived)' = DOI citations keep their persistent links.",
- "updated": "2026-11-14",
+ "updated": "2026-11-21",
  "links": {
   "https://www.isbe.net/Pages/Unfilled-Positions-Archive.aspx": {
    "archive_url": "https://web.archive.org/web/20261010164735/https://www.isbe.net/Pages/Unfilled-Positions-Archive.aspx",
@@ -883,9 +883,9 @@
    "method": "saved"
   },
   "https://foxcarolina.com/2026/11/12/parents-say-laurens-county-school-bus-delays-continue-district-reports-46-drivers": {
-   "archive_url": null,
-   "archived": null,
-   "method": "not archived"
+   "archive_url": "https://web.archive.org/web/20261121152857/https://www.foxcarolina.com/2026/11/12/parents-say-laurens-county-school-bus-delays-continue-district-reports-46-drivers/",
+   "archived": "2026-11-21",
+   "method": "existing copy"
   },
   "https://www.foxcarolina.com/2026/11/06/laurens-county-school-district-55-bus-drivers-call-out-sick-causing-delays/": {
    "archive_url": "https://web.archive.org/web/20261114153758/https://www.foxcarolina.com/2026/11/06/laurens-county-school-district-55-bus-drivers-call-out-sick-causing-delays/",
@@ -911,6 +911,61 @@
    "archive_url": "https://web.archive.org/web/20261114154846/https://www.wbtv.com/2026/11/04/gaston-county-schools-urgently-seeking-bus-drivers-amid-route-disruptions/",
    "archived": "2026-11-14",
    "method": "existing copy"
+  },
+  "https://www.yahoo.com/news/us/articles/facing-shortage-bus-drivers-pgcps-092943728.html": {
+   "archive_url": null,
+   "archived": null,
+   "method": "not archived"
+  },
+  "https://www.bangordailynews.com/2026/11/20/bangor/bangor-education/maine-school-bus-driver-shortage-joam40zk0w/": {
+   "archive_url": null,
+   "archived": null,
+   "method": "not archived"
+  },
+  "https://www.wabi.tv/2026/11/16/driver-shortage-leads-route-disruption-bangor-students/": {
+   "archive_url": "https://web.archive.org/web/20261121153342/https://www.wabi.tv/2026/11/16/driver-shortage-leads-route-disruption-bangor-students/",
+   "archived": "2026-11-21",
+   "method": "existing copy"
+  },
+  "https://www.epi.org/blog/the-school-bus-driver-shortage-is-worsening-as-wages-fall-once-again/": {
+   "archive_url": null,
+   "archived": null,
+   "method": "not archived"
+  },
+  "https://www.chalkbeat.org/philadelphia/2026/11/19/school-district-wants-more-money-for-substitute-teachers-after-cutting-them/": {
+   "archive_url": "https://web.archive.org/web/20261121153759/https://www.chalkbeat.org/philadelphia/2026/11/19/school-district-wants-more-money-for-substitute-teachers-after-cutting-them/",
+   "archived": "2026-11-21",
+   "method": "saved"
+  },
+  "https://www.phillyvoice.com/philly-substitute-teacher-roles-staffing-costs/": {
+   "archive_url": "https://web.archive.org/web/20261121153828/https://www.phillyvoice.com/philly-substitute-teacher-roles-staffing-costs/",
+   "archived": "2026-11-21",
+   "method": "existing copy"
+  },
+  "https://www.yahoo.com/news/us/articles/nashua-special-educators-paperwork-staffing-234800505.html": {
+   "archive_url": "https://web.archive.org/web/20261121154235/https://www.yahoo.com/news/us/articles/nashua-special-educators-paperwork-staffing-234800505.html",
+   "archived": "2026-11-21",
+   "method": "existing copy"
+  },
+  "https://www.kjzz.org/the-show/2026-11-17/az-school-districts-struggle-to-hire-bus-drivers-as-rising-costs-strain-budgets": {
+   "archive_url": "https://web.archive.org/web/20261117225454/https://www.kjzz.org/the-show/2026-11-17/az-school-districts-struggle-to-hire-bus-drivers-as-rising-costs-strain-budgets",
+   "archived": "2026-11-17",
+   "method": "existing copy"
+  },
+  "https://www.richmonder.org/amid-nationwide-school-bus-driver-shortage-chesterfield-races-to-catch-up/": {
+   "archive_url": "https://web.archive.org/web/20261121154712/https://www.richmonder.org/amid-nationwide-school-bus-driver-shortage-chesterfield-races-to-catch-up/",
+   "archived": "2026-11-21",
+   "method": "existing copy"
+  },
+  "https://www.k12dive.com/news/school-bus-driver-shortage-worsens-again-as-hourly-wages-dip/874613/": {
+   "archive_url": null,
+   "archived": null,
+   "method": "not archived"
+  },
+  "https://chalkbeat.org/newyork/2026/11/18/nyc-school-bus-hearing-reveals-service-gaps": {
+   "archive_url": "https://web.archive.org/web/20261121155126/https://www.chalkbeat.org/newyork/2026/11/18/nyc-school-bus-hearing-reveals-service-gaps/",
+   "archived": "2026-11-21",
+   "method": "saved"
   },
   "https://www.bls.gov/oes/2025/may/oessrci.htm": {
    "archive_url": "https://web.archive.org/web/20261021150015/https://www.bls.gov/oes/2025/may/oessrci.htm",
